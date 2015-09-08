@@ -155,7 +155,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     tray_output LVDS1
-    status_command /home/arthur/.i3/i3script.sh
+    #status_command /home/arthur/.i3/i3script.sh
+    status_command py3status --config /home/arthur/.i3/i3status.conf -i /home/arthur/.i3
 }
 
 bindsym $mod+m exec --no-startup-id clementine
@@ -172,31 +173,36 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase s
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+ #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%- #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%- #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle # mute sound
 
 bindsym XF86HomePage exec firefox # browser key
 bindsym XF86ScreenSaver exec --no-startup-id i3lock -c 000000 -e -f -d -I 10 # FN + F5
 bindsym XF86Display exec --no-startup-id /home/arthur/.i3/dual-monitor.sh #FN + F4
-
 #bindsym Ctrl+Print exec --no-startup-id /home/arthur/.i3/screenshot full #screenshot all screen
 #bindsym $alt+Print exec --no-startup-id /home/arthur/.i3/screenshot window #screenshot active window
 
 #bindsym Print exec scrot -e 'mkdir -p /home/arthur/Pictures/screenshot && mv $f /home/arthur/Pictures/screenshot/'
 #bindsym --release Mod1+Print exec scrot -s -e  'mkdir -p /home/arthur/Pictures/screenshot && mv $f /home/arthur/Pictures/screenshot/'
 
+#bindsym XF86Standby exec --no-startup-id /home/arthur/.i3/i3exit susped # FN + F1
+
 # Power Menu
-set $mode_system System: (l) lock, (e) logout, (h) hibernate, (r) reboot, (s) shutdown
+set $mode_system System: (l) lock, (e) logout, (h) hibernate, (r) reboot, (s) shutdown, (u) suspend
 mode "$mode_system" {
     bindsym l exec --no-startup-id /home/arthur/.i3/i3exit lock, mode "default"
     bindsym e exec --no-startup-id /home/arthur/.i3/i3exit logout, mode "default"
     bindsym h exec --no-startup-id /home/arthur/.i3/i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id /home/arthur/.i3/i3exit reboot, mode "default"
     bindsym s exec --no-startup-id /home/arthur/.i3/i3exit shutdown, mode "default"
+    bindsym u exec --no-startup-id /home/arthur/.i3/i3exit suspend, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode "$mode_system"
+
+#always floating by default
+for_window [class="dukto"] floating enable
