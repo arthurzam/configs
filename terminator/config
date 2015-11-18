@@ -1,19 +1,22 @@
 [global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  title_inactive_bg_color = "#000000"
   title_receive_bg_color = "#000000"
   title_transmit_bg_color = "#000000"
-  title_inactive_bg_color = "#000000"
 [keybindings]
-[profiles]
-  [[default]]
-    background_image = None
-    font = Liberation Mono 11
-    foreground_color = "#FFFFFF"
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    font = Hack 11
+    foreground_color = "#ffffff"
+    scrollback_lines = 50000
+    use_system_font = False
