@@ -1,0 +1,139 @@
+net-misc/iputils -filecaps
+sys-apps/systemd
+sys-process/iotop -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
+app-editors/vim -python_targets_python2_7 gpm
+
+>=media-libs/freetype-2.6.1 X png
+>=x11-libs/cairo-1.14.2-r1 X xcb
+>=x11-libs/libxcb-1.11.1 xkb
+>=x11-libs/libxkbcommon-0.5.0 X
+>=x11-libs/pango-1.36.8-r1 X
+>=x11-base/xorg-server-1.17.4 glamor
+x11-misc/py3status -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
+
+>=x11-libs/vte-0.28.2-r207:0 python
+>=dev-libs/keybinder-0.3.0-r201:0 python
+>=x11-libs/gdk-pixbuf-2.32.2 X
+>=x11-libs/gtk+-3.15.2:3 X
+media-libs/libcanberra alsa 
+x11-terms/terminator -libnotify
+
+>=dev-lang/python-2.7.10:2.7 sqlite
+>=media-libs/libpng-1.6.18 apng
+www-client/firefox gstreamer-0 -gstreamer dbus system-icu system-jpeg system-cairo system-sqlite gtk3 pgo
+>=app-text/hunspell-1.3.3 linguas_en linguas_he
+
+media-sound/lame cpu_flags_x86_mmx
+media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_ssse3 mp3 x264 x265
+
+dev-qt/qtgui:5 jpeg
+dev-qt/qtnetwork:5 -bindist
+>=dev-libs/libpcre-8.37-r2 pcre16
+>=dev-libs/openssl-1.0.2d-r2 -bindist
+>=dev-libs/botan-1.10.10 threads -bindist -python_targets_python2_7
+>=net-misc/openssh-7.1_p1-r1 -bindist
+>=dev-qt/qt-creator-3.5.0 git valgrind -clang
+>=sys-devel/gdb-7.10-r1 -python_targets_python3_4 
+
+>=sys-libs/zlib-1.2.8-r1 minizip
+>=media-libs/flac-1.3.1-r1 ogg
+>=media-video/vlc-2.2.1 -qt4 qt5 x264 x265 mp3 dbus flac jpeg libass libnotify -libsamplerate live mpeg png run-as-root -udev
+
+>=dev-util/boost-build-1.57.0 -python_targets_python2_7
+>=dev-libs/boost-1.57.0 -python_targets_python2_7 -python_targets_python3_4
+>=net-p2p/qbittorrent-3.2.3 -qt4 qt5 -python_targets_python2_7
+>=net-libs/rb_libtorrent-1.0.6 -python_targets_python2_7 -python_targets_python3_4
+>=dev-qt/qtsingleapplication-2.6.1_p20150629 X -qt4 qt5
+>=dev-qt/qtlockedfile-2.4.1_p20150629 qt5 -qt4
+
+>=dev-db/sqlite-3.8.11.1 secure-delete
+>=dev-db/sqlitebrowser-3.7.0 -qt4 qt5
+>=dev-java/antlr-2.7.7-r6 -java -python_targets_python2_7
+>=dev-java/icedtea-bin-7.2.6.1 -cups -gtk -awt
+>=dev-libs/qcustomplot-1.3.1 qt5
+>=dev-java/java-config-2.2.0 -python_targets_python2_7
+
+>=media-sound/clementine-1.2.3 moodbar -udisks
+>=sci-libs/fftw-3.3.4 -fortran cpu_flags_x86_avx
+>=media-plugins/gst-plugins-meta-0.10-r10 aac mp3 ogg ffmpeg
+>=net-libs/glib-networking-2.44.0 -gnome
+
+>=media-gfx/exiv2-0.25-r1 png
+>=media-gfx/nomacs-2.4.6 qt5
+
+>=net-misc/networkmanager-1.0.6-r1 -modemmanager -ppp -wext -ncurses
+>=x11-misc/xdg-utils-1.1.1 -perl
+>=sys-auth/polkit-0.113 gtk
+>=net-wireless/wpa_supplicant-2.5 dbus
+>=dev-util/gdbus-codegen-2.44.1 -python_targets_python3_4
+>=dev-lang/swig-3.0.7 -pcre
+>=net-misc/dhcp-4.3.3-r1 -server
+>=app-crypt/gcr-3.16.0 gtk
+>=app-crypt/pinentry-0.9.6-r5 gnome-keyring
+>=dev-libs/glib-2.44.1 dbus
+>=gnome-base/gnome-keyring-3.16.0-r1 -caps -pam -ssh-agent
+>=net-misc/connman-1.30 policykit tools
+
+>=app-text/calibre-2.35.0 -udisks
+>=dev-python/PyQt5-5.5 svg network widgets printsupport gui webkit
+dev-qt/qtcore:5 icu
+>=app-text/poppler-0.36.0 qt5 -utils
+>=dev-lang/ruby-2.2.3-r1 -rdoc -berkdb -ssl
+>=dev-qt/qtwebkit-5.4.2 printsupport
+>=media-gfx/imagemagick-6.9.2.0 jpeg png tiff
+>=dev-python/pillow-3.0.0 jpeg
+
+>=dev-python/sip-4.16.9 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/python-dateutil-2.4.2 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/pycrypto-2.6.1-r1 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/apsw-3.8.11.1_p1 -python_targets_python3_4 -python_targets_python3_5
+>=virtual/python-dnspython-1 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/six-1.10.0 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/pillow-3.0.0 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/cssutils-1.0 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/netifaces-0.10.4 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/cssselect-0.9.1 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/psutil-3.1.1 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/pygments-2.0.2 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/lxml-3.4.4 -python_targets_python3_4 -python_targets_python3_5
+>=virtual/python-imaging-2 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/dbus-python-1.2.0-r1 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/PyQt5-5.5 -python_targets_python3_4 -python_targets_python3_5
+dev-lang/python -gdbm
+
+>=x11-libs/libfm-1.2.3-r1 gtk
+>=gnome-base/gvfs-1.24.2 mtp udisks gtk -http
+>=sys-fs/udisks-2.1.6 -gptfdisk
+>=sys-block/parted-3.2-r1 -debug -readline
+
+>=x11-misc/spacefm-1.0.4 -video-thumbnails
+
+>=www-client/uget-1.10.4 libnotify
+
+net-analyzer/nmap nping zenmap ncat
+>=dev-libs/libxml2-2.9.2-r1 python -python_targets_python3_5 -python_targets_python3_4
+>=sys-block/gparted-0.23.0 fat ntfs policykit
+>=dev-java/antlr-2.7.7-r5 -java
+>=dev-python/setuptools-18.4 python_targets_python3_5
+>=dev-python/packaging-15.3-r2 python_targets_python3_5
+>=dev-python/certifi-2015.9.6.2 python_targets_python3_5
+>=sys-process/iotop-0.6
+>=net-misc/youtube-dl-2015.10.13 python_single_target_python3_5 python_targets_python3_5 -python_targets_python2_7 -python_targets_python3_4 -python_single_target_python2_7
+
+app-portage/gentoolkit -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
+>=sys-apps/portage-2.2.23 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
+>=dev-python/pycairo-1.10.0-r5 -python_targets_python3_4 -python_targets_python3_5
+
+>=sys-devel/gcc-5.2.0 -fortran
+dev-vcs/git tk -perl -python -pcre
+>=net-analyzer/wireshark-1.12.8-r1 qt5 -qt4 ipv6
+>=app-admin/sudo-1.8.14_p3 -sendmail
+net-p2p/dukto qt5 -qt4 unique
+>=sys-process/procps-3.3.11-r1 -ncurses -unicode
+dev-lang/perl -gdbm
+>=app-arch/p7zip-15.09 rar -pch
+
+>=app-office/libreoffice-5.0.2.2 -cups python_single_target_python3_5 -python_single_target_python2_7 -python_targets_python2_7  -python_single_target_python3_4 -python_targets_python3_4 python_targets_python3_5
+>=media-libs/harfbuzz-0.9.41 icu
+>=dev-libs/redland-1.0.17-r1 -berkdb
+>=net-nds/openldap-2.4.42-r1 -berkdb syslog
