@@ -2,3 +2,16 @@
 <net-analyzer/wireshark-99999999 **
 =dev-python/pycdc-9999 **
 =net-p2p/dukto-9999 **
+=x11-terms/qterminal-9999 **
+=x11-libs/qtermwidget-9999 **
+=x11-libs/libfm-qt-9999 **
+=x11-misc/pcmanfm-qt-9999 **
+=media-gfx/lximage-qt-9999 **
+=app-admin/keepassx-9999 **
+=media-sound/clementine-99999 **
+=media-libs/libmygpo-qt-99999 **
+=media-video/QMPlay2-9999 **
+=x11-misc/j4-dmenu-desktop-9999 **
+=x11-misc/i3status-9999 **
+=x11-misc/xorg-launch-helper-9999 **
+=net-misc/cmst-9999 **
