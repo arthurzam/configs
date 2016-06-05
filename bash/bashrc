@@ -6,23 +6,29 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias jmtpfs='jmtpfs -o allow_other'
-alias ping='ping -c 4'
-alias pacman='sudo pacman --color=auto'
-alias iotop='sudo iotop'
-alias mount='sudo mount'
-alias umount='sudo umount'
-alias thunar='pcmanfm'
+source /etc/profile
+export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 
-export EDITOR=vim
-export GCC_COLORS=auto
+#alias ping='ping -c 4'
+#alias nethogs='sudo nethogs'
+#alias iotop='sudo iotop'
+#alias mount='sudo mount'
+#alias umount='sudo umount'
+alias gksu='lxsu'
+alias gksudo='lxsudo'
+alias protect-file='sudo chattr +i'
+alias unprotect-file='sudo chattr -i'
 
-source /etc/makepkg.conf
-#export CXXFLAGS="$CXXFLAGS -flto"
-#export CFLAGS="$CFLAGS -flto"
-#export LDFLAGS="$LDFLAGS -flto"
+export TERMINAL=qterminal
+#export CPPFLAGS="-D_FORTIFY_SOURCE=2"
+if [ $EUID != 0 ] && [ $EUID != 250 ]; then
+    export CFLAGS="-march=native -mtune=native -O2 -pipe"
+    export CXXFLAGS="-march=native -mtune=native -O2 -pipe"
+    export LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro"
+    export MAKEFLAGS="-j4"
+else
+    unset MAKEFLAGS CFLAGS CXXFLAGS LDFLAGS
+fi
 
 set_prompt () {
     Last_Command=$? # Must come first!
@@ -56,3 +62,11 @@ set_prompt () {
     # the text color to the default.
 }
 PROMPT_COMMAND='set_prompt'
+
+update-system () {
+    emerge --sync && emerge -atuDUN @world && smart-live-rebuild
+}
+
+clean-system() {
+    emerge --depclean -a --with-bdeps\=n
+}
