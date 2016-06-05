@@ -1,8 +1,12 @@
 #!/bin/sh
 lock() {
     i3lock -c 000000 -e -f -d -I 10
+#echo "no lock"
 }
-
+on_shutdown() {
+    killall -q -9 cmst || true
+    killall -q -9 clementine || true
+}
 case "$1" in
     lock)
         lock
@@ -12,6 +16,9 @@ case "$1" in
         ;;
     hibernate)
         lock && systemctl hibernate
+        ;;
+    suspend)
+        lock && systemctl suspend
         ;;
     reboot)
         systemctl reboot

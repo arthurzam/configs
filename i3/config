@@ -11,10 +11,11 @@
 
 set $mod Mod4
 set $alt Mod1
-
+set $home /home/arthur
+set $terminal qterminal
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:hack 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -31,7 +32,8 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $terminal
+bindsym $mod+Shift+Return exec lxsudo $terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -42,7 +44,7 @@ bindsym $mod+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --no-generic
 
 # change focus
 bindsym Mod1+Tab focus right
@@ -156,47 +158,44 @@ bindsym $mod+r mode "resize"
 bar {
     tray_output LVDS1
     #status_command /home/arthur/.i3/i3script.sh
-    status_command py3status --config /home/arthur/.i3/i3status.conf -i /home/arthur/.i3
+    #status_command /tmp/i3bar_click_test/t
+    status_command i3status -c $home/.i3/i3status.conf
+    #status_command /usr/bin/py3status --config /home/arthur/.i3/i3status.conf -i /home/arthur/.i3
 }
 
-bindsym $mod+m exec --no-startup-id clementine
-bindsym $mod+Shift+f exec pcmanfm
-bindsym $mod+p exec arandr
+bindsym $mod+m exec --no-startup-id /usr/bin/clementine
+bindsym $mod+Shift+f exec /usr/bin/pcmanfm-qt
+#bindsym $mod+p exec /usr/bin/arandr
 
-exec --no-startup-id nm-applet # network manager
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # polkit agent
-exec --no-startup-id /usr/bin/dunst
-exec --no-startup-id "setxkbmap -model pc104 us,il -option grp:alt_shift_toggle" # language 
+exec --no-startup-id /usr/bin/cmst -c -m -n # network manager
+#exec --no-startup-id /usr/bin/nm-applet # network manager
+exec --no-startup-id /usr/bin/lxqt-policykit-agent # polkit agent
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # polkit agent
+exec --no-startup-id /usr/bin/dunst # notification daemon
+#exec --no-startup-id "setxkbmap -model pc104 us,il -option grp:alt_shift_toggle" # language 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 10 # decrease screen brightness
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+ #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%- #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/amixer set Master 3%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id /usr/bin/amixer set Master 3%- #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id /usr/bin/amixer set Master toggle # mute sound
 
 bindsym XF86HomePage exec firefox # browser key
-bindsym XF86ScreenSaver exec --no-startup-id i3lock -c 000000 -e -f -d -I 10 # FN + F5
-bindsym XF86Display exec --no-startup-id /home/arthur/.i3/dual-monitor.sh #FN + F4
-#bindsym Ctrl+Print exec --no-startup-id /home/arthur/.i3/screenshot full #screenshot all screen
-#bindsym $alt+Print exec --no-startup-id /home/arthur/.i3/screenshot window #screenshot active window
-
-#bindsym Print exec scrot -e 'mkdir -p /home/arthur/Pictures/screenshot && mv $f /home/arthur/Pictures/screenshot/'
-#bindsym --release Mod1+Print exec scrot -s -e  'mkdir -p /home/arthur/Pictures/screenshot && mv $f /home/arthur/Pictures/screenshot/'
-
-#bindsym XF86Standby exec --no-startup-id /home/arthur/.i3/i3exit susped # FN + F1
+bindsym XF86ScreenSaver exec --no-startup-id /usr/bin/i3lock -c 000000 -e -f -d -I 10 # FN + F5
+bindsym XF86Display exec --no-startup-id $home/.i3/dual-monitor.sh #FN + F4
 
 # Power Menu
 set $mode_system System: (l) lock, (e) logout, (h) hibernate, (r) reboot, (s) shutdown, (u) suspend
 mode "$mode_system" {
-    bindsym l exec --no-startup-id /home/arthur/.i3/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id /home/arthur/.i3/i3exit logout, mode "default"
-    bindsym h exec --no-startup-id /home/arthur/.i3/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id /home/arthur/.i3/i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id /home/arthur/.i3/i3exit shutdown, mode "default"
-    bindsym u exec --no-startup-id /home/arthur/.i3/i3exit suspend, mode "default"
+    bindsym l exec --no-startup-id $home/.i3/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id $home/.i3/i3exit logout, mode "default"
+    bindsym h exec --no-startup-id $home/.i3/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id $home/.i3/i3exit reboot, mode "default"
+    bindsym s exec --no-startup-id $home/.i3/i3exit shutdown, mode "default"
+    bindsym u exec --no-startup-id $home/.i3/i3exit suspend, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -205,4 +204,5 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 #always floating by default
+#for_window [title="Preferences"] floating enable
 for_window [class="dukto"] floating enable

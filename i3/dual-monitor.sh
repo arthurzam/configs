@@ -1,6 +1,6 @@
 #!/bin/bash
 FILE=/run/user/$UID/i3/dual-monitor
-SCREEN=VGA1
+SCREEN=VGA2
 vga_on() {
   if  (xrandr | grep -e "$SCREEN connected" > /dev/null); then
     echo 1 > $FILE
