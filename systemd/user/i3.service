@@ -1,0 +1,16 @@
+[Unit]
+Description=i3 window manager
+After=dbus.service xorg.target
+Requires=dbus.service xorg.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/i3
+ExecReload=/usr/bin/i3-msg reload
+Restart=always
+RestartSec=10
+StandardOutput=null
+StandardError=null
+ 
+[Install]
+WantedBy=wm.target

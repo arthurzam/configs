@@ -1,0 +1,8 @@
+[Unit]
+Description  = User Programs
+Wants        = wm.target
+After        = wm.target
+AllowIsolate = true
+
+[Install]
+Alias = default.target
