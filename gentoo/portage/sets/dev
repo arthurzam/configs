@@ -1,0 +1,16 @@
+app-editors/vim
+app-vim/nerdtree
+dev-python/numpy
+dev-python/setuptools
+dev-qt/linguist-tools
+dev-qt/qdbus
+dev-qt/qt-docs
+dev-util/perf
+dev-util/pkgconfig
+dev-util/pycharm-community
+dev-vcs/git
+sys-devel/autoconf
+sys-devel/gcc
+sys-devel/gdb
+sys-devel/libtool
+x11-libs/libnotify

@@ -15,3 +15,6 @@
 =x11-misc/i3status-9999 **
 =x11-misc/xorg-launch-helper-9999 **
 =net-misc/cmst-9999 **
+=dev-libs/wlc-9999 **
+=x11-wm/sway-9999 **
+=net-misc/fatrat-9999 **

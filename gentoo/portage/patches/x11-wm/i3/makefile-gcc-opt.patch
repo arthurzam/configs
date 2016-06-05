@@ -1,0 +1,18 @@
+--- common.mk.original	2016-05-30 08:54:37.227901286 +0300
++++ common.mk	2016-05-30 08:55:03.387406255 +0300
+@@ -1,5 +1,5 @@
+ UNAME=$(shell uname)
+-DEBUG=1
++DEBUG=0
+ ASAN=0
+ INSTALL=install
+ LN=ln
+@@ -40,7 +40,7 @@
+ # Extended debugging flags, macros shall be available in gcc
+ CFLAGS ?= -pipe -gdwarf-2 -g3
+ else
+-CFLAGS ?= -pipe -O2 -freorder-blocks-and-partition
++CFLAGS ?= -pipe -O3 -march=native -mtune=native -freorder-blocks-and-partition
+ endif
+ 
+ ifeq ($(ASAN),1)
