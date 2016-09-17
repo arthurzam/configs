@@ -6,9 +6,11 @@ x11-misc/dunst
 x11-misc/i3lock
 x11-misc/i3status
 x11-misc/j4-dmenu-desktop
+x11-misc/xclip
 x11-wm/i3
 x11-themes/gtk-engines-aurora
 media-sound/alsa-utils
 media-fonts/dejavu
 media-fonts/hack
 media-fonts/liberation-fonts
+media-fonts/droid

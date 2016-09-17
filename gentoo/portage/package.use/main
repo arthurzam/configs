@@ -1,6 +1,5 @@
 net-misc/iputils -filecaps
 sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod
-sys-process/iotop -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 app-editors/vim -python_targets_python2_7 gpm
 
 >=media-libs/freetype-2.6.1 X png
@@ -9,44 +8,34 @@ app-editors/vim -python_targets_python2_7 gpm
 >=x11-libs/libxkbcommon-0.5.0 X
 >=x11-libs/pango-1.36.8-r1 X
 >=x11-base/xorg-server-1.17.4 glamor
-x11-misc/py3status -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 
->=x11-libs/vte-0.28.2-r207:0 python
->=dev-libs/keybinder-0.3.0-r201:0 python
 >=x11-libs/gdk-pixbuf-2.32.2 X
 >=x11-libs/gtk+-3.15.2:3 X
-media-libs/libcanberra alsa 
-x11-terms/terminator -libnotify
 x11-libs/qtermwidget qt5
 x11-terms/qterminal qt5
 
->=dev-lang/python-2.7.10:2.7 sqlite
->=media-libs/libpng-1.6.18 apng
-www-client/firefox -gstreamer-0 gstreamer dbus system-icu system-jpeg system-cairo system-sqlite gtk3 pgo ffmpeg system-libevent system-harfbuzz
->=app-text/hunspell-1.3.3 linguas_en linguas_he -ncurses
+dev-lang/python:2.7 sqlite
+media-libs/libpng apng
+www-client/firefox -gstreamer-0 gstreamer dbus system-icu system-cairo system-sqlite gtk3 ffmpeg system-harfbuzz system-libvpx
+>=media-libs/libvpx-1.5.0 postproc
+app-text/hunspell linguas_en linguas_he -ncurses
 
 media-sound/lame cpu_flags_x86_mmx
 media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_ssse3 mp3 x264 x265
 
-dev-qt/qtgui:5 jpeg
-dev-qt/qtnetwork:5 -bindist
 >=dev-libs/libpcre-8.37-r2 pcre16
 >=dev-libs/openssl-1.0.2d-r2 -bindist
 >=dev-libs/botan-1.10.10 threads -bindist -python_targets_python2_7
 >=net-misc/openssh-7.1_p1-r1 -bindist
->=dev-qt/qt-creator-3.5.0 git valgrind -clang cmake autotools webkit
 >=sys-devel/gdb-7.10-r1 -python_targets_python3_4 
 
 >=sys-libs/zlib-1.2.8-r1 minizip
 >=media-libs/flac-1.3.1-r1 ogg
->=media-video/vlc-2.2.1 -qt4 qt5 x264 x265 mp3 dbus flac jpeg libass libnotify -libsamplerate live mpeg png run-as-root -udev
 
 >=dev-util/boost-build-1.57.0 -python_targets_python2_7
 >=dev-libs/boost-1.57.0 -python_targets_python2_7 -python_targets_python3_4
 >=net-p2p/qbittorrent-3.2.3 -qt4 qt5 -python_targets_python2_7
 >=net-libs/rb_libtorrent-1.0.6 -python_targets_python2_7 -python_targets_python3_4
->=dev-qt/qtsingleapplication-2.6.1_p20150629 X -qt4 qt5
->=dev-qt/qtlockedfile-2.4.1_p20150629 qt5 -qt4
 
 >=dev-db/sqlite-3.8.11.1 secure-delete
 >=dev-db/sqlitebrowser-3.7.0 -qt4 qt5
@@ -55,36 +44,27 @@ dev-qt/qtnetwork:5 -bindist
 >=dev-libs/qcustomplot-1.3.1 qt5
 >=dev-java/java-config-2.2.0 -python_targets_python2_7
 
->=media-sound/clementine-1.2.3 moodbar -udisks qt5 dbus
+>=media-sound/clementine-1.2.3 moodbar -udisks -qt4 qt5 dbus
 >=media-libs/libechonest-2.3.1 qt5 -qt4
 =media-libs/libmygpo-qt-99999 qt5 -qt4
 >=sci-libs/fftw-3.3.4 -fortran cpu_flags_x86_avx
->=media-plugins/gst-plugins-meta-0.10-r10 aac mp3 ogg ffmpeg
+>=media-plugins/gst-plugins-meta-0.10-r10 aac mp3 ogg
 >=net-libs/glib-networking-2.44.0 -gnome
 
->=media-gfx/exiv2-0.25-r1 png
->=media-gfx/nomacs-2.4.6 qt5
 >=media-libs/libsdl-1.2.15-r9 X
 
->=net-misc/networkmanager-1.0.6-r1 -modemmanager -ppp -wext -ncurses
 >=x11-misc/xdg-utils-1.1.1 -perl
->=sys-auth/polkit-0.113
 >=net-wireless/wpa_supplicant-2.5 dbus
->=dev-util/gdbus-codegen-2.44.1 -python_targets_python3_4
 >=dev-lang/swig-3.0.7 -pcre
->=net-misc/dhcp-4.3.3-r1 -server
->=app-crypt/gcr-3.16.0 gtk
->=app-crypt/pinentry-0.9.6-r5 gnome-keyring
+>=app-crypt/pinentry-0.9.6-r5 -gnome-keyring
 >=dev-libs/glib-2.44.1 dbus
 >=gnome-base/gnome-keyring-3.16.0-r1 -caps -pam -ssh-agent
 >=net-misc/connman-1.30 policykit -tools -debug ethernet -wifi
 
 >=app-text/calibre-2.35.0 -udisks
 >=dev-python/PyQt5-5.5 svg network widgets printsupport gui webkit
-dev-qt/qtcore:5 icu
 >=app-text/poppler-0.36.0 qt5
 >=dev-lang/ruby-2.2.3-r1 -rdoc -berkdb -ssl
->=dev-qt/qtwebkit-5.4.2 printsupport
 >=media-gfx/imagemagick-6.9.2.0 jpeg png tiff
 >=dev-python/pillow-3.0.0 jpeg
 
@@ -95,12 +75,12 @@ dev-qt/qtcore:5 icu
 >=virtual/python-dnspython-1 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/six-1.10.0 -python_targets_python3_4 python_targets_python3_5
 >=dev-python/pillow-3.0.0 -python_targets_python3_4 python_targets_python3_5
->=dev-python/cssutils-1.0 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/cssutils-1.0 -python_targets_python3_4 python_targets_python3_5
 >=dev-python/netifaces-0.10.4 -python_targets_python3_4 -python_targets_python3_5
->=dev-python/cssselect-0.9.1 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/cssselect-0.9.1 -python_targets_python3_4 python_targets_python3_5
 >=dev-python/psutil-3.1.1 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/pygments-2.0.2 -python_targets_python3_4 -python_targets_python3_5
->=dev-python/lxml-3.4.4 -python_targets_python3_4 -python_targets_python3_5
+>=dev-python/lxml-3.4.4 -python_targets_python3_4 python_targets_python3_5
 >=virtual/python-imaging-2 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/dbus-python-1.2.0-r1 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/PyQt5-5.5 -python_targets_python3_4 -python_targets_python3_5
@@ -108,31 +88,21 @@ dev-qt/qtcore:5 icu
 dev-python/numpy python_targets_python3_5
 dev-lang/python -gdbm
 
->=x11-libs/libfm-1.2.3-r1 -gtk
->=gnome-base/gvfs-1.24.2 mtp udisks -http fuse
->=sys-fs/udisks-2.1.6 -gptfdisk
->=sys-block/parted-3.2-r1 -debug -readline
->=app-crypt/gcr-3.18.0 -gtk
-
->=x11-misc/spacefm-1.0.4 -video-thumbnails
-
->=www-client/uget-1.10.4 libnotify
+x11-libs/libfm -gtk
+gnome-base/gvfs mtp udisks -http fuse
+sys-fs/udisks -gptfdisk
+sys-block/parted -debug -readline
+app-crypt/gcr -gtk
 
 net-analyzer/nmap nping zenmap ncat
->=dev-libs/libxml2-2.9.2-r1 python -python_targets_python3_5 -python_targets_python3_4
+>=dev-libs/libxml2-2.9.2-r1 -python -python_targets_python3_5 -python_targets_python3_4
 >=sys-block/gparted-0.23.0 fat ntfs policykit
 >=dev-java/antlr-2.7.7-r5 -java
 >=dev-python/setuptools-18.4 python_targets_python3_5
 >=dev-python/packaging-15.3-r2 python_targets_python3_5
 >=dev-python/certifi-2015.9.6.2 python_targets_python3_5
->=sys-process/iotop-0.6
->=net-misc/youtube-dl-2015.10.13 python_single_target_python3_5 python_targets_python3_5 -python_targets_python2_7 -python_targets_python3_4 -python_single_target_python2_7
 
-app-portage/gentoolkit -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
->=sys-apps/portage-2.2.23 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
->=dev-python/pycairo-1.10.0-r5 -python_targets_python3_4 -python_targets_python3_5
-
-sys-devel/gcc -fortran cilk multislot
+sys-devel/gcc -fortran cilk
 dev-vcs/git tk -perl -python -pcre
 >=net-analyzer/wireshark-1.12.8-r1 qt5 -qt4 ipv6
 >=app-admin/sudo-1.8.14_p3 -sendmail
@@ -151,35 +121,22 @@ app-arch/p7zip rar -pch
 >=kde-frameworks/kwindowsystem-5.18.0 X
 >=sys-boot/grub-2.02_beta2-r9 -multislot -nls
 
->=dev-python/snakeoil-0.6.6 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
->=sys-apps/pkgcore-0.9.2 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
->=app-portage/gentoopm-0.2.9 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
->=app-portage/smart-live-rebuild-1.3.4.1 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
-app-portage/repoman -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5 
->=media-libs/mutagen-1.32 -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
-
 >=x11-libs/libva-1.6.2 X vdpau
 x11-misc/dmenu xinerama
 media-sound/alsa-utils -libsamplerate
 
 >=media-video/ffmpeg-2.8.6 libass librtmp vorbis openssl vaapi
->=games-util/nml-0.4.0 python_targets_python3_5
->=dev-python/ply-3.8 python_targets_python3_5 -python_targets_python2_7
 >=games-simulation/openttd-1.5.3 -timidity
 >=media-libs/libsdl-1.2.15-r9 -joystick opengl xv
-media-fonts/hack X
-media-fonts/dejavu X
-media-fonts/liberation-fonts X
-media-fonts/libertine X
-media-fonts/urw-fonts X
 
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript
 dev-java/java-config python_targets_python3_5
 net-misc/fatrat curl bittorrent
 
-# for sway
-#media-libs/mesa gles2 wayland
-#>=x11-base/xorg-server-1.18.3 wayland
-#>=media-gfx/imagemagick-6.9.2.10 raw
-#>=x11-libs/gdk-pixbuf-2.32.3 jpeg
+dev-util/cmake qt5
+
+sys-apps/util-linux -cramfs
+dev-util/ninja vim-syntax
+
+>=dev-libs/libxml2-2.9.4 python

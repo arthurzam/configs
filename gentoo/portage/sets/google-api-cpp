@@ -1,0 +1,6 @@
+dev-cpp/gflags
+dev-cpp/glog
+dev-python/httplib2
+dev-python/python-gflags
+dev-python/google-api-python-client
+dev-python/google-apputils

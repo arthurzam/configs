@@ -1,0 +1,6 @@
+[qt]
+location = /usr/local/qt-portage
+sync-type = git
+sync-uri = https://github.com/gentoo/qt
+auto-sync = true
+masters = gentoo
