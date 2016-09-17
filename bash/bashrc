@@ -9,15 +9,17 @@
 source /etc/profile
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 
-#alias ping='ping -c 4'
-#alias nethogs='sudo nethogs'
-#alias iotop='sudo iotop'
-#alias mount='sudo mount'
-#alias umount='sudo umount'
 alias gksu='lxsu'
 alias gksudo='lxsudo'
+alias curl='curl -L'
+alias vimview='vim -R'
+alias vmless='vim -u ~/.less.vimrc -'
+alias xclip='xclip -selection clipboard'
 alias protect-file='sudo chattr +i'
 alias unprotect-file='sudo chattr -i'
+alias notify='sudo -u arthur notify-send'
+alias htop='echo-title htop && htop'
+alias ncdu='echo-title ncdu && ncdu'
 
 export TERMINAL=qterminal
 #export CPPFLAGS="-D_FORTIFY_SOURCE=2"
@@ -30,43 +32,17 @@ else
     unset MAKEFLAGS CFLAGS CXXFLAGS LDFLAGS
 fi
 
-set_prompt () {
-    Last_Command=$? # Must come first!
-    Blue='\[\e[01;34m\]'
-    White='\[\e[01;37m\]'
-    Red='\[\e[01;31m\]'
-    Green='\[\e[01;32m\]'
-    Reset='\[\e[00m\]'
-    FancyX='\342\234\227'
-    Checkmark='\342\234\223'
-
-	PS1=
-    # If it was successful, print a green check mark. Otherwise, print
-    # a red X.
-    if [[ $Last_Command == 0 ]]; then
-        PS1+="$Green$Checkmark "
-    else
-        PS1+="$White\$Last_Command "
-        PS1+="$Red$FancyX "
-    fi
-    # If root, just print the host in red. Otherwise, print the current user
-    # and host in green.
-    if [[ $EUID == 0 ]]; then
-        PS1+="$Red\\h "
-    	PS1+="$Blue\\w $Green#$Reset "
-    else
-        PS1+="$Green\\u:"
-    	PS1+="$Red\\w $Blue\\\$$Reset "
-    fi
-    # Print the working directory and prompt marker in blue, and reset
-    # the text color to the default.
-}
-PROMPT_COMMAND='set_prompt'
-
 update-system () {
-    emerge --sync && emerge -atuDUN @world && smart-live-rebuild
+    ( emerge --sync && emerge -atuDUN @world $@ && smart-live-rebuild -- $@ )
 }
 
 clean-system() {
     emerge --depclean -a --with-bdeps\=n
 }
+
+echo-title() {
+    echo -e '\033]2;'"$@"'\007'
+}
+
+[[ $- = *i* ]] && source /home/arthur/dev/liquidprompt/liquidprompt
+
