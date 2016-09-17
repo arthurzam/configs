@@ -206,3 +206,5 @@ bindsym $mod+Escape mode "$mode_system"
 #always floating by default
 #for_window [title="Preferences"] floating enable
 for_window [class="dukto"] floating enable
+
+workspace_layout tabbed
