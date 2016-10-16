@@ -1,0 +1,88 @@
+#!/bin/bash
+
+apps=(
+	"org.mpris.MediaPlayer2.clementine"
+	"org.mpris.MediaPlayer2.QMPlay2"
+     )
+
+get_metadata() {
+	# $1 - property
+	for app in "${apps[@]}"; do
+		if [ Playing = $(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus) ]; then
+			qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata | grep "$1" | grep -oP "^$1: \K.*"
+			break
+		fi
+	done
+}
+
+case "$1" in
+	stop)
+		for app in "${apps[@]}"; do
+			qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+		done
+		;;
+	pause)
+		for app in "${apps[@]}"; do
+			qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
+		done
+		;;
+	playpause)
+		selected="${apps[0]}"
+		for app in "${apps[@]}"; do
+            status="$(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus)"
+			if [ Paused = ${status} -o Playing = ${status} ]; then
+				selected="${app}"
+				break
+			fi
+		done
+		qdbus "${selected}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+		;;
+	play)
+		selected="${apps[0]}"
+		for app in "${apps[@]}"; do
+			if [ Paused = $(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus) ]; then
+				selected="${app}"
+				break
+			fi
+		done
+		qdbus "${selected}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
+		;;
+	next)
+		selected="${apps[0]}"
+		for app in "${apps[@]}"; do
+			if [ Playing = $(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus) ]; then
+				selected="${app}"
+				break
+			fi
+		done
+        if [ -z ${selected} ]; then for app in "${apps[@]}"; do
+			if [ Paused = $(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus) ]; then
+				selected="${app}"
+				break
+			fi
+		done; fi
+		qdbus "${selected}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+		;;
+	prev)
+		selected="${apps[0]}"
+		for app in "${apps[@]}"; do
+			if [ Playing = $(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus) ]; then
+				selected="${app}"
+				break
+			fi
+		done
+        if [ -z ${selected} ]; then for app in "${apps[@]}"; do
+			if [ Paused = $(qdbus "${app}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlaybackStatus) ]; then
+				selected="${app}"
+				break
+			fi
+		done; fi
+		qdbus "${selected}" /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+		;;
+	artist)
+		get_metadata xesam:artist
+		;;
+	title)
+		get_metadata xesam:title
+		;;
+esac
