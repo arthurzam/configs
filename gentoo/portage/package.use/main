@@ -119,7 +119,7 @@ app-arch/p7zip rar -pch
 >=app-crypt/pinentry-0.9.7 -gnome-keyring
 >=sys-auth/polkit-qt-0.112.0-r1 qt5 -qt4
 >=kde-frameworks/kwindowsystem-5.18.0 X
->=sys-boot/grub-2.02_beta2-r9 -multislot -nls
+>=sys-boot/grub-2.02_beta2-r9 -multislot -nls efiemu
 
 >=x11-libs/libva-1.6.2 X vdpau
 x11-misc/dmenu xinerama

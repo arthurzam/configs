@@ -15,6 +15,3 @@ sys-devel/gdb
 sys-devel/libtool
 x11-libs/libnotify
 dev-util/ninja
-
-net-libs/nodejs
-dev-util/codelite

@@ -7,6 +7,9 @@
 =x11-libs/libfm-qt-9999 **
 =x11-misc/pcmanfm-qt-9999 **
 =media-gfx/lximage-qt-9999 **
+=lxqt-base/liblxqt-9999 **
+=lxqt-base/lxqt-policykit-9999 **
+=lxqt-base/lxqt-sudo-9999 **
 =app-admin/keepassx-9999 **
 =media-sound/clementine-99999 **
 =media-libs/libmygpo-qt-99999 **

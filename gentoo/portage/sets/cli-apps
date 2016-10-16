@@ -17,3 +17,9 @@ sys-process/htop
 sys-process/iotop
 sys-process/lsof
 sys-process/parallel
+sys-fs/dosfstools
+sys-apps/gptfdisk
+sys-apps/usbutils
+sys-fs/ntfs3g
+app-cdr/cdw
+

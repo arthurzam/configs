@@ -1,8 +1,7 @@
 app-arch/p7zip lto.conf
 app-editors/vim-core no-man.conf lto.conf
 app-editors/vim lto.conf
-sys-devel/gcc hdd-tmp.conf
-app-office/libreoffice hdd-tmp.conf
+#app-office/libreoffice hdd-tmp.conf
 app-text/ghostscript-gpl no-docs.conf lto.conf
 app-text/podofo lto.conf no-man.conf
 app-text/poppler lto.conf
@@ -49,16 +48,21 @@ sys-fs/udisks no-docs.conf lto.conf
 sys-libs/glibc lto.conf with-locale.conf
 sys-libs/zlib no-docs.conf lto.conf
 sys-process/procps lto.conf
-www-client/firefox lto.conf hdd-tmp.conf
+#www-client/firefox lto.conf hdd-tmp.conf
 x11-libs/cairo no-docs.conf lto.conf
 x11-libs/gtk+:2 no-docs.conf
 x11-libs/gtk+:3 no-docs.conf
 x11-libs/libX11 no-man.conf lto.conf 
 x11-libs/libXdmcp lto.conf
-x11-libs/pango no-docs.conf lto.conf
+x11-libs/pango no-docs.conf # lto.conf
 x11-libs/qtermwidget no-qt-debug.conf lto.conf
 x11-misc/i3lock lto.conf
 x11-misc/i3status lto.conf
 x11-misc/pcmanfm-qt no-qt-debug.conf lto.conf
 x11-terms/qterminal no-qt-debug.conf lto.conf
 x11-wm/i3 no-docs.conf lto.conf
+=dev-util/ragel-6.9 gcc6fix.conf
+=dev-python/lxml-3.6.4 gcc6fix.conf
+=dev-libs/crypto++-5.6.2-r3 gcc6fix.conf
+=media-libs/audiofile-0.3.6-r1 gcc6fix.conf
+=games-util/grfcodec-6.0.5 gcc6fix.conf
