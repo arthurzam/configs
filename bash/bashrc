@@ -19,7 +19,9 @@ alias protect-file='sudo chattr +i'
 alias unprotect-file='sudo chattr -i'
 alias notify='sudo -u arthur notify-send'
 alias htop='echo-title htop && htop'
+alias iotop='echo-title iotop && iotop'
 alias ncdu='echo-title ncdu && ncdu'
+alias cdw='echo-title cdw && cdw'
 
 export TERMINAL=qterminal
 #export CPPFLAGS="-D_FORTIFY_SOURCE=2"
@@ -37,7 +39,7 @@ update-system () {
 }
 
 clean-system() {
-    emerge --depclean -a --with-bdeps\=n
+    emerge --depclean -a --with-bdeps\=n $@
 }
 
 echo-title() {
