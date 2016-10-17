@@ -1,2 +1,4 @@
-setxkbmap -model pc104 us,il -option grp:alt_shift_toggle
+setxkbmap us,il -option grp:alt_shift_toggle
+xrandr --output DP1 --auto --right-of HDMI1
+numlockx &
 exec dbus-launch --exit-with-session --sh-syntax i3
