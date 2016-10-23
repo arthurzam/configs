@@ -48,7 +48,7 @@ sys-fs/udisks no-docs.conf lto.conf
 sys-libs/glibc lto.conf with-locale.conf
 sys-libs/zlib no-docs.conf lto.conf
 sys-process/procps lto.conf
-#www-client/firefox lto.conf hdd-tmp.conf
+www-client/firefox lto.conf
 x11-libs/cairo no-docs.conf lto.conf
 x11-libs/gtk+:2 no-docs.conf
 x11-libs/gtk+:3 no-docs.conf
