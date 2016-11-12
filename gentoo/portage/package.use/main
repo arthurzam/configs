@@ -121,7 +121,7 @@ app-arch/p7zip rar -pch
 >=kde-frameworks/kwindowsystem-5.18.0 X
 >=sys-boot/grub-2.02_beta2-r9 -multislot -nls efiemu
 
->=x11-libs/libva-1.6.2 X vdpau
+>=x11-libs/libva-1.6.2 X vdpau opengl
 x11-misc/dmenu xinerama
 media-sound/alsa-utils -libsamplerate
 
@@ -140,3 +140,4 @@ sys-apps/util-linux -cramfs
 dev-util/ninja vim-syntax
 
 >=dev-libs/libxml2-2.9.4 python
+www-plugins/adobe-flash -ppapi

@@ -45,7 +45,7 @@ sys-auth/polkit no-docs.conf lto.conf
 sys-fs/ncdu lto.conf
 sys-fs/ntfs3g lto.conf
 sys-fs/udisks no-docs.conf lto.conf
-sys-libs/glibc lto.conf with-locale.conf
+sys-libs/glibc lto.conf with-locale.conf debug
 sys-libs/zlib no-docs.conf lto.conf
 sys-process/procps lto.conf
 www-client/firefox lto.conf

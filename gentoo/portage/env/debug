@@ -1,0 +1,3 @@
+CFLAGS="${CFLAGS} -ggdb"
+FEATURES="${FEATURES} splitdebug installsources nostrip"
+USE="debug"

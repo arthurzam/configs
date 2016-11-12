@@ -16,3 +16,4 @@ sys-devel/libtool
 x11-libs/libnotify
 dev-util/ninja
 dev-libs/mfx_dispatch
+media-libs/alsa-oss
