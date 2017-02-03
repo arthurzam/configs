@@ -141,3 +141,4 @@ dev-util/ninja vim-syntax
 
 >=dev-libs/libxml2-2.9.4 python
 www-plugins/adobe-flash -ppapi
+app-arch/engrampa magic

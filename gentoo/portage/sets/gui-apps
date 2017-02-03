@@ -1,5 +1,4 @@
 app-admin/keepassx
-app-arch/xarchiver
 app-office/libreoffice
 app-text/calibre
 app-text/qpdfview
@@ -10,7 +9,6 @@ lxqt-base/lxqt-sudo
 media-gfx/lximage-qt
 media-sound/clementine
 media-video/QMPlay2
-net-misc/cmst
 net-misc/fatrat
 net-p2p/dukto
 www-client/firefox
@@ -19,3 +17,4 @@ x11-misc/dunst
 x11-misc/pcmanfm-qt
 x11-terms/qterminal
 app-text/sigil
+app-arch/engrampa
