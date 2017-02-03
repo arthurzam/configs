@@ -35,7 +35,7 @@ else
 fi
 
 update-system () {
-    ( emerge --sync && emerge -atuDUN @world $@ && smart-live-rebuild -- $@ )
+    ( emerge --sync && emerge -atuDUN @world --keep-going $@ && smart-live-rebuild -- $@ )
 }
 
 clean-system() {
