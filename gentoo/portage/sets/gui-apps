@@ -7,10 +7,9 @@ games-simulation/openttd
 lxqt-base/lxqt-policykit
 lxqt-base/lxqt-sudo
 media-gfx/lximage-qt
-media-sound/clementine
 media-video/QMPlay2
 net-misc/fatrat
-net-p2p/dukto
+#net-p2p/dukto
 www-client/firefox
 www-plugins/adobe-flash
 x11-misc/dunst

@@ -1,5 +1,5 @@
 dev-libs/xerces-c icu
-app-text/sigil python_single_target_python3_5 python_targets_python3_5
+app-text/sigil python_single_target_python3_5 python_targets_python3_5 -python_single_target_python3_4
 dev-python/cssutils python_targets_python3_5
 dev-python/lxml python_targets_python3_5
 dev-python/regex python_targets_python3_5 -python_targets_python2_7

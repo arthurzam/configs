@@ -15,7 +15,11 @@ sys-devel/gdb
 sys-devel/libtool
 x11-libs/libnotify
 dev-util/ninja
-dev-libs/mfx_dispatch
 media-libs/alsa-oss
 sys-apps/texinfo
 dev-util/astyle
+media-libs/libcddb
+dev-libs/libzip
+x11-terms/xterm
+dev-libs/cdk
+dev-lang/rust

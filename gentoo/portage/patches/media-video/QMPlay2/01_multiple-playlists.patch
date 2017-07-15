@@ -1,0 +1,864 @@
+diff --git a/src/gui/MainWidget.cpp b/src/gui/MainWidget.cpp
+index 2c2934d3..a78a2567 100644
+--- a/src/gui/MainWidget.cpp
++++ b/src/gui/MainWidget.cpp
+@@ -385,7 +385,7 @@ MainWidget::MainWidget(QPair<QStringList, QStringList> &arguments) :
+ 		}
+ 	}
+ 
+-	playlistDock->load(QMPlay2Core.getSettingsDir() + "Playlist.pls");
++	playlistDock->loadAll();
+ 
+ 	bool noplay = false;
+ 	while (!arguments.first.isEmpty())
+@@ -754,8 +754,11 @@ void MainWidget::createMenuBar()
+ 	connect(menuBar->playlist->stopLoading, SIGNAL(triggered()), playlistDock, SLOT(stopLoading()));
+ 	connect(menuBar->playlist->sync, SIGNAL(triggered()), playlistDock, SLOT(syncCurrentFolder()));
+ 	connect(menuBar->playlist->quickSync, SIGNAL(triggered()), playlistDock, SLOT(quickSyncCurrentFolder()));
++	connect(menuBar->playlist->newPlist, SIGNAL(triggered()), playlistDock, SLOT(newPlaylist()));
+ 	connect(menuBar->playlist->loadPlist, SIGNAL(triggered()), this, SLOT(loadPlist()));
+ 	connect(menuBar->playlist->savePlist, SIGNAL(triggered()), this, SLOT(savePlist()));
++	connect(menuBar->playlist->delPlist, SIGNAL(triggered()), playlistDock, SLOT(playlistsCloseTab()));
++	connect(menuBar->playlist->renamePlist, SIGNAL(triggered()), playlistDock, SLOT(playlistsTabDoubleClicked()));
+ 	connect(menuBar->playlist->saveGroup, SIGNAL(triggered()), this, SLOT(saveGroup()));
+ 	connect(menuBar->playlist->newGroup, SIGNAL(triggered()), playlistDock, SLOT(newGroup()));
+ 	connect(menuBar->playlist->renameGroup, SIGNAL(triggered()), playlistDock, SLOT(renameGroup()));
+@@ -1153,7 +1156,7 @@ void MainWidget::loadPlist()
+ }
+ void MainWidget::savePlist()
+ {
+-	savePlistHelper(tr("Save playlist"), QMPlay2GUI.getCurrentPth(playlistDock->getUrl()), false);
++	savePlistHelper(tr("Save playlist \"%1\"").arg(playlistDock->getCurrentPlaylistName()), QMPlay2GUI.getCurrentPth(playlistDock->getUrl()), false);
+ }
+ void MainWidget::saveGroup()
+ {
+@@ -1563,7 +1566,7 @@ void MainWidget::closeEvent(QCloseEvent *e)
+ 
+ 	if (settings.getBool("AutoDelNonGroupEntries"))
+ 		playlistDock->delNonGroupEntries(true);
+-	playlistDock->save(QMPlay2Core.getSettingsDir() + "Playlist.pls");
++	playlistDock->saveAll();
+ 
+ 	playC.stop(true);
+ }
+diff --git a/src/gui/MenuBar.cpp b/src/gui/MenuBar.cpp
+index 090ab540..de36e883 100644
+--- a/src/gui/MenuBar.cpp
++++ b/src/gui/MenuBar.cpp
+@@ -133,8 +133,11 @@ MenuBar::Playlist::Playlist(MenuBar *parent) :
+ 	newAction(Playlist::tr("&Synchronize group"), this, sync, false, QMPlay2Core.getIconFromTheme("view-refresh"), false);
+ 	newAction(Playlist::tr("&Quick group synchronization"), this, quickSync, false, QMPlay2Core.getIconFromTheme("view-refresh"), false);
+ 	addSeparator();
++	newAction(Playlist::tr("New &list"), this, newPlist, false, QIcon(), false);
+ 	newAction(Playlist::tr("Load &list"), this, loadPlist, false, QIcon(), false);
+ 	newAction(Playlist::tr("Save &list"), this, savePlist, false, QIcon(), false);
++	newAction(Playlist::tr("Close &list"), this, delPlist, false, QIcon(), false);
++	newAction(Playlist::tr("Rename &list"), this, renamePlist, false, QIcon(), false);
+ 	newAction(Playlist::tr("Save &group"), this, saveGroup, false, QIcon(), false);
+ 	addSeparator();
+ 	newAction(QString(), this, lock, false, QIcon(), false);
+@@ -499,8 +502,11 @@ void MenuBar::setKeyShortcuts()
+ 	shortcuts->appendAction(playlist->stopLoading, "KeyBindings/Playlist-stopLoading", "F4");
+ 	shortcuts->appendAction(playlist->sync, "KeyBindings/Playlist-sync", "Shift+F5");
+ 	shortcuts->appendAction(playlist->quickSync, "KeyBindings/Playlist-quickSync", "F5");
++	shortcuts->appendAction(playlist->newPlist, "KeyBindings/Playlist-newPlist", "Ctrl+N");
+ 	shortcuts->appendAction(playlist->loadPlist, "KeyBindings/Playlist-loadPlist", "Ctrl+L");
+ 	shortcuts->appendAction(playlist->savePlist, "KeyBindings/Playlist-savePlist", "Ctrl+S");
++	shortcuts->appendAction(playlist->delPlist, "KeyBindings/Playlist-delPlist", "Ctrl+W");
++	shortcuts->appendAction(playlist->renamePlist, "KeyBindings/Playlist-renamePlist", "Ctrl+F2");
+ 	shortcuts->appendAction(playlist->saveGroup, "KeyBindings/Playlist-saveGroup", "Ctrl+Shift+S");
+ 	shortcuts->appendAction(playlist->delEntries, "KeyBindings/Playlist-delEntries", "Del");
+ 	shortcuts->appendAction(playlist->delNonGroupEntries, "KeyBindings/Playlist-delNonGroupEntries", "Ctrl+Del");
+diff --git a/src/gui/MenuBar.hpp b/src/gui/MenuBar.hpp
+index 086a8111..59174886 100644
+--- a/src/gui/MenuBar.hpp
++++ b/src/gui/MenuBar.hpp
+@@ -71,7 +71,7 @@ public:
+ 		Add *add;
+ 		QMenu *extensions;
+ 		Sort *sort;
+-		QAction *stopLoading, *sync, *quickSync, *loadPlist, *savePlist, *saveGroup, *lock, *delEntries, *delNonGroupEntries, *clear, *copy, *paste, *newGroup, *renameGroup, *find, *collapseAll, *expandAll, *goToPlayback, *queue, *skip, *stopAfter, *entryProperties;
++		QAction *stopLoading, *sync, *quickSync, *newPlist, *loadPlist, *savePlist, *delPlist, *renamePlist, *saveGroup, *lock, *delEntries, *delNonGroupEntries, *clear, *copy, *paste, *newGroup, *renameGroup, *find, *collapseAll, *expandAll, *goToPlayback, *queue, *skip, *stopAfter, *entryProperties;
+ 	};
+ 
+ 	class Player : public QMenu
+diff --git a/src/gui/PlaylistDock.cpp b/src/gui/PlaylistDock.cpp
+index a806cf1e..a7ffea0e 100644
+--- a/src/gui/PlaylistDock.cpp
++++ b/src/gui/PlaylistDock.cpp
+@@ -16,50 +16,64 @@
+ 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-#include <PlaylistDock.hpp>
+ #include <PlaylistWidget.hpp>
++#include <PlaylistDock.hpp>
+ 
+ #include <EntryProperties.hpp>
+ #include <LineEdit.hpp>
++#include <Settings.hpp>
+ #include <Main.hpp>
+ 
+-#include <QFileInfo>
+-#include <QLabel>
+-#include <QBuffer>
+-#include <QLineEdit>
++#include <QApplication>
++#include <QInputDialog>
+ #include <QGridLayout>
++#include <QMessageBox>
++#include <QToolButton>
+ #include <QClipboard>
+-#include <QApplication>
++#include <QTabWidget>
++#include <QFileInfo>
++#include <QLineEdit>
+ #include <QMimeData>
+ #include <QPainter>
+ #include <QAction>
+-#include <QMessageBox>
++#include <QBuffer>
++#include <QLabel>
++#include <QDir>
+ 
+ PlaylistDock::PlaylistDock() :
++	m_currPlaylist(nullptr),
+ 	repeatMode(RepeatNormal),
+ 	lastPlaying(nullptr)
+ {
+ 	setWindowTitle(tr("Playlist"));
+ 	setWidget(&mainW);
+ 
+-	list = new PlaylistWidget;
+ 	findE = new LineEdit;
+ 	findE->setToolTip(tr("Filter entries"));
+ 	statusL = new QLabel;
+ 
++	m_playlistsW = new QTabWidget;
++	m_playlistsW->setTabBarAutoHide(true);
++	m_playlistsW->setTabsClosable(true);
++	m_playlistsW->setMovable(true);
++
++	QToolButton *newTab = new QToolButton;
++	newTab->setIcon(QMPlay2Core.getIconFromTheme("list-add"));
++	connect(newTab, SIGNAL(clicked(bool)), this, SLOT(newPlaylist()));
++	m_playlistsW->setCornerWidget(newTab, Qt::TopLeftCorner);
++
+ 	QGridLayout *layout = new QGridLayout(&mainW);
+-	layout->addWidget(list);
++	layout->addWidget(m_playlistsW);
+ 	layout->addWidget(findE);
+ 	layout->addWidget(statusL);
+ 
+ 	playAfterAdd = false;
+ 
+-	connect(list, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), this, SLOT(itemDoubleClicked(QTreeWidgetItem *)));
+-	connect(list, SIGNAL(returnItem(QTreeWidgetItem *)), this, SLOT(addAndPlay(QTreeWidgetItem *)));
+-	connect(list, SIGNAL(visibleItemsCount(int)), this, SLOT(visibleItemsCount(int)));
+-	connect(list, SIGNAL(addStatus(bool)), findE, SLOT(setDisabled(bool)));
+ 	connect(findE, SIGNAL(textChanged(const QString &)), this, SLOT(findItems(const QString &)));
+ 	connect(findE, SIGNAL(returnPressed()), this, SLOT(findNext()));
++	connect(m_playlistsW, SIGNAL(tabCloseRequested(int)), this, SLOT(playlistsCloseTab(int)));
++	connect(m_playlistsW, SIGNAL(currentChanged(int)), this, SLOT(playlistsTabsCurrentChanged(int)));
++	connect(m_playlistsW, SIGNAL(tabBarDoubleClicked(int)), this, SLOT(playlistsTabDoubleClicked(int)));
+ 
+ 	QAction *act = new QAction(this);
+ 	act->setShortcuts(QList<QKeySequence>() << QKeySequence("Return") << QKeySequence("Enter"));
+@@ -70,31 +84,51 @@ PlaylistDock::PlaylistDock() :
+ 
+ void PlaylistDock::stopThreads()
+ {
+-	list->updateEntryThr.stop();
+-	list->addThr.stop();
++	for (int i = 0, end = m_playlistsW->count(); i < end; ++i)
++	{
++		PlaylistWidget *list = (PlaylistWidget *)m_playlistsW->widget(i);
++		list->updateEntryThr.stop();
++		list->addThr.stop();
++	}
+ }
+ 
+ QString PlaylistDock::getUrl(QTreeWidgetItem *tWI) const
+ {
+-	return list->getUrl(tWI);
++	return m_currPlaylist->getUrl(tWI);
+ }
+ QString PlaylistDock::getCurrentItemName() const
+ {
+-	if (!list->currentItem())
++	if (!m_currPlaylist->currentItem())
+ 		return QString();
+-	return list->currentItem()->text(0);
++	return m_currPlaylist->currentItem()->text(0);
+ }
+ 
+-void PlaylistDock::load(const QString &url)
++QString PlaylistDock::getCurrentPlaylistName() const
++{
++	return m_playlistsW->tabText(m_playlistsW->currentIndex());
++}
++
++void PlaylistDock::load(const QString &url, const QString &name)
+ {
+ 	if (!url.isEmpty())
++	{
++		PlaylistWidget *list = new PlaylistWidget;
+ 		list->add({url}, nullptr, {}, true);
++
++		connect(list, SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)), this, SLOT(itemDoubleClicked(QTreeWidgetItem *)));
++		connect(list, SIGNAL(returnItem(QTreeWidgetItem *)), this, SLOT(addAndPlay(QTreeWidgetItem *)));
++		connect(list, SIGNAL(visibleItemsCount(int)), this, SLOT(visibleItemsCount(int)));
++		connect(list, SIGNAL(addStatus(bool)), findE, SLOT(setDisabled(bool)));
++
++		m_playlistsW->addTab(list, (name.isEmpty() ? Functions::fileName(url) : name));
++	}
+ }
+-bool PlaylistDock::save(const QString &_url, bool saveCurrentGroup)
++bool PlaylistDock::save(const QString &_url, bool saveCurrentGroup, PlaylistWidget *_list)
+ {
+ 	const QString url = Functions::Url(_url);
+ 	QList<QTreeWidgetItem *> parents;
+ 	Playlist::Entries entries;
++	PlaylistWidget *list = (_list ? _list : m_currPlaylist);
+ 	for (QTreeWidgetItem *tWI : list->getChildren(PlaylistWidget::ALL_CHILDREN, saveCurrentGroup ? list->currentItem() : nullptr))
+ 	{
+ 		Playlist::Entry entry;
+@@ -112,23 +146,55 @@ bool PlaylistDock::save(const QString &_url, bool saveCurrentGroup)
+ 		entry.name = tWI->text(0);
+ 		if (tWI->parent())
+ 			entry.parent = parents.indexOf(tWI->parent()) + 1;
+-		if (tWI == list->currentItem())
++		if (tWI == m_currPlaylist->currentItem())
+ 			entry.flags |= Playlist::Entry::Selected;
+ 		entry.flags |= PlaylistWidget::getFlags(tWI); //Additional flags
+ 		entries += entry;
+ 	}
+ 	return Playlist::write(entries, url);
+ }
++void PlaylistDock::loadAll()
++{
++	const QString oldPath = QMPlay2Core.getSettingsDir() + "Playlist.pls";
++	QFile oldPlist(oldPath);
++	if (oldPlist.exists())
++	{
++		load(oldPath, tr("Main"));
++		oldPlist.remove();
++	}
++	for (const QString &fname : QDir(QMPlay2Core.getSettingsDir() + "/Playlists").entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::DirsFirst))
++	{
++		const QString fileName = Functions::fileName(fname);
++		const int end = fileName.lastIndexOf('.');
++		const int start = fileName.indexOf('_') + 1;
++		load(QMPlay2Core.getSettingsDir() + "/Playlists/" + fname, fileName.mid(start, end == -1 ? -1 : end - start));
++	}
++	if (m_playlistsW->count() == 0)
++	{
++		m_playlistsW->addTab(m_currPlaylist = new PlaylistWidget, tr("Playlist"));
++	}
++	m_playlistsW->setCurrentIndex(qBound(0, QMPlay2Core.getSettings().getInt("PlaylistDock/SelectedPlaylist"), m_playlistsW->count()));
++}
++void PlaylistDock::saveAll()
++{
++	const QString dir = QMPlay2Core.getSettingsDir() + "/Playlists/";
++	for (const QString &fName : QDir(dir).entryList(QDir::Files | QDir::NoDotAndDotDot))
++		QFile::remove(dir + fName);
++	int length = QString::number(m_playlistsW->count()).length();
++	for (int i = 0; i < m_playlistsW->count(); ++i)
++		save(QString("%0/%2_%1.pls").arg(dir, m_playlistsW->tabText(i)).arg(i, length, 10, QChar('0')), false, (PlaylistWidget *)m_playlistsW->widget(i));
++	QMPlay2Core.getSettings().set("PlaylistDock/SelectedPlaylist", m_playlistsW->currentIndex());
++}
+ 
+ void PlaylistDock::add(const QStringList &urls)
+ {
+-	list->add(urls);
++	m_currPlaylist->add(urls);
+ }
+ void PlaylistDock::addAndPlay(const QStringList &urls)
+ {
+ 	playAfterAdd = true;
+-	list->dontUpdateAfterAdd = urls.size() == 1;
+-	list->add(urls, true);
++	m_currPlaylist->dontUpdateAfterAdd = urls.size() == 1;
++	m_currPlaylist->add(urls, true);
+ }
+ void PlaylistDock::add(const QString &url)
+ {
+@@ -140,7 +206,7 @@ void PlaylistDock::addAndPlay(const QString &_url)
+ 	if (_url.isEmpty())
+ 		return;
+ 	/* If the entry exists, find and play it */
+-	const QList<QTreeWidgetItem *> items = list->getChildren(PlaylistWidget::ALL_CHILDREN);
++	const QList<QTreeWidgetItem *> items = m_currPlaylist->getChildren(PlaylistWidget::ALL_CHILDREN);
+ 
+ 	QString url = Functions::Url(_url);
+ 	{
+@@ -160,14 +226,14 @@ void PlaylistDock::addAndPlay(const QString &_url)
+ 		if (urlMatches)
+ 		{
+ 			playAfterAdd = true;
+-			if (list->isGroup(item))
++			if (m_currPlaylist->isGroup(item))
+ 			{
+-				list->setCurrentItem(item);
++				m_currPlaylist->setCurrentItem(item);
+ 				syncCurrentFolder();
+ 				return;
+ 			}
+ 			if (!item->parent())
+-				list->addTopLevelItem(list->takeTopLevelItem(list->indexOfTopLevelItem(item)));
++				m_currPlaylist->addTopLevelItem(m_currPlaylist->takeTopLevelItem(m_currPlaylist->indexOfTopLevelItem(item)));
+ 			addAndPlay(item);
+ 			return;
+ 		}
+@@ -178,7 +244,7 @@ void PlaylistDock::addAndPlay(const QString &_url)
+ 
+ void PlaylistDock::scrollToCurrectItem()
+ {
+-	list->scrollToItem(list->currentItem());
++	m_currPlaylist->scrollToItem(m_currPlaylist->currentItem());
+ }
+ 
+ void PlaylistDock::expandTree(QTreeWidgetItem *i)
+@@ -193,9 +259,9 @@ void PlaylistDock::expandTree(QTreeWidgetItem *i)
+ 
+ void PlaylistDock::toggleEntryFlag(const int flag)
+ {
+-	for (QTreeWidgetItem *tWI : list->selectedItems())
++	for (QTreeWidgetItem *tWI : m_currPlaylist->selectedItems())
+ 	{
+-		if (!list->isGroup(tWI))
++		if (!m_currPlaylist->isGroup(tWI))
+ 		{
+ 			const int entryFlags = PlaylistWidget::getFlags(tWI) ^ flag; //Toggle flag
+ 			PlaylistWidget::setEntryFont(tWI, entryFlags);
+@@ -211,7 +277,7 @@ inline bool PlaylistDock::isRandomPlayback() const
+ 
+ void PlaylistDock::doGroupSync(bool quick)
+ {
+-	QTreeWidgetItem *tWI = list->currentItem();
++	QTreeWidgetItem *tWI = m_currPlaylist->currentItem();
+ 	if (!tWI || !PlaylistWidget::isGroup(tWI))
+ 		return;
+ 	QString pth = tWI->data(0, Qt::UserRole).toString();
+@@ -224,7 +290,7 @@ void PlaylistDock::doGroupSync(bool quick)
+ 	if (!possibleModuleScheme && !pthInfo.isDir() && !pthInfo.isFile())
+ 	{
+ 		tWI->setData(0, Qt::UserRole, QString());
+-		QMPlay2GUI.setTreeWidgetItemIcon(tWI, *QMPlay2GUI.groupIcon, 0, list);
++		QMPlay2GUI.setTreeWidgetItemIcon(tWI, *QMPlay2GUI.groupIcon, 0, m_currPlaylist);
+ 		return;
+ 	}
+ 	if (pthInfo.isDir() && !pth.endsWith("/"))
+@@ -232,12 +298,12 @@ void PlaylistDock::doGroupSync(bool quick)
+ 	if (!quick)
+ 	{
+ 		findE->clear();
+-		list->sync(pth, tWI, !pthInfo.isDir() && (possibleModuleScheme || pthInfo.isFile()));
++		m_currPlaylist->sync(pth, tWI, !pthInfo.isDir() && (possibleModuleScheme || pthInfo.isFile()));
+ 	}
+ 	else if (pthInfo.isDir())
+ 	{
+ 		findE->clear();
+-		list->quickSync(pth, tWI);
++		m_currPlaylist->quickSync(pth, tWI);
+ 	}
+ }
+ 
+@@ -258,8 +324,8 @@ void PlaylistDock::itemDoubleClicked(QTreeWidgetItem *tWI)
+ 		return;
+ 	}
+ 
+-	if (!list->currentPlaying || list->currentItem() == list->currentPlaying)
+-		list->setCurrentItem(tWI);
++	if (!m_currPlaylist->currentPlaying || m_currPlaylist->currentItem() == m_currPlaylist->currentPlaying)
++		m_currPlaylist->setCurrentItem(tWI);
+ 
+ 	if (isRandomPlayback() && !randomPlayedItems.contains(tWI))
+ 		randomPlayedItems.append(tWI);
+@@ -267,12 +333,12 @@ void PlaylistDock::itemDoubleClicked(QTreeWidgetItem *tWI)
+ 	lastPlaying = tWI;
+ 
+ 	//If in queue, remove from queue
+-	int idx = list->queue.indexOf(tWI);
++	int idx = m_currPlaylist->queue.indexOf(tWI);
+ 	if (idx >= 0)
+ 	{
+ 		tWI->setText(1, QString());
+-		list->queue.removeOne(tWI);
+-		list->refresh(PlaylistWidget::REFRESH_QUEUE);
++		m_currPlaylist->queue.removeOne(tWI);
++		m_currPlaylist->refresh(PlaylistWidget::REFRESH_QUEUE);
+ 	}
+ 
+ 	emit play(tWI->data(0, Qt::UserRole).toString());
+@@ -282,17 +348,22 @@ void PlaylistDock::addAndPlay(QTreeWidgetItem *tWI)
+ 	if (!tWI || !playAfterAdd)
+ 		return;
+ 	playAfterAdd = false;
+-	list->setCurrentItem(tWI);
++	m_currPlaylist->setCurrentItem(tWI);
+ 	start();
+ }
+ 
++void PlaylistDock::playlistsTabsCurrentChanged(int index)
++{
++	m_currPlaylist = (PlaylistWidget *)m_playlistsW->widget(index);
++}
++
+ void PlaylistDock::stopLoading()
+ {
+-	list->addThr.stop();
++	m_currPlaylist->addThr.stop();
+ }
+ void PlaylistDock::next(bool playingError)
+ {
+-	QList<QTreeWidgetItem *> l = list->getChildren(PlaylistWidget::ONLY_NON_GROUPS);
++	QList<QTreeWidgetItem *> l = m_currPlaylist->getChildren(PlaylistWidget::ONLY_NON_GROUPS);
+ 	if (lastPlaying && !l.contains(lastPlaying))
+ 		lastPlaying = nullptr;
+ 	QTreeWidgetItem *tWI = nullptr;
+@@ -302,9 +373,9 @@ void PlaylistDock::next(bool playingError)
+ 		{
+ 			if (repeatMode == RandomGroupMode || repeatMode == RepeatRandomGroup) //Random in group
+ 			{
+-				QTreeWidgetItem *P = list->currentPlaying ? list->currentPlaying->parent() : (list->currentItem() ? list->currentItem()->parent() : nullptr);
++				QTreeWidgetItem *P = m_currPlaylist->currentPlaying ? m_currPlaylist->currentPlaying->parent() : (m_currPlaylist->currentItem() ? m_currPlaylist->currentItem()->parent() : nullptr);
+ 				expandTree(P);
+-				l = P ? list->getChildren(PlaylistWidget::ONLY_NON_GROUPS, P) : list->topLevelNonGroupsItems();
++				l = P ? m_currPlaylist->getChildren(PlaylistWidget::ONLY_NON_GROUPS, P) : m_currPlaylist->topLevelNonGroupsItems();
+ 				if (l.isEmpty() || (!randomPlayedItems.isEmpty() && randomPlayedItems.at(0)->parent() != P))
+ 					randomPlayedItems.clear();
+ 			}
+@@ -348,21 +419,21 @@ void PlaylistDock::next(bool playingError)
+ 			{
+ 				const bool canRepeat = sender() ? !qstrcmp(sender()->metaObject()->className(), "PlayClass") : false;
+ 				if (canRepeat && repeatMode == RepeatEntry) //loop track
+-					tWI = lastPlaying ? lastPlaying : list->currentItem();
++					tWI = lastPlaying ? lastPlaying : m_currPlaylist->currentItem();
+ 				else
+ 				{
+ 					QTreeWidgetItem *P = nullptr;
+-					if (!list->queue.size())
++					if (!m_currPlaylist->queue.size())
+ 					{
+-						tWI = list->currentPlaying ? list->currentPlaying : list->currentItem();
++						tWI = m_currPlaylist->currentPlaying ? m_currPlaylist->currentPlaying : m_currPlaylist->currentItem();
+ 						P = tWI ? tWI->parent() : nullptr;
+ 						expandTree(P);
+ 						for (;;)
+ 						{
+-							tWI = list->itemBelow(tWI);
++							tWI = m_currPlaylist->itemBelow(tWI);
+ 							if (canRepeat && repeatMode == RepeatGroup && P && (!tWI || tWI->parent() != P)) //loop group
+ 							{
+-								const QList<QTreeWidgetItem *> l2 = list->getChildren(PlaylistWidget::ONLY_NON_GROUPS, P);
++								const QList<QTreeWidgetItem *> l2 = m_currPlaylist->getChildren(PlaylistWidget::ONLY_NON_GROUPS, P);
+ 								if (!l2.isEmpty())
+ 									tWI = l2[0];
+ 								break;
+@@ -379,14 +450,14 @@ void PlaylistDock::next(bool playingError)
+ 						}
+ 					}
+ 					else
+-						tWI = list->queue.first();
++						tWI = m_currPlaylist->queue.first();
+ 					if (canRepeat && (repeatMode == RepeatList || repeatMode == RepeatGroup) && !tWI && !l.isEmpty()) //loop list
+ 						tWI = l.at(0);
+ 				}
+ 			}
+ 		}
+ 	}
+-	if (playingError && tWI == list->currentItem()) //don't play the same song if playback error occurred
++	if (playingError && tWI == m_currPlaylist->currentItem()) //don't play the same song if playback error occurred
+ 	{
+ 		if (isRandomPlayback())
+ 			randomPlayedItems.append(tWI);
+@@ -399,18 +470,18 @@ void PlaylistDock::prev()
+ {
+ 	QTreeWidgetItem *tWI = nullptr;
+ //Dla "wstecz" nie uwzględniam kolejkowania utworów
+-	tWI = list->currentPlaying ? list->currentPlaying : list->currentItem();
++	tWI = m_currPlaylist->currentPlaying ? m_currPlaylist->currentPlaying : m_currPlaylist->currentItem();
+ 	if (tWI)
+ 		expandTree(tWI->parent());
+ 	for (;;)
+ 	{
+-		QTreeWidgetItem *tmpI = list->itemAbove(tWI);
++		QTreeWidgetItem *tmpI = m_currPlaylist->itemAbove(tWI);
+ 		if (PlaylistWidget::isGroup(tmpI) && !tmpI->isExpanded())
+ 		{
+ 			tmpI->setExpanded(true);
+ 			continue;
+ 		}
+-		tWI = list->itemAbove(tWI);
++		tWI = m_currPlaylist->itemAbove(tWI);
+ 		if (!PlaylistWidget::isGroup(tWI))
+ 			break;
+ 	}
+@@ -426,83 +497,86 @@ void PlaylistDock::stopAfter()
+ }
+ void PlaylistDock::toggleLock()
+ {
+-	for (QTreeWidgetItem *tWI : list->selectedItems())
++	for (QTreeWidgetItem *tWI : m_currPlaylist->selectedItems())
+ 	{
+ 		const int entryFlags = PlaylistWidget::getFlags(tWI) ^ Playlist::Entry::Locked; //Toggle "Locked" flag
+ 		PlaylistWidget::setEntryFont(tWI, entryFlags);
+ 		tWI->setData(0, Qt::UserRole + 1, entryFlags);
+ 	}
+-	list->modifyMenu();
++	m_currPlaylist->modifyMenu();
+ }
+ void PlaylistDock::start()
+ {
+-	itemDoubleClicked(list->currentItem());
++	itemDoubleClicked(m_currPlaylist->currentItem());
+ }
+ void PlaylistDock::clearCurrentPlaying()
+ {
+-	if (list->currentPlaying)
++	for (int i = 0, end = m_playlistsW->count(); i < end; ++i)
+ 	{
+-		if (list->currentPlayingItemIcon.type() == QVariant::Icon)
+-			QMPlay2GUI.setTreeWidgetItemIcon(list->currentPlaying, list->currentPlayingItemIcon.value<QIcon>(), 0, list);
+-		else
+-			list->currentPlaying->setData(0, Qt::DecorationRole, list->currentPlayingItemIcon);
++		PlaylistWidget *list = (PlaylistWidget *)m_playlistsW->widget(i);
++		if (list->currentPlaying)
++		{
++			if (list->currentPlayingItemIcon.type() == QVariant::Icon)
++				QMPlay2GUI.setTreeWidgetItemIcon(list->currentPlaying, list->currentPlayingItemIcon.value<QIcon>(), 0, list);
++			else
++				list->currentPlaying->setData(0, Qt::DecorationRole, list->currentPlayingItemIcon);
++		}
+ 	}
+-	list->clearCurrentPlaying();
+ }
+ void PlaylistDock::setCurrentPlaying()
+ {
+ 	if (!lastPlaying || PlaylistWidget::isGroup(lastPlaying))
+ 		return;
+-	list->currentPlayingUrl = getUrl(lastPlaying);
+-	list->setCurrentPlaying(lastPlaying);
++	m_currPlaylist->currentPlayingUrl = getUrl(lastPlaying);
++	m_currPlaylist->setCurrentPlaying(lastPlaying);
+ }
+ void PlaylistDock::newGroup()
+ {
+-	list->setCurrentItem(list->newGroup());
++	m_currPlaylist->setCurrentItem(m_currPlaylist->newGroup());
+ 	entryProperties();
+ }
+ 
+ void PlaylistDock::delEntries()
+ {
+-	if (!isVisible() || !list->canModify()) //jeżeli jest np. drag and drop to nie wolno usuwać
++	if (!isVisible() || !m_currPlaylist->canModify()) //jeżeli jest np. drag and drop to nie wolno usuwać
+ 		return;
+-	const QList<QTreeWidgetItem *> selectedItems = list->selectedItems();
++	const QList<QTreeWidgetItem *> selectedItems = m_currPlaylist->selectedItems();
+ 	if (!selectedItems.isEmpty())
+ 	{
+-		QTreeWidgetItem *par = list->currentItem() ? list->currentItem()->parent() : nullptr;
+-		list->setItemsResizeToContents(false);
++		QTreeWidgetItem *par = m_currPlaylist->currentItem() ? m_currPlaylist->currentItem()->parent() : nullptr;
++		m_currPlaylist->setItemsResizeToContents(false);
+ 		for (QTreeWidgetItem *tWI : selectedItems)
+ 		{
+ 			if (!(PlaylistWidget::getFlags(tWI) & Playlist::Entry::Locked))
+ 				deleteTreeWidgetItem(tWI);
+ 		}
+-		list->refresh();
+-		if (list->currentItem())
+-			par = list->currentItem();
+-		else if (!list->getChildren().contains(par))
++		m_currPlaylist->refresh();
++		if (m_currPlaylist->currentItem())
++			par = m_currPlaylist->currentItem();
++		else if (!m_currPlaylist->getChildren().contains(par))
+ 			par = nullptr;
+ 		if (!par)
+-			par = list->topLevelItem(0);
+-		list->setCurrentItem(par);
+-		list->setItemsResizeToContents(true);
+-		list->processItems();
++			par = m_currPlaylist->topLevelItem(0);
++		m_currPlaylist->setCurrentItem(par);
++		m_currPlaylist->setItemsResizeToContents(true);
++		m_currPlaylist->processItems();
+ 	}
+ }
+ void PlaylistDock::delNonGroupEntries(bool force)
+ {
+-	if (!list->canModify()) //jeżeli jest np. drag and drop to nie wolno usuwać
++	if (!m_currPlaylist->canModify()) //jeżeli jest np. drag and drop to nie wolno usuwać
+ 		return;
+ 	if (force || QMessageBox::question(this, tr("Playlist"), tr("Are you sure you want to delete ungrouped entries?"), QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+ 	{
+-		list->setItemsResizeToContents(false);
+-		for (QTreeWidgetItem *tWI : list->topLevelNonGroupsItems())
++		m_currPlaylist->setItemsResizeToContents(false);
++		for (QTreeWidgetItem *tWI : m_currPlaylist->topLevelNonGroupsItems())
+ 		{
+ 			if (!(PlaylistWidget::getFlags(tWI) & Playlist::Entry::Locked))
+ 				deleteTreeWidgetItem(tWI);
+ 		}
+-		list->refresh();
+-		list->setItemsResizeToContents(true);
+-		list->processItems();
++		m_currPlaylist->refresh();
++		m_currPlaylist->setItemsResizeToContents(true);
++		m_currPlaylist->processItems();
+ 	}
+ }
+ void PlaylistDock::clear()
+@@ -510,13 +584,13 @@ void PlaylistDock::clear()
+ 	if (QMessageBox::question(this, tr("Playlist"), tr("Are you sure you want to clear the list?"), QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+ 	{
+ 		lastPlaying = nullptr;
+-		list->clear();
++		m_currPlaylist->clear();
+ 	}
+ }
+ void PlaylistDock::copy()
+ {
+ 	QMimeData *mimeData = new QMimeData;
+-	mimeData->setUrls(list->getUrls());
++	mimeData->setUrls(m_currPlaylist->getUrls());
+ 	if (mimeData->urls().isEmpty())
+ 	{
+ 		QApplication::clipboard()->clear();
+@@ -529,87 +603,87 @@ void PlaylistDock::paste()
+ {
+ 	const QMimeData *mimeData = QApplication::clipboard()->mimeData();
+ 	if (Functions::chkMimeData(mimeData))
+-		list->add(Functions::getUrlsFromMimeData(mimeData), list->selectedItems().count() ? list->currentItem() : nullptr);
++		m_currPlaylist->add(Functions::getUrlsFromMimeData(mimeData), m_currPlaylist->selectedItems().count() ? m_currPlaylist->currentItem() : nullptr);
+ }
+ void PlaylistDock::renameGroup()
+ {
+-	QTreeWidgetItem *tWI = list->currentItem();
++	QTreeWidgetItem *tWI = m_currPlaylist->currentItem();
+ 	if (!PlaylistWidget::isGroup(tWI))
+ 		return;
+-	list->editItem(tWI);
++	m_currPlaylist->editItem(tWI);
+ }
+ void PlaylistDock::entryProperties()
+ {
+ 	bool sync, accepted;
+-	EntryProperties eP(this, list->currentItem(), sync, accepted);
++	EntryProperties eP(this, m_currPlaylist->currentItem(), sync, accepted);
+ 	if (accepted)
+ 	{
+ 		if (sync)
+ 			syncCurrentFolder();
+-		list->modifyMenu();
+-		list->updateEntryThr.updateEntry(list->currentItem());
++		m_currPlaylist->modifyMenu();
++		m_currPlaylist->updateEntryThr.updateEntry(m_currPlaylist->currentItem());
+ 	}
+ }
+ void PlaylistDock::timeSort1()
+ {
+-	list->sortCurrentGroup(2, Qt::AscendingOrder);
++	m_currPlaylist->sortCurrentGroup(2, Qt::AscendingOrder);
+ 	scrollToCurrectItem();
+ }
+ void PlaylistDock::timeSort2()
+ {
+-	list->sortCurrentGroup(2, Qt::DescendingOrder);
++	m_currPlaylist->sortCurrentGroup(2, Qt::DescendingOrder);
+ 	scrollToCurrectItem();
+ }
+ void PlaylistDock::titleSort1()
+ {
+-	list->sortCurrentGroup(0, Qt::AscendingOrder);
++	m_currPlaylist->sortCurrentGroup(0, Qt::AscendingOrder);
+ 	scrollToCurrectItem();
+ }
+ void PlaylistDock::titleSort2()
+ {
+-	list->sortCurrentGroup(0, Qt::DescendingOrder);
++	m_currPlaylist->sortCurrentGroup(0, Qt::DescendingOrder);
+ 	scrollToCurrectItem();
+ }
+ void PlaylistDock::collapseAll()
+ {
+-	list->collapseAll();
++	m_currPlaylist->collapseAll();
+ }
+ void PlaylistDock::expandAll()
+ {
+-	list->expandAll();
++	m_currPlaylist->expandAll();
+ }
+ void PlaylistDock::goToPlayback()
+ {
+-	if (list->currentPlaying)
++	if (m_currPlaylist->currentPlaying)
+ 	{
+-		list->clearSelection();
+-		list->setCurrentItem(list->currentPlaying);
+-		list->scrollToItem(list->currentPlaying);
++		m_currPlaylist->clearSelection();
++		m_currPlaylist->setCurrentItem(m_currPlaylist->currentPlaying);
++		m_currPlaylist->scrollToItem(m_currPlaylist->currentPlaying);
+ 	}
+ }
+ void PlaylistDock::queue()
+ {
+-	list->enqueue();
++	m_currPlaylist->enqueue();
+ }
+ void PlaylistDock::findItems(const QString &txt)
+ {
+-	QList<QTreeWidgetItem *> itemsToShow = list->findItems(txt, Qt::MatchContains | Qt::MatchRecursive);
+-	list->processItems(&itemsToShow, !txt.isEmpty());
++	QList<QTreeWidgetItem *> itemsToShow = m_currPlaylist->findItems(txt, Qt::MatchContains | Qt::MatchRecursive);
++	m_currPlaylist->processItems(&itemsToShow, !txt.isEmpty());
+ 	if (txt.isEmpty())
+ 	{
+-		const QList<QTreeWidgetItem *> selectedItems = list->selectedItems();
++		const QList<QTreeWidgetItem *> selectedItems = m_currPlaylist->selectedItems();
+ 		if (!selectedItems.isEmpty())
+-			list->scrollToItem(selectedItems[0]);
+-		else if (list->currentPlaying)
+-			list->scrollToItem(list->currentPlaying);
++			m_currPlaylist->scrollToItem(selectedItems[0]);
++		else if (m_currPlaylist->currentPlaying)
++			m_currPlaylist->scrollToItem(m_currPlaylist->currentPlaying);
+ 	}
+ }
+ void PlaylistDock::findNext()
+ {
+ 	bool belowSelection = false;
+-	QTreeWidgetItem *currentItem = list->currentItem();
++	QTreeWidgetItem *currentItem = m_currPlaylist->currentItem();
+ 	QTreeWidgetItem *firstItem = nullptr;
+-	for (QTreeWidgetItem *tWI : list->getChildren(PlaylistWidget::ALL_CHILDREN))
++	for (QTreeWidgetItem *tWI : m_currPlaylist->getChildren(PlaylistWidget::ALL_CHILDREN))
+ 	{
+ 		if (tWI->isHidden())
+ 			continue;
+@@ -624,10 +698,10 @@ void PlaylistDock::findNext()
+ 		}
+ 		if (PlaylistWidget::isGroup(tWI))
+ 			continue;
+-		list->setCurrentItem(tWI);
++		m_currPlaylist->setCurrentItem(tWI);
+ 		return;
+ 	}
+-	list->setCurrentItem(firstItem);
++	m_currPlaylist->setCurrentItem(firstItem);
+ }
+ void PlaylistDock::visibleItemsCount(int count)
+ {
+@@ -664,10 +738,10 @@ void PlaylistDock::repeat()
+ 				default:
+ 					break;
+ 			}
+-			if (list->currentPlaying && isRandomPlayback())
++			if (m_currPlaylist->currentPlaying && isRandomPlayback())
+ 			{
+ 				Q_ASSERT(randomPlayedItems.isEmpty());
+-				randomPlayedItems.append(list->currentPlaying);
++				randomPlayedItems.append(m_currPlaylist->currentPlaying);
+ 			}
+ 			emit QMPlay2Core.statusBarMessage(act->text().remove('&'), 1500);
+ 		}
+@@ -675,5 +749,34 @@ void PlaylistDock::repeat()
+ }
+ void PlaylistDock::updateCurrentEntry(const QString &name, double length)
+ {
+-	list->updateEntryThr.updateEntry(list->currentPlaying, name, length);
++	m_currPlaylist->updateEntryThr.updateEntry(m_currPlaylist->currentPlaying, name, length);
++}
++
++void PlaylistDock::newPlaylist()
++{
++	m_playlistsW->addTab(new PlaylistWidget, tr("Playlist"));
++}
++void PlaylistDock::playlistsCloseTab(int index)
++{
++	if (index == -1)
++		index = m_playlistsW->currentIndex();
++	PlaylistWidget *list = (PlaylistWidget *)m_playlistsW->widget(index);
++	m_playlistsW->removeTab(index);
++
++	if (m_playlistsW->count() == 0)
++		m_playlistsW->addTab(m_currPlaylist = new PlaylistWidget, tr("Playlist"));
++	else
++		m_currPlaylist = (PlaylistWidget *)m_playlistsW->currentWidget();
++
++	delete list;
++}
++void PlaylistDock::playlistsTabDoubleClicked(int index)
++{
++	if (index == -1)
++		index = m_playlistsW->currentIndex();
++	bool ok;
++	const QString prevName = m_playlistsW->tabText(index);
++	const QString newName = QInputDialog::getText(this, tr("Rename Playlist Name"), tr("Rename \"%1\" to:").arg(prevName), QLineEdit::Normal, prevName, &ok);
++	if (ok && !newName.isEmpty() && newName != prevName)
++		m_playlistsW->setTabText(index, newName);
+ }
+diff --git a/src/gui/PlaylistDock.hpp b/src/gui/PlaylistDock.hpp
+index 60910d09..ca837d83 100644
+--- a/src/gui/PlaylistDock.hpp
++++ b/src/gui/PlaylistDock.hpp
+@@ -23,8 +23,10 @@
+ 
+ class QTreeWidgetItem;
+ class PlaylistWidget;
++class QTabWidget;
+ class LineEdit;
+ class QLabel;
++class QMenu;
+ 
+ class PlaylistDock : public DockWidget
+ {
+@@ -36,9 +38,12 @@ public:
+ 
+ 	QString getUrl(QTreeWidgetItem *tWI = nullptr) const;
+ 	QString getCurrentItemName() const;
++	QString getCurrentPlaylistName() const;
+ 
+-	void load(const QString &);
+-	bool save(const QString &, bool saveCurrentGroup = false);
++	void load(const QString &url, const QString &name = QString());
++	bool save(const QString &url, bool saveCurrentGroup = false, PlaylistWidget *list = nullptr);
++	void loadAll();
++	void saveAll();
+ 
+ 	void add(const QStringList &);
+ 	void addAndPlay(const QStringList &);
+@@ -63,7 +68,8 @@ private:
+ 	void deleteTreeWidgetItem(QTreeWidgetItem *tWI);
+ 
+ 	QWidget mainW;
+-	PlaylistWidget *list;
++	QTabWidget *m_playlistsW;
++	PlaylistWidget *m_currPlaylist;
+ 	QLabel *statusL;
+ 	LineEdit *findE;
+ 
+@@ -75,6 +81,7 @@ private:
+ private slots:
+ 	void itemDoubleClicked(QTreeWidgetItem *);
+ 	void addAndPlay(QTreeWidgetItem *);
++	void playlistsTabsCurrentChanged(int index);
+ public slots:
+ 	void stopLoading();
+ 	void next(bool playingError = false);
+@@ -108,6 +115,10 @@ public slots:
+ 	void quickSyncCurrentFolder();
+ 	void repeat();
+ 	void updateCurrentEntry(const QString &, double);
++
++	void newPlaylist();
++	void playlistsCloseTab(int index = -1);
++	void playlistsTabDoubleClicked(int index = -1);
+ signals:
+ 	void play(const QString &);
+ 	void repeatEntry(bool b);

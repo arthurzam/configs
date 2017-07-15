@@ -16,3 +16,4 @@ media-fonts/liberation-fonts
 media-fonts/droid
 x11-misc/numlockx
 lxde-base/lxde-icon-theme
+x11-drivers/xf86-video-intel

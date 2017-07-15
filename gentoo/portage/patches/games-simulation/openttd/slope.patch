@@ -1,0 +1,13 @@
+diff --git a/src/train_cmd.cpp b/src/train_cmd.cpp
+index 34b3744..f0dd42d 100644
+--- a/src/train_cmd.cpp
++++ b/src/train_cmd.cpp
+@@ -327,7 +327,7 @@ int Train::GetCurveSpeedLimit() const
+ 	static const int absolute_max_speed = UINT16_MAX;
+ 	int max_speed = absolute_max_speed;
+ 
+-	if (_settings_game.vehicle.train_acceleration_model == AM_ORIGINAL) return max_speed;
++	/*if (_settings_game.vehicle.train_acceleration_model == AM_ORIGINAL) */return max_speed;
+ 
+ 	int curvecount[2] = {0, 0};
+ 

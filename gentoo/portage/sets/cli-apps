@@ -24,3 +24,4 @@ sys-apps/usbutils
 sys-fs/ntfs3g
 app-cdr/cdw
 
+sys-apps/ack
