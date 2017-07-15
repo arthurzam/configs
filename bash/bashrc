@@ -35,7 +35,7 @@ else
 fi
 
 update-system () {
-    ( emerge --sync && emerge -atuDUN @world --keep-going $@ && smart-live-rebuild -- $@ )
+    ( emerge --sync && emerge -atuDUN @world --keep-going --with-bdeps\=n $@ && smart-live-rebuild -- $@ )
 }
 
 clean-system() {
@@ -44,6 +44,14 @@ clean-system() {
 
 echo-title() {
     echo -e '\033]2;'"$@"'\007'
+}
+
+fix-screen() {
+	sc1=DP1
+	sc2=DP2
+	sc3=HDMI1
+	#xrandr --output ${sc1} --off --output ${sc2} --off && sleep 5 && xrandr --output ${sc1} --auto --right-of ${sc3} --output ${sc2} --auto --right-of ${sc3}
+	xrandr --output ${sc1} --off && sleep 5 && xrandr --output ${sc1} --auto --right-of ${sc3}
 }
 
 [[ $- = *i* ]] && source /home/arthur/dev/liquidprompt/liquidprompt
