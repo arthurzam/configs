@@ -4,7 +4,7 @@
 =dev-libs/wlc-9999 **
 =dev-python/pycdc-9999 **
 =lxqt-base/liblxqt-9999 **
-=lxqt-base/lxqt-build-tools-9999 **
+=dev-util/lxqt-build-tools-9999 **
 #=lxqt-base/lxqt-policykit-9999 **
 #=lxqt-base/lxqt-sudo-9999 **
 =media-gfx/lximage-qt-9999 **
@@ -12,11 +12,11 @@
 =media-sound/clementine-99999 **
 =media-video/QMPlay2-9999 **
 =net-misc/cmst-9999 **
-=net-misc/fatrat-9999 **
+=net-misc/fatrat-99999 **
 =net-p2p/dukto-9999 **
 =x11-libs/libfm-qt-9999 **
 =x11-libs/qtermwidget-9999 **
-=x11-misc/i3status-9999 **
+=x11-misc/i3status-99999 **
 =x11-misc/j4-dmenu-desktop-9999 **
 =x11-misc/pcmanfm-qt-9999 **
 =x11-misc/xorg-launch-helper-9999 **

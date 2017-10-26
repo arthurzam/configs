@@ -23,3 +23,8 @@ dev-libs/libzip
 x11-terms/xterm
 dev-libs/cdk
 dev-lang/rust
+dev-qt/qt-docs
+dev-qt/qtnetworkauth
+dev-qt/qdoc
+dev-python/pip
+dev-python/requests

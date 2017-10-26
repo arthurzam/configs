@@ -7,7 +7,7 @@ app-editors/vim -python_targets_python2_7 gpm
 >=x11-libs/libxcb-1.11.1 xkb
 >=x11-libs/libxkbcommon-0.5.0 X
 >=x11-libs/pango-1.36.8-r1 X
->=x11-base/xorg-server-1.17.4 glamor
+>=x11-base/xorg-server-1.17.4 glamor xvfb
 
 >=x11-libs/gdk-pixbuf-2.32.2 X
 >=x11-libs/gtk+-3.15.2:3 X
@@ -26,6 +26,7 @@ media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_
 >=dev-libs/libpcre-8.37-r2 pcre16
 >=dev-libs/libpcre2-10.23 pcre16
 >=dev-libs/openssl-1.0.2d-r2 -bindist
+>=net-libs/gnutls-3.5.14  sslv3
 >=dev-libs/botan-1.10.10 threads -bindist -python_targets_python2_7
 >=net-misc/openssh-7.1_p1-r1 -bindist
 >=sys-devel/gdb-7.10-r1 -python_targets_python3_4 python python_single_target_python3_5 -python_targets_python2_7 python_targets_python3_5 -python_single_target_python3_4
@@ -104,7 +105,7 @@ net-analyzer/nmap nping zenmap ncat
 >=dev-python/certifi-2015.9.6.2 python_targets_python3_5
 
 sys-devel/gcc -fortran cilk
-dev-vcs/git tk -perl -python -pcre
+dev-vcs/git tk -perl -python -pcre -pcre-jit
 >=net-analyzer/wireshark-1.12.8-r1 qt5 -qt4 ipv6
 >=app-admin/sudo-1.8.14_p3 -sendmail
 net-p2p/dukto qt5 -qt4 unique
@@ -112,7 +113,7 @@ net-p2p/dukto qt5 -qt4 unique
 dev-lang/perl -gdbm
 app-arch/p7zip rar -pch
 
->=app-office/libreoffice-5.0.2.2 -cups python_single_target_python3_5 -python_single_target_python2_7 -python_targets_python2_7  -python_single_target_python3_4 -python_targets_python3_4 python_targets_python3_5 gtk -gtk3 #-gtk gtk3
+>=app-office/libreoffice-5.0.2.2 -cups python_single_target_python3_5 -python_single_target_python2_7 -python_targets_python2_7  -python_single_target_python3_4 -python_targets_python3_4 python_targets_python3_5 gtk -gtk gtk3
 >=media-libs/harfbuzz-0.9.41 icu
 >=dev-libs/redland-1.0.17-r1 -berkdb
 >=net-nds/openldap-2.4.42-r1 -berkdb -syslog
@@ -153,3 +154,10 @@ dev-libs/gobject-introspection -python_single_target_python3_4 python_single_tar
 >=dev-python/webencodings-0.5.1 python_targets_python3_5
 >=dev-qt/qtgui-5.9.0 libinput
 >=dev-python/regex-2017.04.05 python_targets_python2_7
+dev-util/meson python_targets_python3_5
+>=dev-python/olefile-0.44 python_targets_python3_5
+>=dev-libs/xmlsec-1.2.24 nss
+>=media-libs/libvpx-1.6.1 svc
+
+sys-devel/llvm -doc
+app-admin/keepassxc autotype http
