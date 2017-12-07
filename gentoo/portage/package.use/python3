@@ -32,7 +32,7 @@ dev-python/namespace-sphinxcontrib -python_targets_python2_7 -python_targets_pyt
 dev-python/docutils -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 dev-python/Babel -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 dev-python/jinja -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
-dev-python/pygments -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
+dev-python/pygments python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 dev-python/sqlalchemy -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 dev-python/alabaster -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
 dev-python/sphinx_rtd_theme -python_targets_python2_7 -python_targets_python3_4 python_targets_python3_5
@@ -44,3 +44,6 @@ dev-python/markupsafe -python_targets_python2_7 -python_targets_python3_4 python
 sys-libs/libblockdev python_single_target_python3_5 -python_single_target_python3_4 -python_targets_python3_4 python_targets_python3_5
 dev-libs/volume_key python_single_target_python3_5 -python_single_target_python3_4 -python_targets_python3_4 python_targets_python3_5
 dev-libs/libbytesize python_single_target_python3_5 -python_single_target_python3_4 -python_targets_python3_4 python_targets_python3_5
+>=dev-lang/python-3.5.4-r1:3.5 sqlite
+>=dev-python/pyblake2-1.0.0 python_targets_python3_5
+>=dev-python/markupsafe-0.23 python_targets_python2_7

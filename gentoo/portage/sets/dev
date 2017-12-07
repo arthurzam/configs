@@ -28,3 +28,4 @@ dev-qt/qtnetworkauth
 dev-qt/qdoc
 dev-python/pip
 dev-python/requests
+media-libs/glm

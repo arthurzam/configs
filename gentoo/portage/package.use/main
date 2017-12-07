@@ -16,7 +16,7 @@ x11-terms/qterminal qt5
 
 dev-lang/python:2.7 sqlite
 media-libs/libpng apng
-www-client/firefox -gstreamer-0 gstreamer dbus system-icu system-cairo system-sqlite gtk3 ffmpeg system-harfbuzz system-libvpx
+www-client/firefox -gstreamer-0 gstreamer dbus system-icu system-cairo system-sqlite gtk3 ffmpeg system-harfbuzz system-libvpx -screenshot
 >=media-libs/libvpx-1.5.0 postproc
 app-text/hunspell linguas_en linguas_he -ncurses
 
@@ -81,7 +81,6 @@ media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_
 >=dev-python/netifaces-0.10.4 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/cssselect-0.9.1 -python_targets_python3_4 python_targets_python3_5
 >=dev-python/psutil-3.1.1 -python_targets_python3_4 -python_targets_python3_5
->=dev-python/pygments-2.0.2 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/lxml-3.4.4 -python_targets_python3_4 python_targets_python3_5
 >=virtual/python-imaging-2 -python_targets_python3_4 -python_targets_python3_5
 >=dev-python/dbus-python-1.2.0-r1 -python_targets_python3_4 -python_targets_python3_5
@@ -161,3 +160,5 @@ dev-util/meson python_targets_python3_5
 
 sys-devel/llvm -doc
 app-admin/keepassxc autotype http
+
+media-libs/mesa gles1 opencl vulkan xa xvmc
