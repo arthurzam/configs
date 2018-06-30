@@ -54,5 +54,9 @@ fix-screen() {
 	xrandr --output ${sc1} --off && sleep 5 && xrandr --output ${sc1} --auto --right-of ${sc3}
 }
 
+sumlines() {
+    perl -lne '$x += $_; END { print $x; }'
+}
+
 [[ $- = *i* ]] && source /home/arthur/dev/liquidprompt/liquidprompt
 

@@ -4,4 +4,4 @@ media-gfx/imagemagick raw
 x11-libs/gdk-pixbuf jpeg
 dev-libs/wlc X xwayland
 dev-libs/sway swaylock swaygrab
-media-libs/lensfun python_single_target_python3_5 -python_single_target_python3_4 python_targets_python3_5 -python_targets_python3_4
+media-libs/lensfun python_single_target_python3_6 python_targets_python3_6
