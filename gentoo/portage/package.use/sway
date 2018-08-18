@@ -1,7 +1,0 @@
-media-libs/mesa gles2 wayland
-x11-base/xorg-server wayland
-media-gfx/imagemagick raw
-x11-libs/gdk-pixbuf jpeg
-dev-libs/wlc X xwayland
-dev-libs/sway swaylock swaygrab
-media-libs/lensfun python_single_target_python3_6 python_targets_python3_6

@@ -6,5 +6,5 @@ dev-qt/qt-creator git valgrind -clang cmake autotools designer doc clangcodemode
 dev-qt/qtsingleapplication X -qt4 qt5
 dev-qt/qtlockedfile qt5 -qt4
 dev-qt/qtcore:5 icu
-dev-qt/qtwebkit:5 printsupport
+dev-qt/qtwebkit:5 printsupport -gstreamer
 dev-qt/qtwayland:5 egl

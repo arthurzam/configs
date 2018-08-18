@@ -5,8 +5,8 @@
 =dev-python/pycdc-9999 **
 =lxqt-base/liblxqt-9999 **
 =dev-util/lxqt-build-tools-9999 **
-#=lxqt-base/lxqt-policykit-9999 **
-#=lxqt-base/lxqt-sudo-9999 **
+=lxqt-base/lxqt-policykit-9999 **
+=lxqt-base/lxqt-sudo-9999 **
 =media-gfx/lximage-qt-9999 **
 =media-libs/libmygpo-qt-99999 **
 =media-sound/clementine-99999 **
@@ -22,3 +22,5 @@
 =x11-misc/xorg-launch-helper-9999 **
 =x11-terms/qterminal-9999 **
 =x11-wm/sway-9999 **
+=dev-libs/libqtxdg-9999 **
+=lxqt-base/lxqt-archiver-9999 **

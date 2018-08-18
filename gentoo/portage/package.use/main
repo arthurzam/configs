@@ -1,6 +1,6 @@
 net-misc/iputils -filecaps
 sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod
-app-editors/vim -python_targets_python2_7 gpm
+app-editors/vim gpm
 
 >=media-libs/freetype-2.6.1 X png
 >=x11-libs/cairo-1.14.2-r1 X xcb
@@ -27,24 +27,21 @@ media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_
 >=dev-libs/libpcre2-10.23 pcre16
 >=dev-libs/openssl-1.0.2d-r2 -bindist
 >=net-libs/gnutls-3.5.14  sslv3
->=dev-libs/botan-1.10.10 threads -bindist -python_targets_python2_7
+>=dev-libs/botan-1.10.10 threads -bindist
 >=net-misc/openssh-7.1_p1-r1 -bindist
->=sys-devel/gdb-7.10-r1 python python_single_target_python3_6 -python_targets_python2_7 python_targets_python3_6
+>=sys-devel/gdb-7.10-r1 python
 
 >=sys-libs/zlib-1.2.8-r1 minizip
 >=media-libs/flac-1.3.1-r1 ogg
 
->=dev-util/boost-build-1.57.0 -python_targets_python2_7
->=dev-libs/boost-1.57.0 -python_targets_python2_7 nls
->=net-p2p/qbittorrent-3.2.3 -qt4 qt5 -python_targets_python2_7
->=net-libs/rb_libtorrent-1.0.6 -python_targets_python2_7
+>=dev-libs/boost-1.57.0 nls
+>=net-p2p/qbittorrent-3.2.3 -qt4 qt5
 
 >=dev-db/sqlite-3.8.11.1 secure-delete
 >=dev-db/sqlitebrowser-3.7.0 -qt4 qt5
->=dev-java/antlr-2.7.7-r6 -java -python_targets_python2_7
+>=dev-java/antlr-2.7.7-r6 -java
 >=dev-java/icedtea-bin-7.2.6.1 -cups -gtk -awt
 >=dev-libs/qcustomplot-1.3.1 qt5
->=dev-java/java-config-2.2.0 -python_targets_python2_7
 
 >=media-sound/clementine-1.2.3 moodbar -udisks -qt4 qt5 dbus
 >=media-libs/libechonest-2.3.1 qt5 -qt4
@@ -59,7 +56,7 @@ media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_
 >=net-wireless/wpa_supplicant-2.5 dbus
 >=dev-lang/swig-3.0.7 -pcre
 >=app-crypt/pinentry-0.9.6-r5 -gnome-keyring
->=dev-libs/glib-2.44.1 dbus python_single_target_python3_6 python_targets_python3_6 -python_targets_python2_7
+>=dev-libs/glib-2.44.1 dbus
 >=gnome-base/gnome-keyring-3.16.0-r1 -caps -pam -ssh-agent
 >=net-misc/connman-1.30 policykit -tools -debug ethernet -wifi nftables
 
@@ -70,24 +67,8 @@ media-video/ffmpeg X aac aacplus cpu_flags_x86_avx cpu_flags_x86_sse3 cpu_flags_
 >=media-gfx/imagemagick-6.9.2.0 jpeg png tiff
 >=dev-python/pillow-3.0.0 jpeg
 
->=dev-python/sip-4.16.9 -python_targets_python3_6
->=dev-python/python-dateutil-2.4.2 -python_targets_python3_6
->=dev-python/pycrypto-2.6.1-r1 -python_targets_python3_6
->=dev-python/apsw-3.8.11.1_p1 -python_targets_python3_6
->=virtual/python-dnspython-1 -python_targets_python3_6
->=dev-python/six-1.10.0 python_targets_python3_6
->=dev-python/pillow-3.0.0 python_targets_python3_6
->=dev-python/cssutils-1.0 python_targets_python3_6
->=dev-python/netifaces-0.10.4 -python_targets_python3_6
->=dev-python/cssselect-0.9.1 python_targets_python3_6
->=dev-python/psutil-3.1.1 -python_targets_python3_6
->=dev-python/lxml-3.4.4 python_targets_python3_6
->=virtual/python-imaging-2 -python_targets_python3_6
->=dev-python/dbus-python-1.2.0-r1 -python_targets_python3_6
->=dev-python/PyQt5-5.5 -python_targets_python3_6
->=dev-python/pyparsing-2.1.0 python_targets_python3_6
-dev-python/numpy python_targets_python3_6
-dev-lang/python -gdbm
+dev-lang/python -gdbm sqlite
+dev-lang/python:3.6 tk
 
 x11-libs/libfm -gtk
 gnome-base/gvfs mtp udisks -http fuse
@@ -96,12 +77,9 @@ sys-block/parted -debug -readline
 app-crypt/gcr -gtk
 
 net-analyzer/nmap nping zenmap ncat
->=dev-libs/libxml2-2.9.2-r1 -python -python_targets_python3_6
+>=dev-libs/libxml2-2.9.2-r1 -python
 >=sys-block/gparted-0.23.0 fat ntfs policykit
 >=dev-java/antlr-2.7.7-r5 -java
->=dev-python/setuptools-18.4 python_targets_python3_6
->=dev-python/packaging-15.3-r2 python_targets_python3_6
->=dev-python/certifi-2015.9.6.2 python_targets_python3_6
 
 sys-devel/gcc -fortran cilk
 dev-vcs/git tk -perl -python -pcre -pcre-jit
@@ -112,7 +90,7 @@ net-p2p/dukto qt5 -qt4 unique
 dev-lang/perl -gdbm
 app-arch/p7zip rar -pch
 
-app-office/libreoffice -cups python_single_target_python3_6 -python_single_target_python2_7 -python_targets_python2_7  python_targets_python3_6 gtk -gtk2
+app-office/libreoffice -cups -python_targets_python2_7  gtk -gtk2
 >=media-libs/harfbuzz-0.9.41 icu
 >=dev-libs/redland-1.0.17-r1 -berkdb
 >=net-nds/openldap-2.4.42-r1 -berkdb -syslog
@@ -132,7 +110,6 @@ media-sound/alsa-utils -libsamplerate
 
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript
-dev-java/java-config python_targets_python3_6
 net-misc/fatrat curl bittorrent
 
 dev-util/cmake qt5 server
@@ -140,27 +117,22 @@ dev-util/cmake qt5 server
 sys-apps/util-linux -cramfs
 dev-util/ninja vim-syntax
 
->=dev-libs/libxml2-2.9.4 python
 www-plugins/adobe-flash -ppapi
 app-arch/engrampa magic
 >=dev-libs/libdbusmenu-qt-0.9.3_pre20160218 qt5
 media-libs/libepoxy X
 
->=dev-python/ply-3.10 python_targets_python2_7
->=dev-python/chardet-2.3.0 python_targets_python2_7
-dev-libs/gobject-introspection python_single_target_python3_6 python_targets_python3_6
 >=app-text/xmlto-0.0.28-r1 text
->=dev-python/webencodings-0.5.1 python_targets_python3_6
 >=dev-qt/qtgui-5.9.0 libinput
->=dev-python/regex-2017.04.05 python_targets_python2_7
-dev-util/meson python_targets_python3_6
->=dev-python/olefile-0.44 python_targets_python3_6
 >=dev-libs/xmlsec-1.2.24 nss
 >=media-libs/libvpx-1.6.1 svc
 
 sys-devel/llvm -doc
 app-admin/keepassxc autotype http
 
-media-libs/mesa gles1 vulkan xa xvmc
+media-libs/mesa gles1 vulkan
 sys-kernel/ck-sources experimental symlink
 >=dev-libs/libxml2-2.9.7 icu
+lxqt-base/liblxqt policykit
+dev-libs/xerces-c icu
+app-misc/pax-utils -python

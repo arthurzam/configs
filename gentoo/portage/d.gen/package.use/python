@@ -1,0 +1,96 @@
+# settings
+!python2=python2_7
+!python3=python3_6
+
+# packages
+dev-python/pycparser 2 3
+dev-python/idna 2 3
+dev-python/cffi 2 3
+app-portage/gentoolkit 3
+sys-apps/portage 3
+sys-apps/pkgcore 3
+app-portage/gentoopm 3
+app-portage/smart-live-rebuild 3
+app-portage/repoman 3
+media-libs/mutagen 3
+dev-python/ply 3 2
+games-util/nml 3
+net-misc/youtube-dl 3 single
+dev-python/appdirs 3
+dev-python/pip 3
+dev-python/requests 3
+dev-python/urllib3 3
+dev-python/pyopenssl 3
+dev-python/cryptography 3
+dev-python/asn1crypto 3
+dev-python/PySocks 3
+virtual/python-ipaddress 3
+dev-python/sphinxcontrib-websupport 3
+dev-python/sphinx 3
+dev-python/sphinx_rtd_theme 3
+dev-python/snowballstemmer 3
+dev-python/namespace-sphinxcontrib 3
+dev-python/docutils 3
+dev-python/Babel 3
+dev-python/jinja 3
+dev-python/pygments 3
+dev-python/sqlalchemy 3
+dev-python/alabaster 3
+dev-python/whoosh 3
+dev-python/imagesize 3
+dev-python/typing 3
+dev-python/pytz 3
+dev-python/markupsafe 3
+sys-libs/libblockdev 3 single
+dev-libs/volume_key 3 single
+dev-libs/libbytesize 3 single
+dev-python/pyblake2 3
+
+dev-python/setuptools 3 2
+dev-python/chardet 3 2
+dev-python/html5-parser 3 2
+dev-util/cxxtest 3
+sys-process/htop 3 single
+dev-python/openpyxl 3
+app-misc/pax-utils 3 single
+app-portage/gemato 3
+dev-python/pycrypto 3
+dev-python/dnspython 2
+dev-python/webencodings 3
+dev-python/numpy 2 3
+dev-python/ecdsa 2
+sys-apps/file 2 3
+virtual/python-cffi 2 3
+dev-python/pycryptodome 3 2
+
+app-text/calibre 2
+app-text/sigil 3 single
+sys-devel/clang 2
+app-text/asciidoc 2 single
+
+app-office/libreoffice 3 single
+dev-java/java-config 3
+dev-python/pillow 3 2
+dev-python/cssutils 3 2
+dev-python/netifaces 3
+sys-devel/gdb 3 single
+dev-libs/glib 3 single
+dev-python/six 3 2
+dev-python/cssselect 3 2
+dev-python/lxml 3 2
+dev-python/pyparsing 3
+dev-python/packaging 3
+dev-python/certifi 3 2
+dev-util/meson 3
+dev-python/olefile 3
+dev-python/regex 2 3
+dev-python/html5lib 3
+dev-python/webencodings 3
+dev-libs/gobject-introspection 3 single
+
+dev-python/et_xmlfile 3 2
+media-libs/lensfun 3 single
+dev-python/mako 2 3
+dev-python/markupsafe 2 3
+dev-python/netifaces 2
+dev-util/gdbus-codegen 3

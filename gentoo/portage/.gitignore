@@ -1,2 +1,4 @@
 make.conf.catalyst
 make.profile
+package.use/gen-*
+package.accept_keywords/gen-*

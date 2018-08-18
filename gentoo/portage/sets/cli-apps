@@ -15,7 +15,7 @@ net-misc/connman
 sys-apps/progress
 sys-fs/ncdu
 sys-process/htop
-sys-process/iotop
+sys-process/iotop-c
 sys-process/lsof
 sys-process/parallel
 sys-fs/dosfstools
@@ -29,3 +29,4 @@ sys-process/time
 sys-apps/renameutils
 sys-devel/bison
 sys-devel/flex
+media-gfx/imagemagick
