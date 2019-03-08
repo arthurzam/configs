@@ -1,6 +1,6 @@
 # settings
 !python2=python2_7
-!python3=python3_6
+!python3=python3_7
 
 # packages
 dev-python/pycparser 2 3
@@ -94,3 +94,25 @@ dev-python/mako 2 3
 dev-python/markupsafe 2 3
 dev-python/netifaces 2
 dev-util/gdbus-codegen 3
+dev-python/python-dateutil 2
+dev-python/setuptools_scm 2
+dev-util/glib-utils single 3
+dev-python/psutil 2
+dev-python/mechanize 2
+dev-util/gdbus-codegen 3 single
+dev-python/olefile 2
+x11-base/xcb-proto 3
+dev-libs/botan 3
+dev-python/sip 2
+app-emulation/qemu 3
+net-libs/nodejs 2
+dev-python/jdcal 3
+dev-python/pygments 2
+dev-python/apsw 2
+dev-python/PyQt5 2
+dev-python/PyQt5-sip 2
+virtual/python-enum34 2
+dev-python/enum34 2
+dev-python/cython 2 3
+dev-python/css-parser 2
+dev-python/msgpack 2

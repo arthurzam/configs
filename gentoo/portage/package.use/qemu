@@ -1,0 +1,3 @@
+app-emulation/qemu virtfs sdl sdl2 qemu_user_targets_x86_64 qemu_user_targets_arm qemu_softmmu_targets_x86_64 qemu_softmmu_targets_arm
+
+media-libs/libsdl2 X

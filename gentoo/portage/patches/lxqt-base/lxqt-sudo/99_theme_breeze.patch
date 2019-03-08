@@ -1,0 +1,12 @@
+diff --git a/main.cpp b/main.cpp
+index dbe0064..6e86fba 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -31,6 +31,7 @@
+ int main(int argc, char **argv)
+ {
+     LXQt::Application app(argc, argv, true);
++    QIcon::setThemeName("breeze");
+     app.setQuitOnLastWindowClosed(false);
+     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+ 

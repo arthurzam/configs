@@ -1,0 +1,12 @@
+diff --git a/src/main.cpp b/src/main.cpp
+index bf39e96..7f7725c 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -332,6 +332,7 @@ int main(int argc, char** argv) {
+     program_argv0 = argv[0];
+ 
+     QApplication app(argc, argv);
++	QIcon::setThemeName("breeze");
+     app.setApplicationVersion(LXQT_ARCHIVER_VERSION);
+     app.setQuitOnLastWindowClosed(true);
+     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
