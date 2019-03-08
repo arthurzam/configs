@@ -5,6 +5,7 @@ dev-python/setuptools
 dev-qt/linguist-tools
 dev-qt/qdbus
 #dev-qt/qt-docs
+dev-util/meson
 dev-util/perf
 dev-util/pkgconfig
 #dev-util/pycharm-community

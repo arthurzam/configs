@@ -1,8 +1,8 @@
 dev-qt/qtgui:5 jpeg dbus egl
 dev-qt/qtnetwork:5 -bindist
 dev-qt/qtwebchannel:5 qml
-dev-qt/qtwebengine:5 widgets -system-ffmpeg
-dev-qt/qt-creator git valgrind -clang cmake autotools designer doc clangcodemodel clangstaticanalyzer modeling
+dev-qt/qtwebengine:5 widgets -system-ffmpeg jumbo-build
+dev-qt/qt-creator git cmake autotools designer doc modeling lsp serialterminal
 dev-qt/qtsingleapplication X -qt4 qt5
 dev-qt/qtlockedfile qt5 -qt4
 dev-qt/qtcore:5 icu

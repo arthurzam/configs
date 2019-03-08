@@ -30,3 +30,5 @@ sys-apps/renameutils
 sys-devel/bison
 sys-devel/flex
 media-gfx/imagemagick
+
+net-libs/nodejs
