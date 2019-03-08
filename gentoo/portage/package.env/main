@@ -1,3 +1,4 @@
+sys-libs/glibc debugsyms installsources strlen
 app-arch/p7zip lto.conf
 app-editors/vim-core no-man.conf lto.conf
 app-editors/vim lto.conf
@@ -45,7 +46,7 @@ sys-auth/polkit no-docs.conf lto.conf
 sys-fs/ncdu lto.conf
 sys-fs/ntfs3g lto.conf
 sys-fs/udisks no-docs.conf lto.conf
-sys-libs/glibc lto.conf with-locale.conf debug
+sys-libs/glibc lto.conf with-locale.conf
 sys-libs/zlib no-docs.conf lto.conf
 sys-process/procps lto.conf
 www-client/firefox lto.conf
@@ -59,6 +60,7 @@ x11-libs/qtermwidget no-qt-debug.conf lto.conf
 x11-misc/i3lock lto.conf
 x11-misc/i3status lto.conf
 x11-misc/pcmanfm-qt no-qt-debug.conf lto.conf
+x11-misc/j4-dmenu-desktop lto.conf
 x11-libs/libfm-qt   no-qt-debug.conf lto.conf
 x11-terms/qterminal no-qt-debug.conf lto.conf
 x11-wm/i3 no-docs.conf lto.conf
