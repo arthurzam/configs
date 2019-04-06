@@ -28,7 +28,6 @@ dev-qt/qt-docs
 dev-qt/qtnetworkauth
 dev-qt/qdoc
 dev-python/pip
-dev-python/requests
 media-libs/glm
 dev-python/openpyxl
 dev-util/clazy
