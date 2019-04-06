@@ -17,5 +17,4 @@ media-fonts/droid
 x11-misc/numlockx
 #lxde-base/lxde-icon-theme
 x11-drivers/xf86-video-intel
-lxde-base/menu-cache
-x11-libs/libfm
+gnome-base/gvfs

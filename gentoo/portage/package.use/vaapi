@@ -1,0 +1,3 @@
+#media-libs/mesa vaapi
+media-video/libva-utils X wayland
+x11-libs/libva wayland

@@ -111,8 +111,16 @@ dev-python/pygments 2
 dev-python/apsw 2
 dev-python/PyQt5 2
 dev-python/PyQt5-sip 2
-virtual/python-enum34 2
+virtual/python-enum34 2 3
 dev-python/enum34 2
 dev-python/cython 2 3
 dev-python/css-parser 2
 dev-python/msgpack 2
+dev-python/pyyaml 3
+app-portage/repoman 3
+dev-python/markdown 2
+dev-python/feedparser 2
+#media-gfx/fontforge 2 single
+dev-util/itstool 3 single
+dev-libs/libxml2 3
+dev-util/gtk-doc 2

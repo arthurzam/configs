@@ -32,3 +32,4 @@ dev-python/requests
 media-libs/glm
 dev-python/openpyxl
 dev-util/clazy
+app-portage/repoman

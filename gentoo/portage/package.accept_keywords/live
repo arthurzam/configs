@@ -18,10 +18,10 @@
 =x11-libs/libfm-qt-9999 **
 =x11-libs/qtermwidget-9999 **
 =x11-misc/i3status-99999 **
-=x11-misc/j4-dmenu-desktop-9999 **
 =x11-misc/pcmanfm-qt-9999 **
 =x11-misc/xorg-launch-helper-9999 **
 =x11-terms/qterminal-9999 **
 =x11-wm/sway-9999 **
 =dev-libs/libqtxdg-9999 **
 =lxqt-base/lxqt-archiver-9999 **
+=sys-process/iotop-c-9999 **

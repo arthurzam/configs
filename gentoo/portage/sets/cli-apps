@@ -32,3 +32,5 @@ sys-devel/flex
 media-gfx/imagemagick
 
 net-libs/nodejs
+sys-devel/gettext
+net-misc/rclone

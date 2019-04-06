@@ -1,0 +1,47 @@
+From 6e3e4fbed7f511536e3fc884cf706c18e052c6d3 Mon Sep 17 00:00:00 2001
+From: Tsu Jan <tsujan2000@gmail.com>
+Date: Mon, 25 Feb 2019 23:31:31 +0330
+Subject: [PATCH] Open selected files by pressing Enter
+
+Closes https://github.com/lxqt/pcmanfm-qt/issues/149
+
+If at least one of the selected items has focus, all of them will be opened by pressing `Enter`. But if their number is more than 20, a confirmation dialog will be first shown (with "No" as its default button).
+
+This feature is especially good -- and maybe needed -- when files have different mime types (but assigned to the same app) because, in that case, they can't be opened by right clicking.
+---
+ pcmanfm/view.cpp | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+diff --git a/pcmanfm/view.cpp b/pcmanfm/view.cpp
+index c11161f2..d654f653 100644
+--- a/pcmanfm/view.cpp
++++ b/pcmanfm/view.cpp
+@@ -47,7 +47,27 @@ void View::onFileClicked(int type, const std::shared_ptr<const Fm::FileInfo>& fi
+         }
+     }
+     else {
+-        Fm::FolderView::onFileClicked(type, fileInfo);
++        if(type == ActivatedClick) {
++            if(fileLauncher()) { // launch all selected files
++                auto files = selectedFiles();
++                if(!files.empty()) {
++                    if(files.size() > 20) {
++                        QMessageBox::StandardButton r = QMessageBox::question(window(),
++                                                        tr("Many files"),
++                                                        tr("Do you want to open these %1 file?").arg(files.size()),
++                                                        QMessageBox::Yes | QMessageBox::No,
++                                                        QMessageBox::No);
++                        if(r == QMessageBox::No) {
++                            return;
++                        }
++                    }
++                    fileLauncher()->launchFiles(nullptr, std::move(files));
++                }
++            }
++        }
++        else {
++            Fm::FolderView::onFileClicked(type, fileInfo);
++        }
+     }
+ }
+ 

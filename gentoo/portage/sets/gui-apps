@@ -1,9 +1,9 @@
-#app-admin/keepassx
+app-admin/keepassxc
 app-office/libreoffice
 app-text/calibre
 app-text/qpdfview
 dev-qt/qt-creator
-games-simulation/openttd
+#games-simulation/openttd
 lxqt-base/lxqt-policykit
 lxqt-base/lxqt-sudo
 media-gfx/lximage-qt

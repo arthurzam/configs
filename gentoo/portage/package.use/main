@@ -9,7 +9,7 @@ sys-devel/binutils default-gold
 >=x11-libs/libxcb-1.11.1 xkb
 >=x11-libs/libxkbcommon-0.5.0 X
 >=x11-libs/pango-1.36.8-r1 X
->=x11-base/xorg-server-1.17.4 glamor xvfb
+>=x11-base/xorg-server-1.17.4 glamor xvfb -suid
 
 >=x11-libs/gdk-pixbuf-2.32.2 X
 >=x11-libs/gtk+-3.15.2:3 X
@@ -58,7 +58,6 @@ gnome-base/librsvg -vala
 >=x11-misc/xdg-utils-1.1.1 -perl
 >=net-wireless/wpa_supplicant-2.5 dbus
 >=dev-lang/swig-3.0.7 -pcre
->=app-crypt/pinentry-0.9.6-r5 -gnome-keyring
 >=dev-libs/glib-2.44.1 dbus
 >=gnome-base/gnome-keyring-3.16.0-r1 -caps -pam -ssh-agent
 >=net-misc/connman-1.30 policykit -tools -debug ethernet -wifi nftables
@@ -71,16 +70,16 @@ gnome-base/librsvg -vala
 >=dev-python/pillow-3.0.0 jpeg
 
 dev-lang/python -gdbm sqlite
-dev-lang/python:3.6 tk
+dev-lang/python:3.7 tk
 
 x11-libs/libfm -gtk
 gnome-base/gvfs mtp udisks -http fuse
 sys-fs/udisks -gptfdisk
 sys-block/parted -debug -readline
-app-crypt/gcr -gtk
+app-crypt/gcr -gtk -vala
 
 net-analyzer/nmap nping zenmap ncat
->=dev-libs/libxml2-2.9.2-r1 -python
+>=dev-libs/libxml2-2.9.2-r1 python
 >=sys-block/gparted-0.23.0 fat ntfs policykit
 >=dev-java/antlr-2.7.7-r5 -java
 
@@ -98,7 +97,7 @@ app-office/libreoffice -cups -python_targets_python2_7  gtk -gtk2
 >=dev-libs/redland-1.0.17-r1 -berkdb
 >=net-nds/openldap-2.4.42-r1 -berkdb -syslog
 
->=app-crypt/pinentry-0.9.7 -gnome-keyring
+app-crypt/pinentry -gnome-keyring qt5 -ncurses
 >=sys-auth/polkit-qt-0.112.0-r1 qt5 -qt4
 >=kde-frameworks/kwindowsystem-5.18.0 X
 >=sys-boot/grub-2.02_beta2-r9 -multislot -nls efiemu
@@ -143,3 +142,4 @@ dev-util/valgrind mpi
 virtual/mpi -fortran
 isys-cluster/openmpi -fortran
 dev-lang/rust system-llvm
+media-gfx/fontforge -python

@@ -1,0 +1,7 @@
+#### needed for x11-misc/i3status
+dev-libs/confuse static-libs
+dev-libs/libnl:3 static-libs
+x11-misc/i3status static
+
+#### needed for net-misc/fatrat
+net-libs/libtorrent-rasterbar static-libs
