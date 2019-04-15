@@ -142,9 +142,7 @@ bar {
 bindsym $mod+m exec --no-startup-id /usr/bin/clementine
 bindsym $mod+Shift+f exec /usr/bin/pcmanfm-qt
 
-#exec --no-startup-id /usr/bin/cmst -c -m -n # network manager
 exec --no-startup-id /usr/bin/lxqt-policykit-agent # polkit agent
-exec --no-startup-id /usr/bin/dunst -mon 1  # notification daemon
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/amixer set Master 3%+ #increase sound volume
@@ -161,12 +159,12 @@ bindsym XF86HomePage exec firefox # browser key
 # Power Menu
 set $mode_system System: (l) lock, (e) logout, (h) hibernate, (r) reboot, (s) shutdown, (u) suspend
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $home/.i3/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id $home/.i3/i3exit logout, mode "default"
-    bindsym h exec --no-startup-id $home/.i3/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id $home/.i3/i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id $home/.i3/i3exit shutdown, mode "default"
-    bindsym u exec --no-startup-id $home/.i3/i3exit suspend, mode "default"
+    bindsym e exit, mode "default"
+    bindsym l exec --no-startup-id systemctl start i3lock.service, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym u exec --no-startup-id systemctl suspend mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

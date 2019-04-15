@@ -1,7 +1,9 @@
 #!/bin/sh
 lock() {
-    i3lock -c 000000 -e -f -d -I 10
-#echo "no lock"
+    #setxkbmap us -option grp:alt_shift_toggle
+    #i3lock -c 000000 -e -f -d -I 10
+    #setxkbmap us,il -option grp:alt_shift_toggle
+echo "no lock"
 }
 on_shutdown() {
     killall -q -9 cmst || true
