@@ -11,7 +11,7 @@ media-gfx/optipng
 media-libs/mutagen
 net-analyzer/nethogs
 net-analyzer/openbsd-netcat
-net-misc/connman
+#net-misc/connman
 sys-apps/progress
 sys-fs/ncdu
 sys-process/htop

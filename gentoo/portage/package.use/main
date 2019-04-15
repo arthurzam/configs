@@ -73,7 +73,8 @@ dev-lang/python -gdbm sqlite
 dev-lang/python:3.7 tk
 
 x11-libs/libfm -gtk
-gnome-base/gvfs mtp udisks -http fuse
+gnome-base/gvfs mtp udisks -http fuse samba
+net-fs/samba client -system-mitkrb5 
 sys-fs/udisks -gptfdisk
 sys-block/parted -debug -readline
 app-crypt/gcr -gtk -vala

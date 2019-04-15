@@ -12,6 +12,7 @@ dev-python/cssselect 2
 dev-python/lxml 2
 dev-python/pillow 2
 dev-python/regex 2
+dev-python/msgpack 2
 dev-python/olefile 2
 virtual/python-enum34 2
 dev-python/pycryptodome 2
@@ -21,6 +22,9 @@ virtual/python-dnspython 2
 dev-python/sip 2
 dev-python/PyQt5 2
 dev-python/enum34 2
+dev-python/cython 2
+dev-python/psutil 2
+dev-python/netifaces 2
 
 ### supports only python2
 sys-devel/clang 2
@@ -102,6 +106,7 @@ dev-libs/gobject-introspection 3 single
 dev-python/et_xmlfile 3
 media-libs/lensfun 3 single
 dev-python/mako 3
+dev-python/markupsafe 3
 dev-util/glib-utils single 3
 dev-util/gdbus-codegen 3 single
 x11-base/xcb-proto 3
@@ -112,3 +117,21 @@ dev-python/cython 3
 dev-python/pyyaml 3
 dev-util/itstool 3 single
 dev-libs/libxml2 3
+
+
+### samba
+net-fs/samba 3 single
+dev-python/fixtures 3
+dev-python/linecache2 3
+dev-python/unittest2 3
+dev-python/traceback2 3
+dev-python/pyrsistent 3
+dev-python/pbr 3
+dev-python/mimeparse 3
+dev-python/extras 3
+dev-python/testtools 3
+sys-libs/tevent 3 single
+sys-libs/tdb 3 single
+sys-libs/talloc 3 single
+sys-libs/ldb 3 single
+dev-python/subunit 3
