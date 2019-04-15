@@ -1,0 +1,14 @@
+[Unit]
+Description=Lock screen before suspend
+Before=sleep.target hibernate.target
+
+[Service]
+User=arthur
+Type=simple
+Environment=DISPLAY=:0
+ExecStartPre=/usr/bin/setxkbmap us -option grp:alt_shift_toggle
+ExecStart=/usr/bin/i3lock -c 000000 -e -f -n
+ExecStartPost=/usr/bin/setxkbmap us,il -option grp:alt_shift_toggle
+
+[Install]
+WantedBy=suspend.target hibernate.target
