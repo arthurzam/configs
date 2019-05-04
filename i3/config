@@ -139,10 +139,9 @@ bar {
     status_command i3status -c $home/.i3/i3status.conf
 }
 
-bindsym $mod+m exec --no-startup-id /usr/bin/clementine
 bindsym $mod+Shift+f exec /usr/bin/pcmanfm-qt
 
-exec --no-startup-id /usr/bin/lxqt-policykit-agent # polkit agent
+exec --no-startup-id systemctl --user start lxqt-policykit-agent.service # polkit agent
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/amixer set Master 3%+ #increase sound volume
@@ -175,5 +174,8 @@ bindsym $mod+Escape mode "$mode_system"
 #always floating by default
 #for_window [title="Preferences"] floating enable
 for_window [class="dukto"] floating enable
+
+# default Workspace for QMPlay2 is 3
+assign [class="QMPlay2"] 3
 
 workspace_layout tabbed

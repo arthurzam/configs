@@ -1,0 +1,7 @@
+[Unit]
+Description=LXQt Policykit Agent
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/lxqt-policykit-agent

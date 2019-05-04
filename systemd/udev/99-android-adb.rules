@@ -1,0 +1,2 @@
+# auto start adb service when OnePlus3T connects
+ACTION=="add", SUBSYSTEMS=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", SYMLINK+="android_adb", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="adb.service"
