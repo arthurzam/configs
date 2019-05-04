@@ -1,7 +1,2 @@
-#
-# ~/.bash_profile
-#
-
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[ $(tty) == "/dev/tty1" ] && startx
-setleds -D +num
+[[ $(tty) == "/dev/tty1" ]] && /usr/bin/xinit ~/.xinitrc -- /usr/bin/X -nolisten tcp -keeptty ":0" "vt${XDG_VTNR}"

@@ -10,12 +10,12 @@ set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
                     " Spaces are used in indents with the '>' and '<' commands
                     " and when 'autoindent' is on. To insert a real tab when
                     " 'expandtab' is on, use CTRL-V <Tab>.
- 
+
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
                     " according to 'shiftwidth'. 'tabstop' is used in other
                     " places. A <BS> will delete a 'shiftwidth' worth of space
                     " at the start of the line.
-                    
+
 set autoindent      " Copy indent from current line when starting a new line
                     " (typing <CR> in Insert mode or when using the "o" or "O"
                     " command).
@@ -25,17 +25,34 @@ set number          " Show line numbers.
 
 set hlsearch        " When there is a previous search pattern, highlight all
                     " its matches.
- 
+
 set incsearch       " While typing a search command, show immediately where the
                     " so far typed pattern matches.
- 
+
 set ignorecase      " Ignore case in search patterns.
- 
+
 set smartcase       " Override the 'ignorecase' option if the search pattern
                     " contains upper case characters.
+
+set modeline
 
 nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <C-S-D> :set rightleft<CR>
 nnoremap <C-S-A> :set rightleft&<CR>
 "set cindent
 "inoremap {<CR> {<CR>}<up><end><CR><Tab>
+
+" this block sets the title of terminal
+let &titlestring = "vim(" . expand("%:p") . ")"
+if &term == "screen"
+    set t_ts=^[k
+    set t_fs=^[\
+endif
+if &term == "screen" || &term == "xterm"
+    set title
+endif
+
+au FileType gitcommit set tw=68 spell
+au FileType markdown set spell
+
+set directory=/tmp,/var/tmp
