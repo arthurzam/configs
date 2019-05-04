@@ -18,3 +18,5 @@ x11-misc/numlockx
 #lxde-base/lxde-icon-theme
 x11-drivers/xf86-video-intel
 gnome-base/gvfs
+
+@sway

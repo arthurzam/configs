@@ -4,11 +4,9 @@ dev-python/numpy
 dev-python/setuptools
 dev-qt/linguist-tools
 dev-qt/qdbus
-#dev-qt/qt-docs
 dev-util/meson
 dev-util/perf
 dev-util/pkgconfig
-#dev-util/pycharm-community
 dev-vcs/git
 sys-devel/autoconf
 sys-devel/gcc
@@ -23,12 +21,11 @@ media-libs/libcddb
 dev-libs/libzip
 x11-terms/xterm
 dev-libs/cdk
-dev-lang/rust
 dev-qt/qt-docs
-dev-qt/qtnetworkauth
-dev-qt/qdoc
 dev-python/pip
 media-libs/glm
 dev-python/openpyxl
 dev-util/clazy
 app-portage/repoman
+app-doc/eclass-manpages
+dev-cpp/gtest

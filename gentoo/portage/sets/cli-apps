@@ -11,7 +11,6 @@ media-gfx/optipng
 media-libs/mutagen
 net-analyzer/nethogs
 net-analyzer/openbsd-netcat
-#net-misc/connman
 sys-apps/progress
 sys-fs/ncdu
 sys-process/htop
@@ -23,14 +22,11 @@ sys-apps/gptfdisk
 sys-apps/usbutils
 sys-fs/ntfs3g
 app-cdr/cdw
-
 sys-apps/ack
 sys-process/time
 sys-apps/renameutils
 sys-devel/bison
 sys-devel/flex
 media-gfx/imagemagick
-
-net-libs/nodejs
 sys-devel/gettext
 net-misc/rclone

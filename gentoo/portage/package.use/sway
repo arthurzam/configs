@@ -1,0 +1,7 @@
+gui-wm/sway X tray
+gui-libs/wlroots X
+x11-base/xorg-server wayland
+media-libs/mesa wayland
+www-client/firefox wayland
+x11-libs/gtk+ wayland
+gui-apps/swaybg -man
