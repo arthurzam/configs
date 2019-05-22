@@ -29,3 +29,4 @@ dev-util/clazy
 app-portage/repoman
 app-doc/eclass-manpages
 dev-cpp/gtest
+dev-qt/qtcreator-meson-plugin

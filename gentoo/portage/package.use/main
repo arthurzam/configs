@@ -68,8 +68,7 @@ dev-python/pypy3 -jit
 
 x11-libs/libfm -gtk
 sys-libs/libblockdev -tools
-gnome-base/gvfs mtp udisks -http fuse samba
-net-fs/samba client -system-mitkrb5 
+gnome-base/gvfs mtp udisks -http fuse
 sys-fs/udisks -gptfdisk
 sys-block/parted -debug -readline
 app-crypt/gcr -gtk -vala
@@ -79,12 +78,10 @@ net-analyzer/nmap nping zenmap ncat
 >=sys-block/gparted-0.23.0 fat ntfs policykit
 >=dev-java/antlr-2.7.7-r5 -java
 
-sys-devel/gcc -fortran cilk
+sys-devel/gcc -fortran cilk lto
 dev-vcs/git tk -perl -python -pcre -pcre-jit
->=net-analyzer/wireshark-1.12.8-r1 qt5 -qt4 ipv6
->=app-admin/sudo-1.8.14_p3 -sendmail
-net-p2p/dukto qt5 -qt4 unique
->=sys-process/procps-3.3.11-r1 -unicode 
+app-admin/sudo -sendmail
+sys-process/procps -unicode
 dev-lang/perl -gdbm
 app-arch/p7zip rar -pch
 
@@ -109,6 +106,7 @@ media-sound/alsa-utils -libsamplerate
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript
 net-misc/fatrat curl bittorrent
+app-text/sigil -plugins
 
 dev-util/cmake qt5 server
 
@@ -129,6 +127,7 @@ sys-devel/llvm -doc
 app-admin/keepassxc autotype http
 
 media-libs/mesa gles1 vulkan
+sys-kernel/linux-firmware savedconfig
 sys-kernel/ck-sources experimental symlink
 >=dev-libs/libxml2-2.9.7 icu
 lxqt-base/liblxqt policykit
@@ -138,3 +137,4 @@ virtual/mpi -fortran
 isys-cluster/openmpi -fortran
 dev-lang/rust system-llvm
 media-gfx/fontforge -python
+sys-libs/talloc -python
