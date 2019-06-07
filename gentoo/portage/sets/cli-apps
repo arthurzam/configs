@@ -30,3 +30,4 @@ sys-devel/flex
 media-gfx/imagemagick
 sys-devel/gettext
 net-misc/rclone
+x11-apps/igt-gpu-tools

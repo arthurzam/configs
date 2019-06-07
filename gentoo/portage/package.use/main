@@ -17,7 +17,7 @@ x11-libs/qtermwidget qt5
 x11-terms/qterminal qt5
 
 media-libs/libpng apng
-www-client/firefox -gstreamer-0 gstreamer dbus system-icu system-cairo ffmpeg system-harfbuzz system-libvpx -screenshot lto
+www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz system-libvpx -screenshot lto geckodriver
 media-libs/libvpx postproc
 app-text/hunspell l10n_en l10n_he -ncurses
 app-dicts/myspell-en l10n_en
@@ -68,6 +68,7 @@ dev-python/pypy3 -jit
 
 x11-libs/libfm -gtk
 sys-libs/libblockdev -tools
+sys-fs/lvm2 -thin -systemd -udev
 gnome-base/gvfs mtp udisks -http fuse
 sys-fs/udisks -gptfdisk
 sys-block/parted -debug -readline
@@ -124,7 +125,7 @@ media-libs/libepoxy X
 >=media-libs/libvpx-1.6.1 svc
 
 sys-devel/llvm -doc
-app-admin/keepassxc autotype http
+app-admin/keepassxc -autotype
 
 media-libs/mesa gles1 vulkan
 sys-kernel/linux-firmware savedconfig
@@ -138,3 +139,4 @@ isys-cluster/openmpi -fortran
 dev-lang/rust system-llvm
 media-gfx/fontforge -python
 sys-libs/talloc -python
+dev-libs/libsodium minimal

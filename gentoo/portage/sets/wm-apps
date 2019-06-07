@@ -4,7 +4,7 @@ x11-apps/xrandr
 x11-base/xorg-server
 x11-misc/dunst
 x11-misc/i3lock
-x11-misc/i3status
+x11-misc/is3-status
 x11-misc/j4-dmenu-desktop
 x11-misc/xclip
 x11-wm/i3

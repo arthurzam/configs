@@ -16,7 +16,7 @@ dev-libs/icu lto.conf
 dev-libs/libbsd lto.conf no-docs.conf no-man.conf
 dev-libs/libcroco lto.conf
 dev-libs/libev no-man.conf lto.conf
-dev-libs/openssl no-man.conf
+dev-libs/openssl no-man.conf no-docs.conf
 dev-libs/redland no-docs.conf lto.conf
 dev-libs/yajl lto.conf
 dev-python/numpy no-lto.conf
@@ -57,8 +57,9 @@ x11-libs/libX11 no-man.conf lto.conf
 x11-libs/libXdmcp lto.conf
 x11-libs/pango no-docs.conf lto.conf
 x11-libs/qtermwidget no-qt-debug.conf lto.conf
+lxqt-base/lxqt-policykit no-qt-debug.conf lto.conf
 x11-misc/i3lock lto.conf
-x11-misc/i3status lto.conf
+x11-misc/is3-status lto.conf
 x11-misc/pcmanfm-qt no-qt-debug.conf lto.conf
 x11-misc/j4-dmenu-desktop lto.conf
 x11-libs/libfm-qt   no-qt-debug.conf lto.conf
