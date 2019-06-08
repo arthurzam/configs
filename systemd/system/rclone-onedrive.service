@@ -1,0 +1,14 @@
+[Unit]
+Description=Onedrive (rclone)
+Documentation=man:rclone(1)
+AssertPathIsDirectory=/media/onedrive
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount \
+        --config=/home/arthur/.config/rclone/rclone.conf \
+        --allow-other \
+        --vfs-cache-mode=writes \
+        onedrive: /media/onedrive/
+ExecStop=/usr/bin/fusermount -u /media/onedrive/
+
