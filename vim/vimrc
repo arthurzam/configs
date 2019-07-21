@@ -54,5 +54,6 @@ endif
 
 au FileType gitcommit set tw=68 spell
 au FileType markdown set spell
+autocmd BufNewFile,BufRead *.scd set wrap tw=80 spell noexpandtab
 
 set directory=/tmp,/var/tmp

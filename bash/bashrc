@@ -57,5 +57,7 @@ fix-screen() {
 sumlines() { perl -lne '$x += $_; END { print $x; }'; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
-[[ $- = *i* ]] && source /home/arthur/dev/liquidprompt/liquidprompt
+decompile() { objdump -M intel -C -d $@ | less; }
+
+[[ $- = *i* ]] && source /usr/bin/liquidprompt
 

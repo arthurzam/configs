@@ -17,5 +17,3 @@ UUID=CE5D-A022          					/boot/efi	auto		noauto,noatime                     
 UUID=e4d58956-3357-45db-aa9d-2296c146700c	/		    ext4		noatime,discard                     	0   1
 UUID=0375e652-2846-4b9d-8a2d-b263b15ca7c6	none		swap		sw		                                0   0
 UUID=39ca2e95-8535-4eb3-aed4-c4b9c4a83aa9   /media/data ext4        noauto,x-systemd.automount,user,exec    0   0
-#/dev/cdrom					/mnt/cdrom	auto		noauto,ro	0 0
-#/dev/fd0					/mnt/floppy	auto		noauto		0 0
