@@ -1,7 +1,7 @@
 dev-qt/qtgui:5 jpeg dbus egl
 dev-qt/qtnetwork:5 -bindist
 dev-qt/qtwebchannel:5 qml
-dev-qt/qtwebengine:5 widgets -system-ffmpeg jumbo-build
+dev-qt/qtwebengine:5 widgets jumbo-build
 dev-qt/qt-creator git cmake autotools designer modeling lsp valgrind
 dev-qt/qtsingleapplication X -qt4 qt5
 dev-qt/qtlockedfile qt5 -qt4

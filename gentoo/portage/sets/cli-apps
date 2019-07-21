@@ -4,6 +4,7 @@ app-misc/fdupes
 app-portage/gentoolkit
 app-portage/smart-live-rebuild
 app-shells/bash-completion
+app-shells/liquidprompt
 app-text/dos2unix
 app-text/recode
 dev-util/android-tools

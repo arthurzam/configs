@@ -16,6 +16,7 @@ dev-python/msgpack 2
 dev-python/olefile 2
 virtual/python-enum34 2
 dev-python/pycryptodome 2
+dev-python/cffi 2
 dev-python/six 2
 dev-python/dnspython 2
 virtual/python-dnspython 2
@@ -29,6 +30,7 @@ dev-python/netifaces 2
 dev-python/ecdsa 2
 dev-python/html5-parser 2
 dev-python/css-parser 2
+dev-python/pygments 2
 
 ### supports only python2
 sys-devel/clang 2
