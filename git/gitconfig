@@ -1,0 +1,12 @@
+[user]
+	email = arthurzam@gmail.com
+	name = Zamarin Arthur
+	signingkey = 02CCCA1CA2E7D5FC10CC9DDC3BD5D29F0232B16A
+[commit]
+	gpgsign = true
+[alias]
+	unstage = reset HEAD --
+	co = checkout
+	ci = commit
+	st = status
+	clean-shallow = !/home/arthur/dev/scripts/git-shallow-clean.sh
