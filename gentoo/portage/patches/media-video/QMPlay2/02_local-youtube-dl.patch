@@ -1,8 +1,8 @@
 diff --git a/src/qmplay2/YouTubeDL.cpp b/src/qmplay2/YouTubeDL.cpp
-index d532c762..f323b730 100644
+index d2c390e8..ff02ec0b 100644
 --- a/src/qmplay2/YouTubeDL.cpp
 +++ b/src/qmplay2/YouTubeDL.cpp
-@@ -38,11 +38,7 @@ static QReadWriteLock g_lock;
+@@ -36,11 +36,7 @@ static QMutex g_mutex(QMutex::Recursive);
  
  QString YouTubeDL::getFilePath()
  {
@@ -13,16 +13,5 @@ index d532c762..f323b730 100644
 -    ;
 +    return QStringLiteral("/usr/bin/youtube-dl");
  }
- 
- bool YouTubeDL::fixUrl(const QString &url, QString &outUrl, IOController<> *ioCtrl, QString *name, QString *extension, QString *error)
-@@ -180,8 +176,8 @@ QStringList YouTubeDL::exec(const QString &url, const QStringList &args, QString
-         const QFile::Permissions exeFlags = QFile::ExeOwner | QFile::ExeUser | QFile::ExeGroup | QFile::ExeOther;
-         if ((file.permissions() & exeFlags) != exeFlags)
-             file.setPermissions(file.permissions() | exeFlags);
--        if (!doLock(Lock::Read, true)) // Unlock for write and lock for read
--            return {};
-+//        if (!doLock(Lock::Read, true)) // Unlock for write and lock for read
-+//            return {};
-     }
- #endif
- 
+ QStringList YouTubeDL::getCommonArgs()
+ {

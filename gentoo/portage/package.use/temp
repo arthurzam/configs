@@ -1,0 +1,2 @@
+dev-libs/libnl utils
+net-wireless/wpa_supplicant -bindist

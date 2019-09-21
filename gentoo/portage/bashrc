@@ -4,6 +4,7 @@ if [ "${EBUILD_PHASE}" == "postinst" ]; then
     [[ "${PN}" == "nethogs"   ]] && setcap cap_net_raw,cap_net_admin=eip /usr/sbin/nethogs
     [[ "${PN}" == "libnotify" ]] && chown arthur:root /usr/bin/libnotify-notify-send && chmod u+s /usr/bin/libnotify-notify-send
     [[ "${PN}" == "systemd"   ]] && rm /lib64/udev/rules.d/80-drivers.rules
+    [[ "${PN}" == "iotop-c"   ]] && chmod u+s /usr/bin/iotop
 fi
 
 # enable patching for every package

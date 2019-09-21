@@ -1,4 +1,5 @@
 sys-libs/glibc debugsyms installsources strlen
+dev-libs/libnl debugsyms installsources
 app-arch/p7zip lto.conf
 app-editors/vim-core no-man.conf lto.conf
 app-editors/vim lto.conf

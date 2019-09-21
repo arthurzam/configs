@@ -1,6 +1,5 @@
 app-editors/vim
 app-vim/nerdtree
-dev-python/numpy
 dev-python/setuptools
 dev-qt/linguist-tools
 dev-qt/qdbus
@@ -25,3 +24,6 @@ app-portage/repoman
 app-doc/eclass-manpages
 dev-cpp/gtest
 dev-qt/qtcreator-meson-plugin
+app-text/scdoc
+
+@dev-wifi-sim

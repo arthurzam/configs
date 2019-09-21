@@ -33,8 +33,7 @@ dev-python/css-parser 2
 dev-python/pygments 2
 
 ### supports only python2
-sys-devel/clang 2
-net-libs/nodejs 2
+sys-devel/clang 2 single
 dev-util/gtk-doc 2
 
 ### portage apps
@@ -87,7 +86,6 @@ dev-libs/volume_key 3 single
 dev-python/pyblake2 3
 
 dev-util/cxxtest 3
-sys-process/htop 3 single
 dev-python/openpyxl 3
 app-misc/pax-utils 3 single
 app-portage/gemato 3

@@ -11,14 +11,14 @@ sys-devel/binutils default-gold
 >=x11-libs/pango-1.36.8-r1 X
 >=x11-base/xorg-server-1.17.4 glamor xvfb -suid
 
->=x11-libs/gdk-pixbuf-2.32.2 X
->=x11-libs/gtk+-3.15.2:3 X
-x11-libs/qtermwidget qt5
-x11-terms/qterminal qt5
+x11-libs/gdk-pixbuf X
+x11-libs/gtk+:3 X
+dev-libs/glib dbus
+gnome-base/gnome-keyring -caps -pam -ssh-agent
 
 media-libs/libpng apng
-www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz system-libvpx -screenshot lto geckodriver
-media-libs/libvpx postproc
+www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -screenshot lto -system-av1
+media-libs/libvpx postproc svc
 app-text/hunspell l10n_en l10n_he -ncurses
 app-dicts/myspell-en l10n_en
 
@@ -50,8 +50,6 @@ gnome-base/librsvg -vala
 >=x11-misc/xdg-utils-1.1.1 -perl
 >=net-wireless/wpa_supplicant-2.5 dbus
 >=dev-lang/swig-3.0.7 -pcre
->=dev-libs/glib-2.44.1 dbus
->=gnome-base/gnome-keyring-3.16.0-r1 -caps -pam -ssh-agent
 >=net-misc/connman-1.30 policykit -tools -debug ethernet -wifi nftables
 
 >=app-text/calibre-2.35.0 -udisks
@@ -75,9 +73,9 @@ sys-block/parted -debug -readline
 app-crypt/gcr -gtk -vala
 
 net-analyzer/nmap nping zenmap ncat
->=dev-libs/libxml2-2.9.2-r1 python
->=sys-block/gparted-0.23.0 fat ntfs policykit
->=dev-java/antlr-2.7.7-r5 -java
+dev-libs/libxml2 python
+sys-block/gparted fat ntfs policykit
+dev-java/antlr -java
 
 sys-devel/gcc -fortran cilk lto
 dev-vcs/git tk -perl -python -pcre -pcre-jit
@@ -87,22 +85,21 @@ dev-lang/perl -gdbm
 app-arch/p7zip rar -pch
 
 app-office/libreoffice -cups -python_targets_python2_7  gtk -gtk2
->=media-libs/harfbuzz-0.9.41 icu
->=dev-libs/redland-1.0.17-r1 -berkdb
->=net-nds/openldap-2.4.42-r1 -berkdb -syslog
+media-libs/harfbuzz icu -cairo
+dev-libs/redland -berkdb
+net-nds/openldap -berkdb -syslog
 
 app-crypt/pinentry -gnome-keyring qt5 -ncurses
->=sys-auth/polkit-qt-0.112.0-r1 qt5 -qt4
->=kde-frameworks/kwindowsystem-5.18.0 X
->=sys-boot/grub-2.02_beta2-r9 -multislot -nls efiemu
+kde-frameworks/kwindowsystem X
+sys-boot/grub -multislot -nls efiemu
 
->=x11-libs/libva-1.6.2 X vdpau opengl
+x11-libs/libva X vdpau opengl
 x11-misc/dmenu xinerama
 media-sound/alsa-utils -libsamplerate
 
->=media-video/ffmpeg-2.8.6 libass librtmp vorbis openssl vaapi
->=games-simulation/openttd-1.5.3 -timidity
->=media-libs/libsdl-1.2.15-r9 -joystick opengl xv
+media-video/ffmpeg libass librtmp vorbis openssl vaapi
+games-simulation/openttd -timidity
+media-libs/libsdl -joystick opengl xv
 
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript
@@ -120,7 +117,6 @@ app-arch/engrampa magic
 media-libs/libepoxy X
 
 >=app-text/xmlto-0.0.28-r1 text
->=dev-qt/qtgui-5.9.0 libinput
 >=dev-libs/xmlsec-1.2.24 nss
 >=media-libs/libvpx-1.6.1 svc
 
@@ -131,7 +127,7 @@ media-libs/mesa gles1 vulkan
 sys-kernel/linux-firmware savedconfig
 sys-kernel/ck-sources experimental symlink
 >=dev-libs/libxml2-2.9.7 icu
-lxqt-base/liblxqt policykit
+lxqt-base/liblxqt -backlight
 dev-libs/xerces-c icu
 iapp-misc/pax-utils -python
 virtual/mpi -fortran
