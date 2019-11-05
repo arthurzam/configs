@@ -6,7 +6,7 @@ index dbe0064..6e86fba 100644
  int main(int argc, char **argv)
  {
      LXQt::Application app(argc, argv, true);
-+    QIcon::setThemeName("breeze");
++    QIcon::setThemeName(QStringLiteral("breeze"));
      app.setQuitOnLastWindowClosed(false);
      app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
  

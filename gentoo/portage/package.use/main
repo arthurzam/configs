@@ -17,7 +17,7 @@ dev-libs/glib dbus
 gnome-base/gnome-keyring -caps -pam -ssh-agent
 
 media-libs/libpng apng
-www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -screenshot lto -system-av1
+www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -screenshot lto pgo -system-av1
 media-libs/libvpx postproc svc
 app-text/hunspell l10n_en l10n_he -ncurses
 app-dicts/myspell-en l10n_en
@@ -53,7 +53,7 @@ gnome-base/librsvg -vala
 >=net-misc/connman-1.30 policykit -tools -debug ethernet -wifi nftables
 
 >=app-text/calibre-2.35.0 -udisks
->=dev-python/PyQt5-5.5 svg network widgets printsupport gui webkit
+>=dev-python/PyQt5-5.5 svg network widgets printsupport gui webchannel
 >=app-text/poppler-0.36.0 qt5
 >=dev-lang/ruby-2.2.3-r1 -rdoc -berkdb -ssl
 >=media-gfx/imagemagick-6.9.2.0 jpeg png tiff
