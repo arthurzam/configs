@@ -1,0 +1,11 @@
+net-wireless/wpa_supplicant
+net-wireless/iw
+net-wireless/hostapd
+dev-libs/libnl
+
+dev-python/ijson
+gui-wm/sway
+
+x11-misc/i3status
+x11-misc/py3status
+app-text/scdoc

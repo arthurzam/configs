@@ -1,5 +1,5 @@
-sys-boot/grub
-sys-kernel/ck-sources
 dev-util/debugedit
+sys-boot/grub
 sys-firmware/intel-microcode
+sys-kernel/ck-sources
 sys-kernel/linux-firmware

@@ -1,0 +1,7 @@
+x11-apps/setxkbmap
+x11-apps/xrandr
+x11-base/xorg-server
+x11-drivers/xf86-video-intel
+x11-misc/dunst
+x11-misc/numlockx
+x11-misc/xclip
