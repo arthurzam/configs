@@ -39,6 +39,7 @@ set modeline
 nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <C-S-D> :set rightleft<CR>
 nnoremap <C-S-A> :set rightleft&<CR>
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 "set cindent
 "inoremap {<CR> {<CR>}<up><end><CR><Tab>
 
