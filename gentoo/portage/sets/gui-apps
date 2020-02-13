@@ -9,10 +9,9 @@ dev-db/sqlitestudio
 lxqt-base/lxqt-policykit
 lxqt-base/lxqt-sudo
 media-gfx/lximage-qt
-media-video/QMPlay2
+media-video/qmplay2
 net-misc/fatrat
 www-client/firefox
-www-plugins/adobe-flash
 x11-misc/dunst
 x11-misc/pcmanfm-qt
 x11-terms/qterminal

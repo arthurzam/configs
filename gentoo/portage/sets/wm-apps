@@ -1,4 +1,5 @@
 gnome-base/gvfs
+kde-frameworks/breeze-icons
 media-sound/alsa-utils
 x11-misc/i3lock
 x11-misc/is3-status

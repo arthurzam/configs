@@ -17,7 +17,7 @@ dev-libs/glib dbus
 gnome-base/gnome-keyring -caps -pam -ssh-agent
 
 media-libs/libpng apng
-www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -screenshot lto pgo -system-av1
+www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -screenshot -system-av1 # lto pgo
 media-libs/libvpx postproc svc
 app-text/hunspell l10n_en l10n_he -ncurses
 app-dicts/myspell-en l10n_en
@@ -47,22 +47,21 @@ net-libs/glib-networking -gnome
 media-libs/libsdl X
 gnome-base/librsvg -vala
 
->=x11-misc/xdg-utils-1.1.1 -perl
->=net-wireless/wpa_supplicant-2.5 dbus
->=dev-lang/swig-3.0.7 -pcre
->=net-misc/connman-1.30 policykit -tools -debug ethernet -wifi nftables
+x11-misc/xdg-utils -perl
+net-wireless/wpa_supplicant dbus
+dev-lang/swig -pcre
+net-misc/connman policykit -tools -debug ethernet -wifi nftables
 
->=app-text/calibre-2.35.0 -udisks
->=dev-python/PyQt5-5.5 svg network widgets printsupport gui webchannel
->=app-text/poppler-0.36.0 qt5
->=dev-lang/ruby-2.2.3-r1 -rdoc -berkdb -ssl
->=media-gfx/imagemagick-6.9.2.0 jpeg png tiff
->=dev-python/pillow-3.0.0 jpeg
+app-text/calibre -udisks
+dev-python/PyQt5 svg network widgets printsupport gui webchannel
+app-text/poppler qt5
+dev-lang/ruby -rdoc -berkdb -ssl
+media-gfx/imagemagick jpeg png tiff
+dev-python/pillow jpeg
 
 dev-lang/python -gdbm sqlite
 dev-lang/python:3.7 tk
-dev-python/pypy -jit
-dev-python/pypy3 -jit
+dev-python/pypy3 -jit sqlite tk
 
 x11-libs/libfm -gtk
 sys-libs/libblockdev -tools
@@ -84,7 +83,7 @@ sys-process/procps -unicode
 dev-lang/perl -gdbm
 app-arch/p7zip rar -pch
 
-app-office/libreoffice -cups -python_targets_python2_7  gtk -gtk2
+app-office/libreoffice -cups gtk -gtk2
 media-libs/harfbuzz icu -cairo
 dev-libs/redland -berkdb
 net-nds/openldap -berkdb -syslog
@@ -93,13 +92,13 @@ app-crypt/pinentry -gnome-keyring qt5 -ncurses
 kde-frameworks/kwindowsystem X
 sys-boot/grub -multislot -nls efiemu
 
-x11-libs/libva X vdpau opengl
 x11-misc/dmenu xinerama
 media-sound/alsa-utils -libsamplerate
 
-media-video/ffmpeg libass librtmp vorbis openssl vaapi
+media-video/ffmpeg libass librtmp vorbis openssl
 games-simulation/openttd -timidity
 media-libs/libsdl -joystick opengl xv
+media-video/qmplay2 alsa ffmpeg taglib opengl dbus notifications mpris2 visualizations libass -videofilters -audiofilters -lastfm
 
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript
@@ -107,18 +106,17 @@ net-misc/fatrat curl bittorrent
 app-text/sigil -plugins
 
 dev-util/cmake qt5 server
-
 sys-apps/util-linux -cramfs
 dev-util/ninja vim-syntax
 
 www-plugins/adobe-flash -ppapi
 app-arch/engrampa magic
->=dev-libs/libdbusmenu-qt-0.9.3_pre20160218 qt5
+dev-libs/libdbusmenu-qt qt5
 media-libs/libepoxy X
 
->=app-text/xmlto-0.0.28-r1 text
->=dev-libs/xmlsec-1.2.24 nss
->=media-libs/libvpx-1.6.1 svc
+app-text/xmlto text
+dev-libs/xmlsec nss
+media-libs/libvpx svc
 
 sys-devel/llvm -doc
 app-admin/keepassxc -autotype
@@ -126,7 +124,7 @@ app-admin/keepassxc -autotype
 media-libs/mesa gles1 vulkan
 sys-kernel/linux-firmware savedconfig
 sys-kernel/ck-sources experimental symlink
->=dev-libs/libxml2-2.9.7 icu
+dev-libs/libxml2 icu
 lxqt-base/liblxqt -backlight
 dev-libs/xerces-c icu
 iapp-misc/pax-utils -python
@@ -136,3 +134,4 @@ dev-lang/rust system-llvm
 media-gfx/fontforge -python
 sys-libs/talloc -python
 dev-libs/libsodium minimal
+sys-apps/file lzma

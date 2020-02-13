@@ -7,7 +7,7 @@ app-editors/vim lto.conf
 app-text/ghostscript-gpl no-docs.conf lto.conf
 app-text/podofo lto.conf no-man.conf
 app-text/poppler lto.conf
-dev-lang/python no-lto.conf
+dev-lang/python lto.conf
 dev-lang/tk no-lto.conf
 dev-libs/atk no-docs.conf lto.conf
 dev-libs/confuse lto.conf no-docs.conf no-man.conf
@@ -23,9 +23,11 @@ dev-libs/yajl lto.conf
 dev-python/numpy no-lto.conf
 dev-util/ninja lto.conf
 dev-utils/cmake lto.conf
+dev-util/valgrind no-docs.conf
 dev-vcs/git lto.conf
 gnome-base/gvfs lto.conf
 gnome-base/librsvg lto.conf
+media-gfx/fontforge no-docs.conf
 media-gfx/imagemagick lto.conf no-docs.conf
 media-gfx/lximage-qt no-qt-debug.conf lto.conf
 media-libs/freetype lto.conf
@@ -34,7 +36,7 @@ media-libs/libmtp lto.conf
 media-libs/libmygpo-qt no-qt-debug.conf lto.conf
 media-sound/alsa-utils lto.conf
 media-sound/clementine lto.conf
-media-video/QMPlay2 no-qt-debug.conf lto.conf
+media-video/qmplay2 no-qt-debug.conf lto.conf
 net-libs/neon lto.conf no-man.conf
 net-misc/cmst no-qt-debug.conf lto.conf
 net-misc/curl lto.conf

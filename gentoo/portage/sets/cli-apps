@@ -31,3 +31,4 @@ sys-process/lsof
 sys-process/parallel
 sys-process/time
 x11-apps/igt-gpu-tools
+net-misc/youtube-dl

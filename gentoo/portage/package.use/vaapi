@@ -1,3 +1,8 @@
 #media-libs/mesa vaapi
+#x11-libs/libva abi_x86_32
+#x11-libs/libva-intel-driver abi_x86_32
+
 media-video/libva-utils X wayland
-x11-libs/libva wayland
+x11-libs/libva wayland X drm utils opengl
+media-video/ffmpeg vaapi
+media-video/qmplay2 vaapi

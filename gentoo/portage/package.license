@@ -1,4 +1,4 @@
 app-arch/p7zip unRAR
 sys-firmware/intel-microcode intel-ucode
 sys-kernel/linux-firmware no-source-code linux-fw-redistributable
-www-plugins/adobe-flash AdobeFlash-11.x
+media-fonts/corefonts MSttfEULA

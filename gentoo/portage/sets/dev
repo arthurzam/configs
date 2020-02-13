@@ -22,4 +22,4 @@ x11-libs/libnotify
 x11-terms/xterm
 
 @qt-creator
-@dev-is3status
+#@dev-is3status

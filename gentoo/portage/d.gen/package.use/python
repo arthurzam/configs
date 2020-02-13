@@ -2,44 +2,37 @@
 !python2=python2_7
 !python3=python3_7
 
-dev-python/certifi 2 3
-dev-python/setuptools 2 3
+dev-python/certifi 3
+dev-python/setuptools 3
+
 
 # calibre
-app-text/calibre 2
-dev-python/chardet 2
-dev-python/cssselect 2
-dev-python/lxml 2
-dev-python/pillow 2
-dev-python/regex 2
-dev-python/msgpack 2
-dev-python/olefile 2
-virtual/python-enum34 2
-dev-python/pycryptodome 2
-dev-python/cffi 2
-dev-python/six 2
-dev-python/dnspython 2
-virtual/python-dnspython 2
-dev-python/sip 2
-dev-python/PyQt5-sip 2
-dev-python/PyQt5 2
-dev-python/enum34 2
-dev-python/cython 2
-dev-python/psutil 2
-dev-python/netifaces 2
-dev-python/ecdsa 2
-dev-python/html5-parser 2
-dev-python/css-parser 2
-dev-python/pygments 2
-dev-python/markdown 2
-dev-python/PyQtWebEngine 2
-dev-python/python-dateutil 2
-dev-python/setuptools_scm 2
-dev-python/dbus-python 2
-
-### supports only python2
-sys-devel/clang 2 single
-dev-util/gtk-doc 2
+app-text/calibre 3 single
+dev-python/chardet 3
+dev-python/cssselect 3
+dev-python/sip 3
+dev-python/PyQt5-sip 3
+dev-python/PyQt5 3
+dev-python/PyQtWebEngine 3
+dev-python/apsw 3
+dev-python/beautifulsoup 3
+dev-python/dbus-python 3
+dev-python/dnspython 3
+dev-python/feedparser 3
+dev-python/html2text 3
+dev-python/html5-parser 3
+dev-python/markdown 3
+dev-python/mechanize 3
+dev-python/msgpack 3
+dev-python/netifaces 3
+dev-python/pillow 3
+dev-python/psutil 3
+dev-python/python-dateutil 3
+dev-python/regex 3
+dev-python/html5lib 3
+dev-python/ecdsa 3
+dev-python/idna 3
+dev-python/soupsieve 3
 
 ### portage apps
 app-portage/gentoolkit 3
@@ -47,6 +40,7 @@ sys-apps/portage 3
 app-portage/gentoopm 3
 app-portage/smart-live-rebuild 3
 app-portage/repoman 3
+app-portage/gemato 3
 
 ### Sigil
 app-text/sigil 3 single
@@ -67,7 +61,7 @@ sys-apps/pkgcore 3
 media-libs/mutagen 3
 dev-python/ply 3
 games-util/nml 3
-net-misc/youtube-dl 3 single
+net-misc/youtube-dl 3
 dev-python/appdirs 3
 dev-python/pip 3
 dev-python/sphinxcontrib-websupport 3
@@ -86,18 +80,15 @@ dev-python/imagesize 3
 dev-python/typing 3
 dev-python/pytz 3
 sys-libs/libblockdev 3 single
-dev-libs/libbytesize 3 single
-dev-libs/volume_key 3 single
 dev-python/pyblake2 3
 
-dev-util/cxxtest 3
+sys-devel/clang 3 single
+dev-util/gtk-doc 3 single
+
 dev-python/openpyxl 3
-app-misc/pax-utils 3 single
-app-portage/gemato 3
 dev-python/pycrypto 3
 dev-python/webencodings 3
 dev-python/numpy 3
-sys-apps/file 3
 virtual/python-cffi 3
 dev-python/pycryptodome 3
 
@@ -120,7 +111,6 @@ dev-python/markupsafe 3
 dev-util/glib-utils single 3
 dev-util/gdbus-codegen 3 single
 x11-base/xcb-proto 3
-dev-libs/botan 3
 app-emulation/qemu 3
 dev-python/jdcal 3
 dev-python/cython 3
@@ -146,7 +136,11 @@ dev-python/rope 3
 dev-python/yapf 3
 dev-python/future 3
 dev-python/astroid 3
+virtual/python-futures 3
+dev-python/toml 3
+dev-python/pipfile 3
 dev-python/isort 3
+dev-python/ujson 3
 dev-python/lazy-object-proxy 3
 dev-python/wrapt 3
 dev-python/typed-ast 3
@@ -155,6 +149,3 @@ dev-python/zipp 3
 dev-python/setuptools_scm 3
 dev-python/more-itertools 3
 dev-python/parso 3
-dev-python/pep8 3
-virtual/python-enum34 3
-
