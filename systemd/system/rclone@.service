@@ -1,0 +1,14 @@
+[Unit]
+Description= %i (rclone)
+Documentation=man:rclone(1)
+
+[Service]
+Type=notify
+Environment=RCLONE_CONFIG=/home/arthur/.config/rclone/rclone.conf
+ExecStartPre=-/bin/mkdir -p /media/%i
+ExecStart=/usr/bin/rclone mount \
+        --allow-other \
+        --vfs-cache-mode=full \
+        %i: /media/%i/
+ExecStop=/usr/bin/fusermount -u /media/%i/
+
