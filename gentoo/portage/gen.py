@@ -60,4 +60,4 @@ def regular_gen(input_path, output_path):
 
 if __name__ == "__main__":
     use_python_gen()
-    #regular_gen('/etc/portage/d.gen/package.accept_keywords/qt', '/etc/portage/package.accept_keywords/gen-qt')
+    regular_gen('/etc/portage/d.gen/package.mask/qt', '/etc/portage/package.mask/gen-qt')
