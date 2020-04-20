@@ -1,0 +1,5 @@
+app-office/libreoffice no-warnings.conf
+dev-lang/rust no-warnings.conf
+dev-qt/qtwebengine no-warnings.conf
+www-client/firefox no-warnings.conf
+dev-qt/qt-creator no-warnings.conf

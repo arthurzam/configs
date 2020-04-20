@@ -20,8 +20,8 @@ sys-apps/gptfdisk
 sys-apps/progress
 sys-apps/renameutils
 sys-apps/usbutils
-sys-devel/bison
-sys-devel/flex
+#sys-devel/bison
+#sys-devel/flex
 sys-fs/dosfstools
 sys-fs/ncdu
 sys-fs/ntfs3g

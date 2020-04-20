@@ -1,0 +1,4 @@
+dev-util/spirv-llvm-translator:9
+dev-libs/intel-neo
+virtual/opencl
+dev-util/clinfo

@@ -2,6 +2,9 @@
 !python2=python2_7
 !python3=python3_7
 
+sys-devel/clang:8 2 single #### TEMP for dev-libs/opencl-clang
+
+
 dev-python/certifi 3
 dev-python/setuptools 3
 
@@ -33,6 +36,8 @@ dev-python/html5lib 3
 dev-python/ecdsa 3
 dev-python/idna 3
 dev-python/soupsieve 3
+dev-python/zeroconf 3
+dev-python/ifaddr 3
 
 ### portage apps
 app-portage/gentoolkit 3
@@ -122,6 +127,7 @@ dev-python/ijson 3
 
 ### python-language-server
 dev-python/python-language-server 3
+dev-python/versioneer 3
 dev-python/autopep8 3
 dev-python/flake8 3
 dev-python/jedi 3

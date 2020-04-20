@@ -59,6 +59,7 @@ dev-lang/ruby -rdoc -berkdb -ssl
 media-gfx/imagemagick jpeg png tiff
 dev-python/pillow jpeg
 
+dev-lang/ruby ssl
 dev-lang/python -gdbm sqlite
 dev-lang/python:3.7 tk
 dev-python/pypy3 -jit sqlite tk
@@ -121,6 +122,7 @@ media-libs/libvpx svc
 sys-devel/llvm -doc
 app-admin/keepassxc -autotype
 
+media-libs/libglvnd X
 media-libs/mesa gles1 vulkan
 sys-kernel/linux-firmware savedconfig
 sys-kernel/ck-sources experimental symlink

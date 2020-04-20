@@ -6,5 +6,4 @@ dev-qt/qt-creator git cmake autotools designer modeling lsp valgrind beautifier 
 dev-qt/qtsingleapplication X -qt4 qt5
 dev-qt/qtlockedfile qt5 -qt4
 dev-qt/qtcore:5 icu
-dev-qt/qtwebkit:5 printsupport -gstreamer
 dev-qt/qt-docs -3d -assistant -bluetooth -concurrent -declarative -gamepad -graphicaleffects -html -location -multimedia -positioning -printsupport -qdoc -scxml -sensors -serialbus -serialport -speech webengine

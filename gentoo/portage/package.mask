@@ -1,2 +1,0 @@
-app-editors/emacs
-virtual/emacs

@@ -1,8 +1,17 @@
 dev-qt/qtcreator-meson-plugin
 dev-qt/SpellChecker-Plugin
-dev-python/python-language-server
 dev-cpp/gtest
 dev-qt/linguist-tools
 dev-qt/qdbus
 dev-qt/qt-docs
 dev-qt/qt-creator
+#dev-util/clazy
+
+# pyls dependencies
+dev-python/python-language-server
+dev-python/pycodestyle
+dev-python/pydocstyle
+dev-python/yapf
+dev-python/rope
+dev-python/pylint
+dev-python/flake8

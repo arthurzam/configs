@@ -1,0 +1,5 @@
+app-editors/emacs
+virtual/emacs
+
+sys-devel/llvm:10
+sys-devel/clang:10

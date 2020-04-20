@@ -2,3 +2,4 @@ app-arch/p7zip unRAR
 sys-firmware/intel-microcode intel-ucode
 sys-kernel/linux-firmware no-source-code linux-fw-redistributable
 media-fonts/corefonts MSttfEULA
+net-im/zoom all-rights-reserved

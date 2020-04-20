@@ -1,5 +1,6 @@
 dev-libs/glib abi_x86_32
 dev-libs/libpcre abi_x86_32
+app-arch/zstd abi_x86_32
 sys-libs/zlib abi_x86_32
 sys-apps/util-linux abi_x86_32
 virtual/pkgconfig abi_x86_32
@@ -68,3 +69,4 @@ virtual/libcrypt abi_x86_32
 
 sys-devel/llvm abi_x86_32
 <sys-devel/llvm-9.0.0 -abi_x86_32
+media-libs/libglvnd abi_x86_32

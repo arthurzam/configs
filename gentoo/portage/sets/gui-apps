@@ -1,6 +1,6 @@
 app-admin/keepassxc
 app-arch/lxqt-archiver
-app-emulation/wine-vanilla
+#app-emulation/wine-vanilla
 app-office/libreoffice
 app-text/calibre
 app-text/qpdfview
@@ -11,7 +11,7 @@ lxqt-base/lxqt-sudo
 media-gfx/lximage-qt
 media-video/qmplay2
 net-misc/fatrat
+net-im/zoom
 www-client/firefox
-x11-misc/dunst
 x11-misc/pcmanfm-qt
 x11-terms/qterminal
