@@ -61,6 +61,7 @@ dev-python/pillow jpeg
 
 dev-lang/ruby ssl
 dev-lang/python -gdbm sqlite
+dev-lang/python:3.8 tk
 dev-lang/python:3.7 tk
 dev-python/pypy3 -jit sqlite tk
 
@@ -99,7 +100,7 @@ media-sound/alsa-utils -libsamplerate
 media-video/ffmpeg libass librtmp vorbis openssl
 games-simulation/openttd -timidity
 media-libs/libsdl -joystick opengl xv
-media-video/qmplay2 alsa ffmpeg taglib opengl dbus notifications mpris2 visualizations libass -videofilters -audiofilters -lastfm
+media-video/qmplay2 alsa ffmpeg taglib opengl dbus notifications mpris2 visualizations libass -videofilters -audiofilters -vulkan extensions
 
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript

@@ -4,7 +4,7 @@
 =lxqt-base/lxqt-policykit-9999 **
 =lxqt-base/lxqt-sudo-9999 **
 =media-gfx/lximage-qt-9999 **
-=media-video/qmplay2-9999 **
+#=media-video/qmplay2-9999 **
 =net-misc/fatrat-99999 **
 =x11-libs/libfm-qt-9999 **
 =x11-libs/qtermwidget-9999 **

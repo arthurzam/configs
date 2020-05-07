@@ -36,7 +36,7 @@ media-libs/libmtp lto.conf
 media-libs/libmygpo-qt no-qt-debug.conf lto.conf
 media-sound/alsa-utils lto.conf
 media-sound/clementine lto.conf
-media-video/qmplay2 no-qt-debug.conf lto.conf
+media-video/qmplay2 no-qt-debug.conf lto.conf qmplay2.conf
 net-libs/neon lto.conf no-man.conf
 net-misc/cmst no-qt-debug.conf lto.conf
 net-misc/curl lto.conf

@@ -1,6 +1,7 @@
 app-admin/keepassxc
 app-arch/lxqt-archiver
 #app-emulation/wine-vanilla
+app-editors/juffed
 app-office/libreoffice
 app-text/calibre
 app-text/qpdfview
