@@ -1,4 +1,4 @@
-dev-qt/qtcreator-meson-plugin
+#dev-qt/qtcreator-meson-plugin
 dev-qt/SpellChecker-Plugin
 dev-cpp/gtest
 dev-qt/linguist-tools

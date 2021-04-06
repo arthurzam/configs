@@ -1,1 +1,5 @@
 dev-libs/icu -* amd64
+dev-libs/boost -* amd64
+dev-libs/re2 -* amd64
+dev-lang/spidermonkey -* amd64
+sys-boot/grub -* amd64

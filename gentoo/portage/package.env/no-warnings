@@ -3,3 +3,8 @@ dev-lang/rust no-warnings.conf
 dev-qt/qtwebengine no-warnings.conf
 www-client/firefox no-warnings.conf
 dev-qt/qt-creator no-warnings.conf
+net-libs/nodejs no-warnings.conf
+dev-lang/spidermonkey no-warnings.conf
+sys-devel/gdb no-warnings.conf
+dev-libs/icu no-warnings.conf
+media-libs/mesa no-warnings.conf

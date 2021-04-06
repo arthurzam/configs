@@ -1,9 +1,6 @@
 # settings
 !python2=python2_7
-!python3=python3_7
-
-sys-devel/clang:8 2 single #### TEMP for dev-libs/opencl-clang
-
+!python3=python3_9
 
 dev-python/certifi 3
 dev-python/setuptools 3
@@ -38,6 +35,10 @@ dev-python/idna 3
 dev-python/soupsieve 3
 dev-python/zeroconf 3
 dev-python/ifaddr 3
+dev-python/gmpy 3
+dev-python/sgmllib3k 3
+dev-python/cryptography 3
+dev-python/pychm 3
 
 ### portage apps
 app-portage/gentoolkit 3
@@ -46,6 +47,12 @@ app-portage/gentoopm 3
 app-portage/smart-live-rebuild 3
 app-portage/repoman 3
 app-portage/gemato 3
+dev-util/pkgdev 3
+dev-util/pkgcheck 3
+sys-apps/pkgcore 3
+dev-python/tree-sitter 3
+dev-python/pathspec 3
+dev-python/snakeoil 3
 
 ### Sigil
 app-text/sigil 3 single
@@ -97,6 +104,13 @@ dev-python/numpy 3
 virtual/python-cffi 3
 dev-python/pycryptodome 3
 
+dev-python/sphinxcontrib-applehelp 3
+dev-python/sphinxcontrib-devhelp 3
+dev-python/sphinxcontrib-jsmath 3
+dev-python/sphinxcontrib-htmlhelp 3
+dev-python/sphinxcontrib-serializinghtml 3
+dev-python/sphinxcontrib-qthelp 3
+
 app-office/libreoffice 3 single
 dev-java/java-config 3
 sys-devel/gdb 3 single
@@ -105,6 +119,7 @@ dev-python/six 3
 dev-python/lxml 3
 dev-python/pyparsing 3
 dev-python/packaging 3
+dev-util/meson-format-array 3
 dev-util/meson 3
 dev-python/olefile 3
 dev-libs/gobject-introspection 3 single
@@ -123,6 +138,10 @@ dev-python/pyyaml 3
 dev-util/itstool 3 single
 dev-libs/libxml2 3
 dev-python/ijson 3
+dev-python/requests 3
+dev-python/urllib3 3
+dev-python/PySocks 3
+dev-python/pyopenssl 3
 
 
 ### python-language-server

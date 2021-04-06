@@ -1,5 +1,6 @@
 app-doc/eclass-manpages
 app-editors/vim
+app-portage/portage-utils
 app-portage/repoman
 app-vim/nerdtree
 dev-python/openpyxl
@@ -10,6 +11,7 @@ dev-util/meson
 dev-util/ninja
 dev-util/perf
 dev-util/pkgconfig
+dev-util/pkgdev
 dev-util/strace
 dev-vcs/git
 media-libs/glm
@@ -21,5 +23,5 @@ x11-libs/libnotify
 x11-terms/xterm
 
 @qt-creator
-@opencl
+#@opencl
 #@dev-is3status

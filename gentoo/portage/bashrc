@@ -1,24 +1,6 @@
 if [ "${EBUILD_PHASE}" == "postinst" ]; then
     DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -a emerge "Installed" "${CATEGORY}/${PN}"
     [[ "${PN}" == "gcc"       ]] && ln -sf /usr/libexec/gcc/x86_64-pc-linux-gnu/*/liblto_plugin.so.0.0.0 /usr/x86_64-pc-linux-gnu/binutils-bin/lib/bfd-plugins
-    [[ "${PN}" == "nethogs"   ]] && setcap cap_net_raw,cap_net_admin=eip /usr/sbin/nethogs
     [[ "${PN}" == "libnotify" ]] && chown arthur:root /usr/bin/libnotify-notify-send && chmod u+s /usr/bin/libnotify-notify-send
-    [[ "${PN}" == "systemd"   ]] && rm /lib64/udev/rules.d/80-drivers.rules
-    [[ "${PN}" == "iotop-c"   ]] && chmod u+s /usr/bin/iotop
+    [[ "${PN}" == "systemd"   ]] && rm /lib/udev/rules.d/80-drivers.rules
 fi
-
-# enable patching for every package
-# source: https://wiki.gentoo.org/wiki//etc/portage/patches
-pre_src_prepare() {
-    [[ ${EAPI:-0} == [012345] ]] || return
-    if ! type epatch_user > /dev/null 2>&1; then
-        local names="EPATCH_USER_SOURCE epatch_user epatch evar_push evar_push_set evar_pop estack_push estack_pop"
-        source <(awk "/^# @(FUNCTION|VARIABLE): / { p = 0 } /^# @(FUNCTION|VARIABLE): (${names// /|})\$/ { p = 1 } p { print }" ${PORTDIR}/eclass/eutils.eclass)
-    fi
-
-    epatch_user
-
-    for name in $names; do
-        unset $name
-    done
-}

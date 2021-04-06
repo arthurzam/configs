@@ -1,7 +1,9 @@
 app-arch/lrzip
 app-arch/p7zip
+app-arch/unrar
 app-cdr/cdw
 app-misc/fdupes
+app-portage/genlop
 app-portage/gentoolkit
 app-portage/smart-live-rebuild
 app-shells/bash-completion
@@ -9,7 +11,7 @@ app-shells/liquidprompt
 app-text/dos2unix
 app-text/recode
 dev-util/android-tools
-media-gfx/imagemagick
+media-gfx/graphicsmagick
 media-gfx/optipng
 media-libs/mutagen
 net-analyzer/nethogs
@@ -32,3 +34,4 @@ sys-process/parallel
 sys-process/time
 x11-apps/igt-gpu-tools
 net-misc/youtube-dl
+sys-fs/fuse:0

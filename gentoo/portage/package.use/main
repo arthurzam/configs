@@ -4,6 +4,8 @@ app-editors/vim gpm
 
 sys-devel/binutils default-gold
 
+dev-util/perf -doc
+sys-libs/zlib static-libs
 >=media-libs/freetype-2.6.1 X png
 >=x11-libs/cairo-1.14.2-r1 X xcb
 >=x11-libs/libxcb-1.11.1 xkb
@@ -14,10 +16,11 @@ sys-devel/binutils default-gold
 x11-libs/gdk-pixbuf X
 x11-libs/gtk+:3 X
 dev-libs/glib dbus
+sys-auth/pambase -passwdqc
 gnome-base/gnome-keyring -caps -pam -ssh-agent
 
 media-libs/libpng apng
-www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -screenshot -system-av1 # lto pgo
+www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -system-av1 clang # pgo lto
 media-libs/libvpx postproc svc
 app-text/hunspell l10n_en l10n_he -ncurses
 app-dicts/myspell-en l10n_en
@@ -26,7 +29,7 @@ media-sound/lame cpu_flags_x86_mmx
 media-video/ffmpeg X aac aacplus hardcoded-tables mp3 x264 x265
 
 dev-libs/libpcre  pcre16
-dev-libs/libpcre2 pcre16
+dev-libs/libpcre2 pcre16 pcre32
 dev-libs/openssl -bindist
 net-libs/gnutls  sslv3
 dev-libs/botan threads -bindist
@@ -56,13 +59,11 @@ app-text/calibre -udisks
 dev-python/PyQt5 svg network widgets printsupport gui webchannel
 app-text/poppler qt5
 dev-lang/ruby -rdoc -berkdb -ssl
-media-gfx/imagemagick jpeg png tiff
+media-gfx/graphicsmagick jpeg png tiff imagemagick
 dev-python/pillow jpeg
 
 dev-lang/ruby ssl
-dev-lang/python -gdbm sqlite
-dev-lang/python:3.8 tk
-dev-lang/python:3.7 tk
+dev-lang/python -gdbm sqlite tk
 dev-python/pypy3 -jit sqlite tk
 
 x11-libs/libfm -gtk
@@ -85,7 +86,8 @@ sys-process/procps -unicode
 dev-lang/perl -gdbm
 app-arch/p7zip rar -pch
 
-app-office/libreoffice -cups gtk -gtk2
+dev-lang/spidermonkey clang
+app-office/libreoffice -cups gtk -gtk2 clang
 media-libs/harfbuzz icu -cairo
 dev-libs/redland -berkdb
 net-nds/openldap -berkdb -syslog
@@ -105,6 +107,7 @@ media-video/qmplay2 alsa ffmpeg taglib opengl dbus notifications mpris2 visualiz
 sys-apps/dbus X user-session
 app-text/qpdfview qt5 -qt4 postscript
 net-misc/fatrat curl bittorrent
+net-misc/curl http2
 app-text/sigil -plugins
 
 dev-util/cmake qt5 server
@@ -120,7 +123,7 @@ app-text/xmlto text
 dev-libs/xmlsec nss
 media-libs/libvpx svc
 
-sys-devel/llvm -doc
+sys-devel/llvm -doc gold
 app-admin/keepassxc -autotype
 
 media-libs/libglvnd X

@@ -1,4 +1,4 @@
-!version = 5.15.0_rc
+!version = 5.15.0_rc2
 
 =dev-qt/designer-${version}
 =dev-qt/linguist-tools-${version}

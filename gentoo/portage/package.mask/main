@@ -1,5 +1,8 @@
 app-editors/emacs
 virtual/emacs
 
-sys-devel/llvm:10
-sys-devel/clang:10
+dev-lang/rust
+
+#=sys-devel/llvm-10.0.1
+#=sys-devel/clang-10.0.1
+#>=sys-devel/llvmgold-10

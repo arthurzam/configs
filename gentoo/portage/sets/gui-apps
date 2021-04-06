@@ -11,8 +11,8 @@ lxqt-base/lxqt-policykit
 lxqt-base/lxqt-sudo
 media-gfx/lximage-qt
 media-video/qmplay2
-net-misc/fatrat
+net-p2p/qbittorrent
 net-im/zoom
-www-client/firefox
+www-client/firefox-bin
 x11-misc/pcmanfm-qt
 x11-terms/qterminal
