@@ -1,0 +1,10 @@
+[Unit]
+Description=Run periodic Gentoo metadata cache
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+Unit=periodic-egencache.target
+
+[Install]
+WantedBy=timers.target

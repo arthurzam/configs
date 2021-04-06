@@ -1,0 +1,13 @@
+[Unit] 
+Description=Sync Gentoo repository %i
+After=network-online.target
+Wants=network-online.target
+Before=egencache@%i.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=emerge --sync --quiet %i
+
+[Install]
+WantedBy=multi-user.target

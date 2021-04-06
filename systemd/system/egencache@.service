@@ -1,0 +1,12 @@
+[Unit] 
+Description=Gentoo cache regen for repository %i
+Requires=emerge-sync@%i.service
+After=emerge-sync@%i.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=egencache --jobs=9 --update --repo %i
+
+[Install]
+WantedBy=multi-user.target
