@@ -160,8 +160,8 @@ mode "$mode_system" {
     bindsym l exec --no-startup-id systemctl start i3lock.service, mode "default"
     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym u exec --no-startup-id systemctl suspend, mode "default"
-    bindsym r exec --no-startup-id i3-msg [class='.'] kill, exec --no-startup-id systemctl reboot, mode "default"
-    bindsym s exec --no-startup-id i3-msg [class='.'] kill, exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym r exec --no-startup-id i3-msg [class='.'] kill, exec --no-startup-id sleep 2, exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id i3-msg [class='.'] kill, exec --no-startup-id sleep 2, exec --no-startup-id systemctl poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

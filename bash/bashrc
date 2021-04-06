@@ -18,14 +18,14 @@ alias xclip='xclip -selection clipboard'
 alias protect-file='sudo chattr +i'
 alias unprotect-file='sudo chattr -i'
 alias notify='DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send'
-alias htop='echo-title htop && htop'
-alias iotop='echo-title iotop && iotop'
-alias ncdu='echo-title ncdu && ncdu'
-alias cdw='echo-title cdw && cdw'
+alias htop='echo-title htop && /usr/bin/htop'
+alias iotop='echo-title iotop && /usr/bin/iotop'
+alias ncdu='echo-title ncdu && /usr/bin/ncdu'
+alias cdw='echo-title cdw && /usr/bin/cdw'
 
 export TERMINAL=qterminal
 #export CPPFLAGS="-D_FORTIFY_SOURCE=2"
-if [ $EUID != 0 ] && [ $EUID != 250 ]; then
+if [[ $EUID != 0 ]] && [[ $EUID != 250 ]]; then
     export CFLAGS="-march=native -mtune=native -O2 -pipe"
     export CXXFLAGS="-march=native -mtune=native -O2 -pipe"
     export LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro"
@@ -41,6 +41,7 @@ update-system () {
 clean-system() {
     emerge --depclean -a --with-bdeps\=n $@
 }
+alias quickpkg-clean='emaint binhost --fix'
 
 echo-title() {
     echo -e '\033]2;'"$@"'\007'

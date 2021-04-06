@@ -3,14 +3,11 @@ application/epub+zip=calibre-ebook-viewer.desktop
 application/x-mobi8-ebook=calibre-ebook-viewer.desktop
 application/x-mobipocket-ebook=calibre-ebook-viewer.desktop
 text/fb2+xml=calibre-ebook-viewer.desktop
-
 application/pdf=qpdfview.desktop
 application/x-pdf=qpdfview.desktop
 image/pdf=qpdfview.desktop
-
 application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
-
 text/markdown=vim.desktop
 text/plain=vim.desktop
 text/x-authors=vim.desktop
@@ -20,9 +17,7 @@ text/x-chdr=vim.desktop
 text/x-cmake=vim.desktop
 text/x-csrc=vim.desktop
 text/x-python=vim.desktop
-
 inode/directory=pcmanfm-qt.desktop
-
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/ftp=firefox.desktop
@@ -34,3 +29,10 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
+
+[Added Associations]
+inode/directory=exo-file-manager.desktop;
+x-scheme-handler/trash=exo-file-manager.desktop;
+x-scheme-handler/http=exo-web-browser.desktop;
+x-scheme-handler/https=exo-web-browser.desktop;
+
