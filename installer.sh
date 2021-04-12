@@ -30,6 +30,9 @@ _parse_install_cfg() {
         e|exec)
             eval ${args} || return 1
             ;;
+        c|copy)
+            cp -f ${args} || return 1
+            ;;
         *)
             echo "bad command ${cmd}"
             return 1
