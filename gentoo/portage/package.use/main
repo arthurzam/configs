@@ -1,8 +1,7 @@
 net-misc/iputils -filecaps
-sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod
+sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod gnuefi
 app-editors/vim gpm
 
-sys-devel/binutils default-gold
 
 dev-util/perf -doc
 sys-libs/zlib static-libs
