@@ -1,11 +1,8 @@
 gnome-base/gvfs
 kde-frameworks/breeze-icons
 media-sound/alsa-utils
-x11-misc/i3lock
 x11-misc/is3-status
 x11-misc/j4-dmenu-desktop
-x11-themes/gtk-engines-aurora
-x11-wm/i3
-@xorg-parts
 @fonts
 @sway
+#@i3

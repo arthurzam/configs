@@ -1,15 +1,2 @@
-=app-arch/lxqt-archiver-9999 **
-=lxqt-base/liblxqt-9999 **
-=dev-util/lxqt-build-tools-9999 **
-=lxqt-base/lxqt-policykit-9999 **
-=lxqt-base/lxqt-sudo-9999 **
-=media-gfx/lximage-qt-9999 **
-#=media-video/qmplay2-9999 **
-=net-misc/fatrat-99999 **
-=x11-libs/libfm-qt-9999 **
-=x11-libs/qtermwidget-9999 **
-=x11-misc/is3-status-99999 **
-=x11-misc/pcmanfm-qt-9999 **
-=x11-terms/qterminal-9999 **
-=dev-libs/libqtxdg-9999 **
-=lxqt-base/lxqt-archiver-9999 **
+=x11-misc/is3-status-9999 **
+=gui-apps/minimal-policykit-agent-9999 **

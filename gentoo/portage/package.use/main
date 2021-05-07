@@ -1,6 +1,7 @@
 net-misc/iputils -filecaps
 sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod gnuefi
 app-editors/vim gpm
+app-admin/doas persist
 
 
 dev-util/perf -doc
@@ -10,9 +11,9 @@ sys-libs/zlib static-libs
 >=x11-libs/libxcb-1.11.1 xkb
 >=x11-libs/libxkbcommon-0.5.0 X
 >=x11-libs/pango-1.36.8-r1 X
->=x11-base/xorg-server-1.17.4 glamor xvfb -suid
+>=x11-base/xorg-server-1.17.4 glamor -xvfb -suid
 
-x11-libs/gdk-pixbuf X
+x11-libs/gdk-pixbuf -X
 x11-libs/gtk+:3 X
 dev-libs/glib dbus
 sys-auth/pambase -passwdqc

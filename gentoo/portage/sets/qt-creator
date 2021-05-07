@@ -5,7 +5,7 @@ dev-qt/linguist-tools
 dev-qt/qdbus
 dev-qt/qt-docs
 dev-qt/qt-creator
-#dev-util/clazy
+dev-util/clazy
 
 # pyls dependencies
 dev-python/python-language-server

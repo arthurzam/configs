@@ -14,7 +14,7 @@ dev-libs/confuse lto.conf no-docs.conf no-man.conf
 dev-libs/crypto++ lto.conf
 dev-libs/glib no-docs.conf
 dev-libs/icu lto.conf
-dev-libs/libbsd lto.conf no-docs.conf no-man.conf
+dev-libs/libbsd no-docs.conf no-man.conf
 dev-libs/libcroco lto.conf
 dev-libs/libev no-man.conf lto.conf
 dev-libs/openssl no-man.conf no-docs.conf
@@ -29,6 +29,8 @@ gnome-base/gvfs lto.conf
 gnome-base/librsvg lto.conf
 media-gfx/fontforge no-docs.conf
 media-gfx/graphicsmagick no-docs.conf
+app-text/qpdfview no-qt-debug.conf lto.conf
+app-editors/juffed no-qt-debug.conf lto.conf
 media-gfx/lximage-qt no-qt-debug.conf lto.conf
 media-libs/freetype lto.conf
 media-libs/harfbuzz no-docs.conf lto.conf
@@ -37,6 +39,7 @@ media-libs/libmygpo-qt no-qt-debug.conf lto.conf
 media-sound/alsa-utils lto.conf
 media-sound/clementine lto.conf
 media-video/qmplay2 no-qt-debug.conf lto.conf qmplay2.conf
+x11-misc/is3-status lto.conf is3-status.conf
 net-libs/neon lto.conf no-man.conf
 net-misc/cmst no-qt-debug.conf lto.conf
 net-misc/curl lto.conf
@@ -66,6 +69,7 @@ x11-misc/pcmanfm-qt no-qt-debug.conf lto.conf
 x11-misc/j4-dmenu-desktop lto.conf
 x11-libs/libfm-qt   no-qt-debug.conf lto.conf
 x11-terms/qterminal no-qt-debug.conf lto.conf
+sys-auth/polkit-qt no-qt-debug.conf
 x11-wm/i3 no-docs.conf lto.conf
 =dev-util/ragel-6.9 gcc6fix.conf
 =dev-libs/crypto++-5.6.2-r3 gcc6fix.conf

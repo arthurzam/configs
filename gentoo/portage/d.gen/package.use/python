@@ -66,6 +66,7 @@ dev-python/css-parser 3
 #dev-python/chardet 3
 
 # packages
+dev-util/perf 3
 app-text/asciidoc 3 single
 dev-python/pycparser 3
 dev-python/cffi 3

@@ -1,2 +1,4 @@
-#dev-qt/qtwayland
-#gui-wm/sway
+dev-qt/qtwayland
+gui-wm/sway
+gui-apps/dmenu-wayland
+gui-apps/wl-clipboard

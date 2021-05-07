@@ -7,8 +7,9 @@ app-text/calibre
 app-text/qpdfview
 app-text/sigil
 dev-db/sqlitestudio
-lxqt-base/lxqt-policykit
-lxqt-base/lxqt-sudo
+#lxqt-base/lxqt-policykit
+gui-apps/minimal-policykit-agent
+#lxqt-base/lxqt-sudo
 media-gfx/lximage-qt
 media-video/qmplay2
 net-p2p/qbittorrent

@@ -1,7 +1,10 @@
+app-admin/doas
+#app-admin/sudo
 app-arch/lrzip
 app-arch/p7zip
 app-arch/unrar
 app-cdr/cdw
+app-crypt/minisign
 app-misc/fdupes
 app-portage/genlop
 app-portage/gentoolkit

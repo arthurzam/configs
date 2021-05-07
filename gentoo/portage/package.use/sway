@@ -1,9 +1,15 @@
-gui-wm/sway X tray
-gui-libs/wlroots X
+gui-wm/sway X tray seatd
+gui-libs/wlroots X seatd
 x11-base/xorg-server wayland
 media-libs/mesa wayland
-#www-client/firefox wayland
+www-client/firefox wayland
+www-client/firefox-bin wayland
 x11-libs/gtk+ wayland
 gui-apps/swaybg -man
 dev-qt/qtgui:5 wayland
 dev-qt/qtwayland:5 egl
+x11-misc/is3-status sway
+x11-misc/dunst wayland
+dev-libs/bemenu wayland
+x11-libs/libva-intel-driver wayland
+net-im/zoom wayland
