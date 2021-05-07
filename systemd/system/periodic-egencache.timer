@@ -2,7 +2,7 @@
 Description=Run periodic Gentoo metadata cache
 
 [Timer]
-OnCalendar=weekly
+OnCalendar=daily
 Persistent=true
 Unit=periodic-egencache.target
 
