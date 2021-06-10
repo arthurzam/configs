@@ -2,6 +2,9 @@ app-doc/eclass-manpages
 app-editors/vim
 app-portage/portage-utils
 app-portage/repoman
+app-portage/gpyutils
+app-portage/mgorny-dev-scripts
+app-emulation/lxd
 app-vim/nerdtree
 dev-python/openpyxl
 dev-python/pip
@@ -14,6 +17,7 @@ dev-util/pkgconfig
 dev-util/pkgdev
 dev-util/strace
 dev-vcs/git
+dev-vcs/qgit
 media-libs/glm
 sys-devel/autoconf
 sys-devel/gcc

@@ -3,6 +3,7 @@ sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod gnuefi
 app-editors/vim gpm
 app-admin/doas persist
 
+sys-fs/squashfs-tools lzma
 
 dev-util/perf -doc
 sys-libs/zlib static-libs
@@ -80,7 +81,7 @@ sys-block/gparted fat ntfs policykit
 dev-java/antlr -java
 
 sys-devel/gcc -fortran cilk lto
-dev-vcs/git tk -perl -python -pcre -pcre-jit
+dev-vcs/git -perl -python -pcre -pcre-jit #tk
 app-admin/sudo -sendmail
 sys-process/procps -unicode
 dev-lang/perl -gdbm
@@ -141,3 +142,4 @@ media-gfx/fontforge -python
 sys-libs/talloc -python
 dev-libs/libsodium minimal
 sys-apps/file lzma
+sys-kernel/gentoo-kernel savedconfig -initramfs

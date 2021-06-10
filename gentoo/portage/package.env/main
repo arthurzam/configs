@@ -41,9 +41,7 @@ media-sound/clementine lto.conf
 media-video/qmplay2 no-qt-debug.conf lto.conf qmplay2.conf
 x11-misc/is3-status lto.conf is3-status.conf
 net-libs/neon lto.conf no-man.conf
-net-misc/cmst no-qt-debug.conf lto.conf
 net-misc/curl lto.conf
-net-p2p/dukto no-qt-debug.conf lto.conf
 sci-libs/fftw lto.conf no-man.conf
 sys-apps/iproute2 no-docs.conf no-man.conf
 sys-apps/net-tools lto.conf
@@ -54,11 +52,10 @@ sys-fs/udisks no-docs.conf lto.conf
 sys-libs/glibc lto.conf with-locale.conf
 sys-libs/zlib no-docs.conf lto.conf
 sys-process/procps lto.conf
-www-client/firefox lto.conf
 x11-libs/cairo no-docs.conf lto.conf
 x11-libs/gtk+:2 no-docs.conf
 x11-libs/gtk+:3 no-docs.conf
-x11-libs/libX11 no-man.conf lto.conf 
+x11-libs/libX11 no-man.conf lto.conf
 x11-libs/libXdmcp lto.conf
 x11-libs/pango no-docs.conf lto.conf
 x11-libs/qtermwidget no-qt-debug.conf lto.conf
@@ -67,7 +64,7 @@ x11-misc/i3lock lto.conf
 x11-misc/is3-status lto.conf
 x11-misc/pcmanfm-qt no-qt-debug.conf lto.conf
 x11-misc/j4-dmenu-desktop lto.conf
-x11-libs/libfm-qt   no-qt-debug.conf lto.conf
+x11-libs/libfm-qt no-qt-debug.conf lto.conf
 x11-terms/qterminal no-qt-debug.conf lto.conf
 sys-auth/polkit-qt no-qt-debug.conf
 x11-wm/i3 no-docs.conf lto.conf
@@ -75,3 +72,5 @@ x11-wm/i3 no-docs.conf lto.conf
 =dev-libs/crypto++-5.6.2-r3 gcc6fix.conf
 =games-util/grfcodec-6.0.5 gcc6fix.conf
 dev-util/gtk-doc disable-install-mask.conf
+gui-wm/sway lto.conf
+gui-libs/wlroots lto.conf

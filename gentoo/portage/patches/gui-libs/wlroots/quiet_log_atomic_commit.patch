@@ -1,0 +1,18 @@
+diff --git a/backend/drm/atomic.c b/backend/drm/atomic.c
+index c7b630d..b2270e4 100644
+--- a/backend/drm/atomic.c
++++ b/backend/drm/atomic.c
+@@ -32,11 +32,11 @@ static bool atomic_commit(struct atomic *atom,
+ 
+ 	int ret = drmModeAtomicCommit(drm->fd, atom->req, flags, drm);
+ 	if (ret != 0) {
+-		wlr_drm_conn_log_errno(conn,
++		/*wlr_drm_conn_log_errno(conn,
+ 			(flags & DRM_MODE_ATOMIC_TEST_ONLY) ? WLR_DEBUG : WLR_ERROR,
+ 			"Atomic %s failed (%s)",
+ 			(flags & DRM_MODE_ATOMIC_TEST_ONLY) ? "test" : "commit",
+-			(flags & DRM_MODE_ATOMIC_ALLOW_MODESET) ? "modeset" : "pageflip");
++			(flags & DRM_MODE_ATOMIC_ALLOW_MODESET) ? "modeset" : "pageflip");*/
+ 		return false;
+ 	}
+ 

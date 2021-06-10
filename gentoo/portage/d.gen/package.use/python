@@ -44,6 +44,7 @@ dev-python/pychm 3
 app-portage/gentoolkit 3
 sys-apps/portage 3
 app-portage/gentoopm 3
+app-portage/gpyutils 3
 app-portage/smart-live-rebuild 3
 app-portage/repoman 3
 app-portage/gemato 3
@@ -146,6 +147,8 @@ dev-python/pyopenssl 3
 
 
 ### python-language-server
+dev-python/python-lsp-server 3
+dev-python/python-lsp-jsonrpc 3
 dev-python/python-language-server 3
 dev-python/versioneer 3
 dev-python/autopep8 3
@@ -175,3 +178,10 @@ dev-python/zipp 3
 dev-python/setuptools_scm 3
 dev-python/more-itertools 3
 dev-python/parso 3
+
+
+# CMake LSP
+dev-python/pygls 3
+dev-python/typing-extensions 3
+dev-python/typeguard 3
+dev-python/pydantic 3

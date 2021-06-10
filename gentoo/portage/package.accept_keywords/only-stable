@@ -3,3 +3,5 @@ dev-libs/boost -* amd64
 dev-libs/re2 -* amd64
 dev-lang/spidermonkey -* amd64
 sys-boot/grub -* amd64
+dev-lang/go -* amd64
+>net-libs/nodejs-16.2.0 -* amd64
