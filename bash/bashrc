@@ -9,12 +9,11 @@
 source /etc/profile
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 
-alias gksu='lxsu'
-alias gksudo='lxsudo'
+#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent"
+
 alias curl='curl -L'
 alias vimview='vim -R'
 alias vmless='vim -u ~/.less.vimrc -'
-alias xclip='xclip -selection clipboard'
 alias protect-file='sudo chattr +i'
 alias unprotect-file='sudo chattr -i'
 alias notify='DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send'
@@ -23,7 +22,6 @@ alias ncdu='echo-title ncdu && /usr/bin/ncdu'
 alias cdw='echo-title cdw && /usr/bin/cdw'
 
 export TERMINAL=qterminal
-#export CPPFLAGS="-D_FORTIFY_SOURCE=2"
 if [[ $EUID != 0 ]] && [[ $EUID != 250 ]]; then
     export CFLAGS="-march=native -mtune=native -O2 -pipe"
     export CXXFLAGS="-march=native -mtune=native -O2 -pipe"
@@ -34,29 +32,17 @@ else
 fi
 
 update-system () {
-    ( emerge --sync && emerge -atuDUN @world --keep-going --with-bdeps\=n $@ && smart-live-rebuild -- $@ )
+    emerge -atuDN @world --keep-going --with-bdeps\=n $@
+#    ( emerge --sync && emerge -atuDUN @world --keep-going --with-bdeps\=n $@ && smart-live-rebuild -- $@ )
 }
-
 clean-system() {
     emerge --depclean -a --with-bdeps\=n $@
 }
 alias quickpkg-clean='emaint binhost --fix'
 
-echo-title() {
-    echo -e '\033]2;'"$@"'\007'
-}
-
-fix-screen() {
-	sc1=DP1
-	sc2=DP2
-	sc3=HDMI1
-	#xrandr --output ${sc1} --off --output ${sc2} --off && sleep 5 && xrandr --output ${sc1} --auto --right-of ${sc3} --output ${sc2} --auto --right-of ${sc3}
-	xrandr --output ${sc1} --off && sleep 5 && xrandr --output ${sc1} --auto --right-of ${sc3}
-}
-
+echo-title() { echo -e '\033]2;'"$@"'\007' ; }
 sumlines() { perl -lne '$x += $_; END { print $x; }'; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
-
 decompile() { objdump -M intel -C -d $@ | less; }
 
 [[ $- = *i* ]] && source /usr/bin/liquidprompt

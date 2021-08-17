@@ -1,4 +1,4 @@
-gui-wm/sway X tray seatd
+gui-wm/sway X tray seatd -swaybg
 gui-libs/wlroots X seatd
 x11-base/xorg-server wayland
 media-libs/mesa wayland

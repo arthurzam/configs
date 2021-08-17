@@ -6,3 +6,4 @@ media-video/libva-utils X wayland
 x11-libs/libva wayland X drm utils opengl
 media-video/ffmpeg vaapi
 media-video/qmplay2 vaapi hwaccel
+x11-libs/libva-intel-media-driver X set-as-default

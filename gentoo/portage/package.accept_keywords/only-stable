@@ -5,3 +5,5 @@ dev-lang/spidermonkey -* amd64
 sys-boot/grub -* amd64
 dev-lang/go -* amd64
 >net-libs/nodejs-16.2.0 -* amd64
+app-office/libreoffice -* amd64
+app-office/libreoffice-l10n -* amd64

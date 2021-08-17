@@ -1,2 +1,8 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-[[ $(tty) == "/dev/tty1" ]] && /usr/bin/xinit ~/.xinitrc -- /usr/bin/X -nolisten tcp -keeptty ":0" "vt${XDG_VTNR}"
+if [[ $(tty) == "/dev/tty1" ]]; then
+    if ! grep -q nogui /proc/cmdline; then
+        #export XDG_CURRENT_DESKTOP=sway
+        #/usr/bin/sway > /var/log/sway/sway.log 2> /var/log/sway/sway.2.log
+        /usr/bin/sway > /var/log/sway/sway.log 2> /dev/null
+    fi
+fi

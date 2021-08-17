@@ -1,0 +1,4 @@
+post_pkg_postinst() {
+	chown arthur:portage /usr/bin/dunstify
+	chmod u+s /usr/bin/dunstify
+}

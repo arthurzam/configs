@@ -15,5 +15,7 @@ media-video/qmplay2
 net-p2p/qbittorrent
 net-im/zoom
 www-client/firefox-bin
+mail-client/thunderbird-bin
 x11-misc/pcmanfm-qt
 x11-terms/qterminal
+x11-libs/libva-intel-media-driver

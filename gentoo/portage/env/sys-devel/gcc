@@ -1,0 +1,3 @@
+post_pkg_postinst() {
+	ln -sf /usr/libexec/gcc/x86_64-pc-linux-gnu/*/liblto_plugin.so.0.0.0 /usr/x86_64-pc-linux-gnu/binutils-bin/lib/bfd-plugins
+}

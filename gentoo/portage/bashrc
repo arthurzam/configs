@@ -1,5 +1,0 @@
-if [ "${EBUILD_PHASE}" == "postinst" ]; then
-    #DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -a emerge "Installed" "${CATEGORY}/${PN}"
-    [[ "${PN}" == "gcc"   ]] && ln -sf /usr/libexec/gcc/x86_64-pc-linux-gnu/*/liblto_plugin.so.0.0.0 /usr/x86_64-pc-linux-gnu/binutils-bin/lib/bfd-plugins
-    [[ "${PN}" == "dunst" ]] && chown arthur:portage /usr/bin/dunstify && chmod u+s /usr/bin/dunstify
-fi

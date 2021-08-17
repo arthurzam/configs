@@ -1,0 +1,3 @@
+post_pkg_postinst() {
+	etc-update --automode -5 /etc/portage/savedconfig/sys-kernel
+}

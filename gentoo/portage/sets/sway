@@ -2,3 +2,6 @@ dev-qt/qtwayland
 gui-wm/sway
 gui-apps/dmenu-wayland
 gui-apps/wl-clipboard
+gui-apps/grim
+gui-apps/slurp
+x11-base/xorg-server

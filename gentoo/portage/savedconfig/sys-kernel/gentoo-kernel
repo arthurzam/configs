@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 5.12.9 Kernel Configuration
+# Linux/x86 5.12.19 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="x86_64-pc-linux-gnu-gcc (Gentoo 11.1.0 p1) 11.1.0"
 CONFIG_CC_IS_GCC=y
@@ -1466,6 +1466,7 @@ CONFIG_BLK_DEV_LOOP_MIN_COUNT=8
 #
 # CONFIG_BLK_DEV_NVME is not set
 # CONFIG_NVME_FC is not set
+# CONFIG_NVME_TCP is not set
 # end of NVME Support
 
 #
@@ -4061,4 +4062,14 @@ CONFIG_GENTOO_LINUX_PORTAGE=y
 # CONFIG_GENTOO_LINUX_INIT_SCRIPT is not set
 CONFIG_GENTOO_LINUX_INIT_SYSTEMD=y
 # end of Support for init systems, system and service managers
+
+#
+# Enable Kernel Self Protection Project Recommendations
+#
+
+#
+# Architecture Specific Self Protection Project Recommendations
+#
+# end of Architecture Specific Self Protection Project Recommendations
+# end of Enable Kernel Self Protection Project Recommendations
 # end of Gentoo Linux

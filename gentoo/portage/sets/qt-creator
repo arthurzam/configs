@@ -7,14 +7,5 @@ dev-qt/qt-docs
 dev-qt/qt-creator
 dev-util/clazy
 
-# pyls dependencies
 dev-python/python-lsp-server
-dev-python/pycodestyle
-dev-python/pydocstyle
-dev-python/yapf
-dev-python/rope
-dev-python/pylint
-dev-python/flake8
-
-# cmake lsp
-dev-python/pyparsing
+dev-python/cmake-language-server

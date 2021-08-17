@@ -2,10 +2,13 @@ app-doc/eclass-manpages
 app-editors/vim
 app-portage/portage-utils
 app-portage/repoman
+#app-portage/nattka
 app-portage/gpyutils
 app-portage/mgorny-dev-scripts
+app-portage/pram
 app-emulation/lxd
 app-vim/nerdtree
+dev-python/matplotlib
 dev-python/openpyxl
 dev-python/pip
 dev-python/setuptools
@@ -13,7 +16,7 @@ dev-util/astyle
 dev-util/meson
 dev-util/ninja
 dev-util/perf
-dev-util/pkgconfig
+dev-util/pkgconf
 dev-util/pkgdev
 dev-util/strace
 dev-vcs/git
@@ -29,3 +32,5 @@ x11-terms/xterm
 @qt-creator
 #@opencl
 #@dev-is3status
+dev-util/clion
+sys-libs/liburing

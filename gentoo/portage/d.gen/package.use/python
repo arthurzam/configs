@@ -41,6 +41,7 @@ dev-python/cryptography 3
 dev-python/pychm 3
 
 ### portage apps
+app-portage/nattka 3
 app-portage/gentoolkit 3
 sys-apps/portage 3
 app-portage/gentoopm 3
@@ -69,6 +70,7 @@ dev-python/css-parser 3
 # packages
 dev-util/perf 3
 app-text/asciidoc 3 single
+dev-python/networkx 3
 dev-python/pycparser 3
 dev-python/cffi 3
 sys-apps/pkgcore 3
@@ -99,12 +101,15 @@ dev-python/pyblake2 3
 sys-devel/clang 3 single
 dev-util/gtk-doc 3 single
 
+dev-python/charset_normalizer 3
 dev-python/openpyxl 3
 dev-python/pycrypto 3
 dev-python/webencodings 3
 dev-python/numpy 3
 virtual/python-cffi 3
 dev-python/pycryptodome 3
+
+dev-python/matplotlib 3
 
 dev-python/sphinxcontrib-applehelp 3
 dev-python/sphinxcontrib-devhelp 3
@@ -144,6 +149,7 @@ dev-python/requests 3
 dev-python/urllib3 3
 dev-python/PySocks 3
 dev-python/pyopenssl 3
+dev-python/pyproject2setuppy 3
 
 
 ### python-language-server
@@ -185,3 +191,4 @@ dev-python/pygls 3
 dev-python/typing-extensions 3
 dev-python/typeguard 3
 dev-python/pydantic 3
+dev-python/cmake-language-server 3

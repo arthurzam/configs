@@ -2,12 +2,17 @@ net-misc/iputils -filecaps
 sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod gnuefi
 app-editors/vim gpm
 app-admin/doas persist
+dev-python/python-lsp-server all-plugins
 
+app-portage/nattka depgraph-order
 sys-fs/squashfs-tools lzma
+dev-python/matplotlib qt5
+dev-util/xdelta lzma
+dev-libs/raft lz4
 
 dev-util/perf -doc
 sys-libs/zlib static-libs
->=media-libs/freetype-2.6.1 X png
+>=media-libs/freetype-2.6.1 X png harfbuzz
 >=x11-libs/cairo-1.14.2-r1 X xcb
 >=x11-libs/libxcb-1.11.1 xkb
 >=x11-libs/libxkbcommon-0.5.0 X
@@ -21,6 +26,7 @@ sys-auth/pambase -passwdqc
 gnome-base/gnome-keyring -caps -pam -ssh-agent
 
 media-libs/libpng apng
+mail-client/thunderbird-bin wayland
 www-client/firefox dbus system-icu system-cairo ffmpeg system-harfbuzz -system-libvpx -system-av1 clang # pgo lto
 media-libs/libvpx postproc svc
 app-text/hunspell l10n_en l10n_he -ncurses

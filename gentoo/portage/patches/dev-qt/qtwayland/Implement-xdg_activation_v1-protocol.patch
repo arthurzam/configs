@@ -1,0 +1,636 @@
+From d48865ceab81c856b8c3a68539124c169ccae573 Mon Sep 17 00:00:00 2001
+From: Aleix Pol <aleixpol@kde.org>
+Date: Sat, 26 Jun 2021 10:05:09 +0300
+Subject: [PATCH] Implement xdg_activation_v1 protocol
+
+---
+ src/3rdparty/protocol/xdg-activation-v1.xml   | 186 ++++++++++++++++++
+ src/client/qwaylandshellsurface.cpp           |  12 ++
+ src/client/qwaylandshellsurface_p.h           |   3 +
+ src/client/qwaylandwindow.cpp                 |  13 +-
+ src/client/qwaylandwindow_p.h                 |   4 +
+ .../xdg-shell/qwaylandxdgactivationv1.cpp     |  83 ++++++++
+ .../xdg-shell/qwaylandxdgactivationv1_p.h     |  93 +++++++++
+ .../xdg-shell/qwaylandxdgshell.cpp            |  37 ++++
+ .../xdg-shell/qwaylandxdgshell_p.h            |   8 +
+ .../shellintegration/xdg-shell/xdg-shell.pro  |   3 +
+ 10 files changed, 441 insertions(+), 1 deletion(-)
+ create mode 100644 src/3rdparty/protocol/xdg-activation-v1.xml
+ create mode 100644 src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1.cpp
+ create mode 100644 src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1_p.h
+
+diff --git a/src/3rdparty/protocol/xdg-activation-v1.xml b/src/3rdparty/protocol/xdg-activation-v1.xml
+new file mode 100644
+index 0000000..d87e633
+--- /dev/null
++++ b/src/3rdparty/protocol/xdg-activation-v1.xml
+@@ -0,0 +1,186 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<protocol name="xdg_activation_v1">
++
++  <copyright>
++    Copyright © 2020 Aleix Pol Gonzalez &lt;aleixpol@kde.org&gt;
++    Copyright © 2020 Carlos Garnacho &lt;carlosg@gnome.org&gt;
++
++    Permission is hereby granted, free of charge, to any person obtaining a
++    copy of this software and associated documentation files (the "Software"),
++    to deal in the Software without restriction, including without limitation
++    the rights to use, copy, modify, merge, publish, distribute, sublicense,
++    and/or sell copies of the Software, and to permit persons to whom the
++    Software is furnished to do so, subject to the following conditions:
++
++    The above copyright notice and this permission notice (including the next
++    paragraph) shall be included in all copies or substantial portions of the
++    Software.
++
++    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
++    DEALINGS IN THE SOFTWARE.
++  </copyright>
++
++  <description summary="Protocol for requesting activation of surfaces">
++    The way for a client to pass focus to another toplevel is as follows.
++
++    The client that intends to activate another toplevel uses the
++    xdg_activation_v1.get_activation_token request to get an activation token.
++    This token is then passed to the client to be activated through a separate
++    band of communication. The client to be activated will then pass the token
++    it received to the xdg_activation_v1.activate request. The compositor can
++    then use this token to decide how to react to the activation request.
++
++    The token the activating client gets may be ineffective either already at
++    the time it receives it, for example if it was not focused, for focus
++    stealing prevention. The activating client will have no way to discover
++    the validity of the token, and may still forward it to the to be activated
++    client.
++
++    The created activation token may optionally get information attached to it
++    that can be used by the compositor to identify the application that we
++    intend to activate. This can for example be used to display a visual hint
++    about what application is being started.
++
++    Warning! The protocol described in this file is currently in the testing
++    phase. Backward compatible changes may be added together with the
++    corresponding interface version bump. Backward incompatible changes can
++    only be done by creating a new major version of the extension.
++  </description>
++
++  <interface name="xdg_activation_v1" version="1">
++    <description summary="interface for activating surfaces">
++      A global interface used for informing the compositor about applications
++      being activated or started, or for applications to request to be
++      activated.
++    </description>
++
++    <request name="destroy" type="destructor">
++      <description summary="destroy the xdg_activation object">
++        Notify the compositor that the xdg_activation object will no longer be
++        used.
++
++        The child objects created via this interface are unaffected and should
++        be destroyed separately.
++      </description>
++    </request>
++
++    <request name="get_activation_token">
++      <description summary="requests a token">
++        Creates an xdg_activation_token_v1 object that will provide
++        the initiating client with a unique token for this activation. This
++        token should be offered to the clients to be activated.
++      </description>
++
++      <arg name="id" type="new_id" interface="xdg_activation_token_v1"/>
++    </request>
++
++    <request name="activate">
++      <description summary="notify new interaction being available">
++        Requests surface activation. It's up to the compositor to display
++        this information as desired, for example by placing the surface above
++        the rest.
++
++        The compositor may know who requested this by checking the activation
++        token and might decide not to follow through with the activation if it's
++        considered unwanted.
++
++        Compositors can ignore unknown presentation tokens when an invalid
++        token is passed.
++      </description>
++      <arg name="token" type="string" summary="the activation token of the initiating client"/>
++      <arg name="surface" type="object" interface="wl_surface"
++	   summary="the wl_surface to activate"/>
++    </request>
++  </interface>
++
++  <interface name="xdg_activation_token_v1" version="1">
++    <description summary="an exported activation handle">
++      An object for setting up a token and receiving a token handle that can
++      be passed as an activation token to another client.
++
++      The object is created using the xdg_activation_v1.get_activation_token
++      request. This object should then be populated with the app_id, surface
++      and serial information and committed. The compositor shall then issue a
++      done event with the token. In case the request's parameters are invalid,
++      the compositor will provide an invalid token.
++    </description>
++
++    <enum name="error">
++      <entry name="already_used" value="0"
++             summary="The token has already been used previously"/>
++    </enum>
++
++    <request name="set_serial">
++      <description summary="specifies the seat and serial of the activating event">
++        Provides information about the seat and serial event that requested the
++        token.
++
++        Must be sent before commit. This information is optional.
++      </description>
++      <arg name="serial" type="uint"
++           summary="the serial of the event that triggered the activation"/>
++      <arg name="seat" type="object" interface="wl_seat"
++           summary="the wl_seat of the event"/>
++    </request>
++
++    <request name="set_app_id">
++      <description summary="specifies the application being activated">
++        The requesting client can specify an app_id to associate the token
++        being created with it.
++
++        Must be sent before commit. This information is optional.
++      </description>
++      <arg name="app_id" type="string"
++           summary="the application id of the client being activated."/>
++    </request>
++
++    <request name="set_surface">
++      <description summary="specifies the application being activated">
++        The requesting client can specify a surface to associate the token
++        being created with it.
++
++        Must be triggered before commit. This information is optional.
++      </description>
++      <arg name="surface" type="object" interface="wl_surface"
++	   summary="the requesting surface"/>
++    </request>
++
++    <request name="commit">
++      <description summary="issues the token request">
++        Requests an activation token based on the different parameters that
++        have been offered through set_serial, set_surface and set_app_id.
++      </description>
++    </request>
++
++    <event name="done">
++      <description summary="the exported activation token">
++        The 'done' event contains the unique token of this activation request
++        and notifies that the provider is done.
++
++        Applications will typically receive the token through the
++        XDG_ACTIVATION_TOKEN environment variable as set by its launcher, and
++        should unset the environment variable right after this request, in
++        order to avoid propagating it to child processes.
++
++        Applications implementing the D-Bus interface org.freedesktop.Application
++        should get their token under XDG_ACTIVATION_TOKEN on their platform_data.
++
++        Presentation tokens may be transferred across clients through means not
++        described in this protocol.
++      </description>
++      <arg name="token" type="string" summary="the exported activation token"/>
++    </event>
++
++    <request name="destroy" type="destructor">
++      <description summary="destroy the xdg_activation_token_v1 object">
++        Notify the compositor that the xdg_activation_token_v1 object will no
++        longer be used.
++      </description>
++    </request>
++  </interface>
++</protocol>
+diff --git a/src/client/qwaylandshellsurface.cpp b/src/client/qwaylandshellsurface.cpp
+index 91cc2c2..0d4f3b5 100644
+--- a/src/client/qwaylandshellsurface.cpp
++++ b/src/client/qwaylandshellsurface.cpp
+@@ -61,6 +61,18 @@ void QWaylandShellSurface::sendProperty(const QString &name, const QVariant &val
+     Q_UNUSED(value)
+ }
+ 
++void QWaylandShellSurface::setXdgActivationToken(const QString &token)
++{
++    Q_UNUSED(token);
++    qCWarning(lcQpaWayland) << "setXdgActivationToken not implemented" << token;
++}
++
++void QWaylandShellSurface::requestXdgActivationToken(quint32 serial)
++{
++    Q_UNUSED(serial);
++    Q_EMIT m_window->xdgActivationTokenCreated({});
++}
++
+ }
+ 
+ QT_END_NAMESPACE
+diff --git a/src/client/qwaylandshellsurface_p.h b/src/client/qwaylandshellsurface_p.h
+index 989cdb8..2575e28 100644
+--- a/src/client/qwaylandshellsurface_p.h
++++ b/src/client/qwaylandshellsurface_p.h
+@@ -85,6 +85,7 @@ public:
+     virtual bool handleExpose(const QRegion &) { return false; }
+ 
+     virtual void raise() {}
++    virtual void requestActivateWindow() { }
+     virtual void lower() {}
+     virtual void setContentOrientationMask(Qt::ScreenOrientations orientation) { Q_UNUSED(orientation) }
+ 
+@@ -99,6 +100,8 @@ public:
+     virtual void propagateSizeHints() {}
+ 
+     virtual void setWindowGeometry(const QRect &rect) { Q_UNUSED(rect); }
++    virtual void setXdgActivationToken(const QString &token);
++    virtual void requestXdgActivationToken(quint32 serial);
+ 
+ private:
+     QWaylandWindow *m_window = nullptr;
+diff --git a/src/client/qwaylandwindow.cpp b/src/client/qwaylandwindow.cpp
+index bc031ed..96e8a61 100644
+--- a/src/client/qwaylandwindow.cpp
++++ b/src/client/qwaylandwindow.cpp
+@@ -1024,7 +1024,8 @@ void QWaylandWindow::restoreMouseCursor(QWaylandInputDevice *device)
+ 
+ void QWaylandWindow::requestActivateWindow()
+ {
+-    qCWarning(lcQpaWayland) << "Wayland does not support QWindow::requestActivate()";
++    if (mShellSurface)
++        mShellSurface->requestActivateWindow();
+ }
+ 
+ bool QWaylandWindow::isExposed() const
+@@ -1241,6 +1242,16 @@ void QWaylandWindow::setOpaqueArea(const QRegion &opaqueArea)
+     wl_region_destroy(region);
+ }
+ 
++void QWaylandWindow::requestXdgActivationToken(uint serial)
++{
++    mShellSurface->requestXdgActivationToken(serial);
++}
++
++void QWaylandWindow::setXdgActivationToken(const QString &token)
++{
++    mShellSurface->setXdgActivationToken(token);
++}
++
+ }
+ 
+ QT_END_NAMESPACE
+diff --git a/src/client/qwaylandwindow_p.h b/src/client/qwaylandwindow_p.h
+index 6cc1664..d0f3cc9 100644
+--- a/src/client/qwaylandwindow_p.h
++++ b/src/client/qwaylandwindow_p.h
+@@ -206,12 +206,16 @@ public:
+     void handleUpdate();
+     void deliverUpdateRequest() override;
+ 
++    void setXdgActivationToken(const QString &token);
++    void requestXdgActivationToken(uint serial);
++
+ public slots:
+     void applyConfigure();
+ 
+ signals:
+     void wlSurfaceCreated();
+     void wlSurfaceDestroyed();
++    void xdgActivationTokenCreated(const QString &token);
+ 
+ protected:
+     QWaylandDisplay *mDisplay = nullptr;
+diff --git a/src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1.cpp b/src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1.cpp
+new file mode 100644
+index 0000000..9b5a1cb
+--- /dev/null
++++ b/src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1.cpp
+@@ -0,0 +1,83 @@
++/****************************************************************************
++**
++** Copyright (C) 2020 Aleix Pol Gonzalez <aleixpol@kde.org>
++** Contact: https://www.qt.io/licensing/
++**
++** This file is part of the config.tests of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:LGPL$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see https://www.qt.io/terms-conditions. For further
++** information use the contact form at https://www.qt.io/contact-us.
++**
++** GNU Lesser General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU Lesser
++** General Public License version 3 as published by the Free Software
++** Foundation and appearing in the file LICENSE.LGPL3 included in the
++** packaging of this file. Please review the following information to
++** ensure the GNU Lesser General Public License version 3 requirements
++** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License version 2.0 or (at your option) the GNU General
++** Public license version 3 or any later version approved by the KDE Free
++** Qt Foundation. The licenses are as published by the Free Software
++** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
++** included in the packaging of this file. Please review the following
++** information to ensure the GNU General Public License requirements will
++** be met: https://www.gnu.org/licenses/gpl-2.0.html and
++** https://www.gnu.org/licenses/gpl-3.0.html.
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++
++#include "qwaylandxdgactivationv1_p.h"
++#include <QtWaylandClient/private/qwaylanddisplay_p.h>
++#include <QtWaylandClient/private/qwaylandinputdevice_p.h>
++
++QT_BEGIN_NAMESPACE
++
++namespace QtWaylandClient {
++
++QWaylandXdgActivationV1::QWaylandXdgActivationV1(wl_registry *registry, uint32_t id,
++                                                 uint32_t availableVersion)
++    : QtWayland::xdg_activation_v1(registry, id, qMin(availableVersion, 1u))
++{
++}
++
++QWaylandXdgActivationV1::~QWaylandXdgActivationV1()
++{
++    Q_ASSERT(isInitialized());
++    destroy();
++}
++
++QWaylandXdgActivationTokenV1 *
++QWaylandXdgActivationV1::requestXdgActivationToken(QWaylandDisplay *display,
++                                                   struct ::wl_surface *surface, uint32_t serial,
++                                                   const QString &app_id)
++{
++    auto wl = get_activation_token();
++    auto provider = new QWaylandXdgActivationTokenV1;
++    provider->init(wl);
++
++    if (surface)
++        provider->set_surface(surface);
++
++    if (!app_id.isEmpty())
++        provider->set_app_id(app_id);
++
++    if (display->lastInputDevice())
++        provider->set_serial(serial, display->lastInputDevice()->wl_seat());
++    provider->commit();
++    return provider;
++}
++
++}
++
++QT_END_NAMESPACE
+diff --git a/src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1_p.h b/src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1_p.h
+new file mode 100644
+index 0000000..11ffe7d
+--- /dev/null
++++ b/src/plugins/shellintegration/xdg-shell/qwaylandxdgactivationv1_p.h
+@@ -0,0 +1,93 @@
++/****************************************************************************
++**
++** Copyright (C) 2020 Aleix Pol Gonzalez <aleixpol@kde.org>
++** Contact: https://www.qt.io/licensing/
++**
++** This file is part of the config.tests of the Qt Toolkit.
++**
++** $QT_BEGIN_LICENSE:LGPL$
++** Commercial License Usage
++** Licensees holding valid commercial Qt licenses may use this file in
++** accordance with the commercial license agreement provided with the
++** Software or, alternatively, in accordance with the terms contained in
++** a written agreement between you and The Qt Company. For licensing terms
++** and conditions see https://www.qt.io/terms-conditions. For further
++** information use the contact form at https://www.qt.io/contact-us.
++**
++** GNU Lesser General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU Lesser
++** General Public License version 3 as published by the Free Software
++** Foundation and appearing in the file LICENSE.LGPL3 included in the
++** packaging of this file. Please review the following information to
++** ensure the GNU Lesser General Public License version 3 requirements
++** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
++**
++** GNU General Public License Usage
++** Alternatively, this file may be used under the terms of the GNU
++** General Public License version 2.0 or (at your option) the GNU General
++** Public license version 3 or any later version approved by the KDE Free
++** Qt Foundation. The licenses are as published by the Free Software
++** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
++** included in the packaging of this file. Please review the following
++** information to ensure the GNU General Public License requirements will
++** be met: https://www.gnu.org/licenses/gpl-2.0.html and
++** https://www.gnu.org/licenses/gpl-3.0.html.
++**
++** $QT_END_LICENSE$
++**
++****************************************************************************/
++
++#ifndef QWAYLANDXDGACTIVATIONV1_P_H
++#define QWAYLANDXDGACTIVATIONV1_P_H
++
++//
++//  W A R N I N G
++//  -------------
++//
++// This file is not part of the Qt API.  It exists purely as an
++// implementation detail.  This header file may change from version to
++// version without notice, or even be removed.
++//
++// We mean it.
++//
++
++#include <QObject>
++#include "qwayland-xdg-activation-v1.h"
++
++#include <QtWaylandClient/qtwaylandclientglobal.h>
++
++QT_BEGIN_NAMESPACE
++
++namespace QtWaylandClient {
++
++class QWaylandDisplay;
++class QWaylandSurface;
++
++class Q_WAYLAND_CLIENT_EXPORT QWaylandXdgActivationTokenV1
++    : public QObject,
++      public QtWayland::xdg_activation_token_v1
++{
++    Q_OBJECT
++public:
++    void xdg_activation_token_v1_done(const QString &token) override { Q_EMIT done(token); }
++
++Q_SIGNALS:
++    void done(const QString &token);
++};
++
++class Q_WAYLAND_CLIENT_EXPORT QWaylandXdgActivationV1 : public QtWayland::xdg_activation_v1
++{
++public:
++    QWaylandXdgActivationV1(struct ::wl_registry *registry, uint32_t id, uint32_t availableVersion);
++    ~QWaylandXdgActivationV1() override;
++
++    QWaylandXdgActivationTokenV1 *requestXdgActivationToken(QWaylandDisplay *display,
++                                                            struct ::wl_surface *surface,
++                                                            uint32_t serial, const QString &app_id);
++};
++
++QT_END_NAMESPACE
++
++}
++
++#endif // QWAYLANDXDGACTIVATIONV1_P_H
+diff --git a/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell.cpp b/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell.cpp
+index b6d23ac..a525ca2 100644
+--- a/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell.cpp
++++ b/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell.cpp
+@@ -308,6 +308,8 @@ void QWaylandXdgSurface::setAppId(const QString &appId)
+ {
+     if (m_toplevel)
+         m_toplevel->set_app_id(appId);
++
++    m_appId = appId;
+ }
+ 
+ void QWaylandXdgSurface::setWindowFlags(Qt::WindowFlags flags)
+@@ -454,6 +456,37 @@ void QWaylandXdgSurface::xdg_surface_configure(uint32_t serial)
+     }
+ }
+ 
++void QWaylandXdgSurface::requestActivateWindow()
++{
++    if (auto *activation = m_shell->activation()) {
++        activation->activate(m_activationToken, window()->wlSurface());
++    }
++}
++
++void QWaylandXdgSurface::requestXdgActivationToken(quint32 serial)
++{
++    if (auto *activation = m_shell->activation()) {
++        auto tokenProvider = activation->requestXdgActivationToken(
++                m_shell->m_display, m_window->wlSurface(), serial, m_appId);
++        connect(tokenProvider, &QWaylandXdgActivationTokenV1::done, this,
++                [this, tokenProvider](const QString &token) {
++                    Q_EMIT m_window->xdgActivationTokenCreated(token);
++                    tokenProvider->deleteLater();
++                });
++    } else {
++        QWaylandShellSurface::requestXdgActivationToken(serial);
++    }
++}
++
++void QWaylandXdgSurface::setXdgActivationToken(const QString &token)
++{
++    if (auto *activation = m_shell->activation()) {
++        m_activationToken = token;
++    } else {
++        qCWarning(lcQpaWayland) << "zxdg_activation_v1 not available";
++    }
++}
++
+ QWaylandXdgShell::QWaylandXdgShell(QWaylandDisplay *display, uint32_t id, uint32_t availableVersion)
+     : QtWayland::xdg_wm_base(display->wl_registry(), id, qMin(availableVersion, 1u))
+     , m_display(display)
+@@ -483,6 +516,10 @@ void QWaylandXdgShell::handleRegistryGlobal(void *data, wl_registry *registry, u
+     QWaylandXdgShell *xdgShell = static_cast<QWaylandXdgShell *>(data);
+     if (interface == QLatin1String(QWaylandXdgDecorationManagerV1::interface()->name))
+         xdgShell->m_xdgDecorationManager.reset(new QWaylandXdgDecorationManagerV1(registry, id, version));
++
++    if (interface == QLatin1String(QWaylandXdgActivationV1::interface()->name)) {
++        xdgShell->m_xdgActivation.reset(new QWaylandXdgActivationV1(registry, id, version));
++    }
+ }
+ 
+ }
+diff --git a/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell_p.h b/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell_p.h
+index 0c98be3..c57e182 100644
+--- a/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell_p.h
++++ b/src/plugins/shellintegration/xdg-shell/qwaylandxdgshell_p.h
+@@ -55,6 +55,7 @@
+ #include "qwayland-xdg-shell.h"
+ 
+ #include "qwaylandxdgdecorationv1_p.h"
++#include "qwaylandxdgactivationv1_p.h"
+ 
+ #include <QtWaylandClient/qtwaylandclientglobal.h>
+ #include <QtWaylandClient/private/qwaylandshellsurface_p.h>
+@@ -94,6 +95,9 @@ public:
+     bool wantsDecorations() const override;
+     void propagateSizeHints() override;
+     void setWindowGeometry(const QRect &rect) override;
++    void requestActivateWindow() override;
++    void setXdgActivationToken(const QString &token) override;
++    void requestXdgActivationToken(quint32 serial) override;
+ 
+     void setSizeHints();
+ 
+@@ -153,6 +157,8 @@ private:
+     bool m_configured = false;
+     QRegion m_exposeRegion;
+     uint m_pendingConfigureSerial = 0;
++    QString m_activationToken;
++    QString m_appId;
+ 
+     friend class QWaylandXdgShell;
+ };
+@@ -164,6 +170,7 @@ public:
+     ~QWaylandXdgShell() override;
+ 
+     QWaylandXdgDecorationManagerV1 *decorationManager() { return m_xdgDecorationManager.data(); }
++    QWaylandXdgActivationV1 *activation() const { return m_xdgActivation.data(); }
+     QWaylandXdgSurface *getXdgSurface(QWaylandWindow *window);
+ 
+ protected:
+@@ -175,6 +182,7 @@ private:
+ 
+     QWaylandDisplay *m_display = nullptr;
+     QScopedPointer<QWaylandXdgDecorationManagerV1> m_xdgDecorationManager;
++    QScopedPointer<QWaylandXdgActivationV1> m_xdgActivation;
+     QWaylandXdgSurface::Popup *m_topmostGrabbingPopup = nullptr;
+ 
+     friend class QWaylandXdgSurface;
+diff --git a/src/plugins/shellintegration/xdg-shell/xdg-shell.pro b/src/plugins/shellintegration/xdg-shell/xdg-shell.pro
+index 2617158..ae48934 100644
+--- a/src/plugins/shellintegration/xdg-shell/xdg-shell.pro
++++ b/src/plugins/shellintegration/xdg-shell/xdg-shell.pro
+@@ -6,6 +6,7 @@ qtConfig(xkbcommon): \
+     QMAKE_USE_PRIVATE += xkbcommon
+ 
+ WAYLANDCLIENTSOURCES += \
++    ../../../3rdparty/protocol/xdg-activation-v1.xml \
+     ../../../3rdparty/protocol/xdg-decoration-unstable-v1.xml \
+     ../../../3rdparty/protocol/xdg-shell.xml
+ 
+@@ -13,12 +14,14 @@ HEADERS += \
+     qwaylandxdgdecorationv1_p.h \
+     qwaylandxdgshell_p.h \
+     qwaylandxdgshellintegration_p.h \
++    qwaylandxdgactivationv1_p.h \
+ 
+ SOURCES += \
+     main.cpp \
+     qwaylandxdgdecorationv1.cpp \
+     qwaylandxdgshell.cpp \
+     qwaylandxdgshellintegration.cpp \
++    qwaylandxdgactivationv1.cpp \
+ 
+ OTHER_FILES += \
+     xdg-shell.json
+-- 
+2.32.0
+
