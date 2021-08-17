@@ -1,4 +1,4 @@
 [Unit]
 Description=Run periodic Gentoo metadata cache
-Requires=multi-user.target egencache@gentoo.service egencache@qt.service
+Requires=multi-user.target emerge-sync@gentoo.service egencache@qt.service
 After=multi-user.target
