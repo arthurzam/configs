@@ -6,7 +6,7 @@ After=emerge-sync@%i.service
 [Service]
 Type=simple
 User=root
-ExecStart=egencache --jobs=9 --update --repo %i
+ExecStart=pmaint regen --threads 9 %i
 
 [Install]
 WantedBy=multi-user.target

@@ -1,8 +1,7 @@
 // Allow all users to run i3lock.service
 
 polkit.addRule(function(action, subject) {
-    if (action.id == "org.freedesktop.systemd1.manage-units" &&
-        action.lookup("unit") == "i3lock.service") {
+    if (action.id == "org.freedesktop.systemd1.manage-units") {
         return polkit.Result.YES;
     }
 });
