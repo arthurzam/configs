@@ -1,7 +1,0 @@
-[qt]
-location = /usr/local/qt-portage
-sync-type = git
-sync-uri = git://anongit.gentoo.org/proj/qt.git
-auto-sync = true
-masters = gentoo
-clone-depth = 1
