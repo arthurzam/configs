@@ -1,12 +1,9 @@
-diff --git a/htop.c b/htop.c
-index 00ff1da..ec11fd9 100644
 --- a/htop.c
 +++ b/htop.c
-@@ -263,6 +263,7 @@ static void setCommFilter(State* state, char** commFilter) {
+@@ -12,5 +12,6 @@
+ 
  
  int main(int argc, char** argv) {
- 
 +   printf("\033]2;htop\007");
-    /* initialize locale */
-    const char* lc_ctype;
-    if ((lc_ctype = getenv("LC_CTYPE")) || (lc_ctype = getenv("LC_ALL")))
+    return CommandLine_run(PACKAGE, argc, argv);
+ }

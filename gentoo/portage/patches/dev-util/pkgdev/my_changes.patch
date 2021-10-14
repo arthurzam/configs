@@ -1,0 +1,34 @@
+diff --git a/src/pkgdev/scripts/pkgdev_commit.py b/src/pkgdev/scripts/pkgdev_commit.py
+index bb783a5..1e0ea55 100644
+--- a/src/pkgdev/scripts/pkgdev_commit.py
++++ b/src/pkgdev/scripts/pkgdev_commit.py
+@@ -434,8 +434,6 @@ class PkgSummary(ChangeSummary):
+                     msg = []
+                     if added := sorted(new - old):
+                         msg.append(f"enable {', '.join(added)}")
+-                    if dropped := sorted(old - new):
+-                        msg.append(f"disable {', '.join(dropped)}")
+                     msg = ' and '.join(msg)
+                     if len(msg) <= 50:
+                         return msg
+@@ -714,7 +712,7 @@ def _commit_validate(parser, namespace):
+ 
+     # assume signed commits means also requiring signoffs
+     if namespace.repo.config.sign_commits:
+-        namespace.commit_args.extend(['--signoff', '--gpg-sign'])
++        namespace.commit_args.extend(['--signoff'])
+ 
+ 
+ def update_manifests(options, out, err, changes):
+diff --git a/src/pkgdev/scripts/pkgdev_push.py b/src/pkgdev/scripts/pkgdev_push.py
+index 9913167..4ac9260 100644
+--- a/src/pkgdev/scripts/pkgdev_push.py
++++ b/src/pkgdev/scripts/pkgdev_push.py
+@@ -16,6 +16,7 @@ class ArgumentParser(arghparse.ArgumentParser):
+         namespace, args = super().parse_known_args(args, namespace)
+         if namespace.dry_run:
+             args.append('--dry-run')
++        args.append('--signed')
+         namespace.push_args = args
+         return namespace, []
+ 
