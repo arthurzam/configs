@@ -1,10 +1,10 @@
+app-portage/nattka depgraph-order
 net-misc/iputils -filecaps
 sys-apps/systemd policykit -ssl -gcrypt -kdbus -kmod gnuefi
 app-editors/vim gpm
 app-admin/doas persist
 dev-python/python-lsp-server all-plugins
 
-app-portage/nattka depgraph-order
 sys-fs/squashfs-tools lzma
 dev-python/matplotlib qt5
 dev-util/xdelta lzma
@@ -85,9 +85,10 @@ net-analyzer/nmap nping zenmap ncat
 dev-libs/libxml2 python
 sys-block/gparted fat ntfs policykit
 dev-java/antlr -java
+app-crypt/gnupg smartcard usb tools
 
-sys-devel/gcc -fortran cilk lto
-dev-vcs/git -perl -python -pcre -pcre-jit #tk
+sys-devel/gcc fortran cilk lto
+dev-vcs/git perl -python -pcre -pcre-jit #tk
 app-admin/sudo -sendmail
 sys-process/procps -unicode
 dev-lang/perl -gdbm
@@ -117,7 +118,7 @@ net-misc/fatrat curl bittorrent
 net-misc/curl http2
 app-text/sigil -plugins
 
-dev-util/cmake qt5 server
+dev-util/cmake server
 sys-apps/util-linux -cramfs
 dev-util/ninja vim-syntax
 
@@ -149,3 +150,6 @@ sys-libs/talloc -python
 dev-libs/libsodium minimal
 sys-apps/file lzma
 sys-kernel/gentoo-kernel savedconfig -initramfs
+
+dev-db/sqlite -secure-delete
+net-irc/quassel X -server -monolithic spell -crypt

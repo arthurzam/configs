@@ -1,5 +1,6 @@
 app-admin/doas
 #app-admin/sudo
+sys-apps/pcsc-lite
 app-arch/lrzip
 app-arch/p7zip
 app-arch/unrar
@@ -13,6 +14,7 @@ app-shells/bash-completion
 app-shells/liquidprompt
 app-text/dos2unix
 app-text/recode
+app-text/wgetpaste
 dev-util/android-tools
 media-gfx/graphicsmagick
 media-gfx/optipng

@@ -19,3 +19,4 @@ mail-client/thunderbird-bin
 x11-misc/pcmanfm-qt
 x11-terms/qterminal
 x11-libs/libva-intel-media-driver
+net-irc/quassel

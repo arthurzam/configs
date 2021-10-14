@@ -1,0 +1,8 @@
+virtual/* no-binpkg.conf
+*/*-bin no-binpkg.conf
+sys-kernel/gentoo-kernel no-binpkg.conf
+app-office/libreoffice no-binpkg.conf
+x11-base/xorg-drivers no-binpkg.conf
+dev-util/clion no-binpkg.conf
+net-im/zoom no-binpkg.conf
+acct-*/* no-binpkg.conf

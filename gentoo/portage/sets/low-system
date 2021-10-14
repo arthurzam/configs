@@ -3,4 +3,4 @@ dev-util/debugedit
 sys-firmware/intel-microcode
 #sys-kernel/ck-sources
 sys-kernel/linux-firmware
-=virtual/dist-kernel-5.12*
+virtual/dist-kernel
