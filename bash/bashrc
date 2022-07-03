@@ -9,7 +9,7 @@
 source /etc/profile
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 
-#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 
 alias curl='curl -L'
 alias vimview='vim -R'
@@ -40,10 +40,45 @@ clean-system() {
 }
 alias quickpkg-clean='emaint binhost --fix'
 
+lxc_prepare_test() {
+    if lxc-info -n test-system -s | grep -q STOPPED; then
+        #systemctl start lxc-net.service
+        systemctl start lxc@test-system.service
+        lxc-wait -s RUNNING -n test-system
+    fi
+    lxc-attach -n test-system --clear-env -v TEST_CWD="${PWD}" 
+}
+prepare_test() {
+    if ! machinectl list | grep -q amd64-testing; then
+        machinectl start amd64-testing
+        sleep 2
+    fi
+    machinectl shell -E TEST_CWD="${PWD/home\/arthur/root}" amd64-testing /bin/bash
+}
+export ECHANGELOG_USER="Arthur Zamarin <arthurzam@gentoo.org>"
+
 echo-title() { echo -e '\033]2;'"$@"'\007' ; }
 sumlines() { perl -lne '$x += $_; END { print $x; }'; }
 mkcd() { mkdir -p "$@" && cd "$@"; }
 decompile() { objdump -M intel -C -d $@ | less; }
 
+pkgbump() {
+    # $1 - new version
+    local LATEST=$(pquery --max --repo "$(git rev-parse --show-toplevel)")
+    local NEW="$(qatom -C -F "%{PN}-${1}.ebuild" ${LATEST})"
+    cp "$(qatom -C -F "%{PF}.ebuild" ${LATEST})" "${NEW}" || return 1
+    ekeyword ~all "${NEW}" || return 1
+    pkgdev manifest || return 1
+    if compgen -G "/run/user/1000/vscode-*" >& /dev/null; then
+        echo "Opening ${NEW} in vscode"
+        vscode "${NEW}"
+    fi
+}
+
 [[ $- = *i* ]] && source /usr/bin/liquidprompt
 
+archtester-fetch() {
+    git -C ~/dev/gentoo/ pull
+    ./controller.py fetch -ard ~/dev/gentoo/
+    (cd ../gentoo && git pull && git sync && pkgdev push ; )
+}
